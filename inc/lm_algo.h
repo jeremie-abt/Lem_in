@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lm_parseur.c                                       :+:      :+:    :+:   */
+/*   lm_algo.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/01 11:58:27 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/05 10:57:34 by galemair         ###   ########.fr       */
+/*   Created: 2018/06/05 12:18:34 by galemair          #+#    #+#             */
+/*   Updated: 2018/06/05 12:26:41 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/lem_in.h"
+#ifndef LM_ALGO_H
+# define LM_ALGO_H
 
-int		lm_parseur(t_adj_list **ad_list, char *str)
-{
-
-	return (0);
-}
+typedef	struct
