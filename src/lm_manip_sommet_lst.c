@@ -6,41 +6,44 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:16:32 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/04 19:16:18 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/05 18:37:43 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_sommet	*lm_adefinir(t_sommet *head, char *str)
+static t_sommet		*lm_init_sommet(t_sommet *cur_head, char *str)
 {
-	t_sommet	*new_head;
+	t_sommet	*sommet;
+	static int test;
+	test++;
 
-	if (!(new_head = malloc(t_sommet)))
+	if (test == 13 || !(sommet = malloc(sizeof(t_sommet))))
 		return (NULL);
-	
+	sommet->name  = str;
+	sommet->distance = -1;
+	sommet->visited = 0;
+	sommet->lst = NULL;
+	sommet->next = cur_head;
+	return (sommet);
 }
 
 int			lm_add_sommet(t_sommet **sommet, char *str)
 {
-//	t_sommet	*node;
+	char	*new_str;
 	int		key;
+	int		length;
 
-	key = lm_hash(str);
-	if (!sommet[key])
+	new_str = ft_strchr(str, ' ');
+	if (new_str)
 	{
-		if (!(sommet[key] = malloc(sizeof(t_sommet))))
+		length = new_str - str;
+		new_str = ft_strsub(str, 0, length);
+		key = lm_hash(str);
+		if (!(sommet[key] = lm_init_sommet(sommet[key], new_str)))
 			return (0);
-		sommet[key]->name  = str;
-		sommet[key]->distance = -1;
-		sommet[key]->visited = 0;
-		sommet[key]->lst = NULL;
-		sommet[key]->next = NULL;
 	}
 	else
-	{
-		
-	}
-		printf("attention collision : %s\n", str);
+		return (0);
 	return (1);
 }

@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   lm_verif_format.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/04 17:51:11 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/05 18:46:23 by jabt             ###   ########.fr       */
+/*   Created: 2018/06/05 17:42:46 by jabt              #+#    #+#             */
+/*   Updated: 2018/06/05 18:21:26 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	print_sommet(t_sommet *sommet)
-{
-	printf("sommet : %s\n", sommet->name);
-}
-
-void	print_hashtable(t_sommet **sommet)
+int		lm_is_good_room(char *room)
 {
 	int		i;
-	
+
 	i = 0;
-	while (i < HASH_SIZE)
+	while (room[i])
 	{
-		if (sommet[i])
-			printf("HEAD %d : %s\n", i, sommet[i]->name);
+		if (room[i] == '-')
+			return (0);
 		i++;
 	}
+	return (1);
 }

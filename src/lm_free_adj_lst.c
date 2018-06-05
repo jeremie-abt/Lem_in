@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   lm_free_adj_lst.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/04 17:51:11 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/05 18:46:23 by jabt             ###   ########.fr       */
+/*   Created: 2018/06/05 11:07:35 by jabt              #+#    #+#             */
+/*   Updated: 2018/06/05 11:14:02 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	print_sommet(t_sommet *sommet)
+void		lm_free_adj_lst(t_adj_list *adj_list)
 {
-	printf("sommet : %s\n", sommet->name);
-}
+	t_adj_list	*save;
 
-void	print_hashtable(t_sommet **sommet)
-{
-	int		i;
-	
-	i = 0;
-	while (i < HASH_SIZE)
+	while (adj_list)
 	{
-		if (sommet[i])
-			printf("HEAD %d : %s\n", i, sommet[i]->name);
-		i++;
+		free(adj_list->neighbor);
+		save = adj_list;
+		adj_list = adj_list->next;
+		free(save);
 	}
 }
