@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:16:32 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/05 18:37:43 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/06 14:02:02 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 static t_sommet		*lm_init_sommet(t_sommet *cur_head, char *str)
 {
 	t_sommet	*sommet;
-	static int test;
-	test++;
 
-	if (test == 13 || !(sommet = malloc(sizeof(t_sommet))))
+	if (!(sommet = malloc(sizeof(t_sommet))))
 		return (NULL);
-	sommet->name  = str;
+	sommet->name  = str;//a voir si ici je ne peux pas simplement faire un bzero
 	sommet->distance = -1;
 	sommet->visited = 0;
 	sommet->lst = NULL;
@@ -28,22 +26,65 @@ static t_sommet		*lm_init_sommet(t_sommet *cur_head, char *str)
 	return (sommet);
 }
 
-int			lm_add_sommet(t_sommet **sommet, char *str)
+int					lm_add_sommet(t_sommet **sommet, char *str)
 {
 	char	*new_str;
 	int		key;
-	int		length;
 
-	new_str = ft_strchr(str, ' ');
+	new_str = lm_get_room_name(str);
 	if (new_str)
 	{
-		length = new_str - str;
-		new_str = ft_strsub(str, 0, length);
-		key = lm_hash(str);
+		key = lm_hash(new_str);
 		if (!(sommet[key] = lm_init_sommet(sommet[key], new_str)))
 			return (0);
 	}
 	else
 		return (0);
 	return (1);
+}
+
+int					lm_add_start_end(t_sommet **sommet, int index)
+{
+	char	*ligne;
+	char	*new_room;
+
+	if (sommet[index])
+		return (-1);//pour l'instant non gere aussi
+	get_next_line(0, &ligne);
+	new_room = lm_get_room_name(ligne);
+	if (new_room && lm_is_good_room(new_room))
+	{
+		if (!(sommet[index] = malloc(sizeof(t_sommet))))
+		{
+			free(ligne);
+			if (new_room)
+				free(new_room);
+			return (-1);
+		}
+	}
+	else
+	{
+		free(ligne);
+		if (new_room)
+			free(new_room);
+		return (-1);
+	}
+	free(ligne);
+	ft_bzero(sommet[index], sizeof(t_sommet));
+	sommet[index]->name = new_room;
+	return (1);
+}
+
+t_sommet					*lm_get_sommet(t_sommet **sommet, char *needle)
+{
+	int			key;
+	t_sommet	*iter;
+
+	key = lm_hash(needle);
+	iter = sommet[key];
+	if (!iter)
+		return (NULL);
+	while (!ft_strequ(iter->name, needle))
+		iter = iter->next;
+	return (iter);
 }

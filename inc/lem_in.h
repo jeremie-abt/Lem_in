@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/05 18:42:07 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/06 14:02:06 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,15 @@ typedef struct	s_adj_list
 int			lm_hash(char *str);
 int			lm_add_hashmap(t_sommet **sommet, char *str);
 int			lm_add_sommet(t_sommet **sommet, char *str);
+int			lm_add_start_end(t_sommet **sommet, int index);
+t_sommet	*lm_get_sommet(t_sommet **sommet, char *needle);
 void		lm_free_hashtable(t_sommet **hashtab);
 
 /*
  * 		adjencency list function
  */
 
+int			lm_add_tube(t_sommet **sommet, char *pattern);
 void		lm_free_adj_list(t_adj_list *adj_list);
 
 /*
@@ -58,8 +61,16 @@ void		lm_free_adj_list(t_adj_list *adj_list);
  */
 
 int			lm_parse_ant(char *ligne);
+int			lm_parse_digit(char *ligne);
 int			lm_parseur(t_sommet **sommet);
 int			lm_is_good_room(char *room);
+
+/*
+ * 	un peu d'utils
+ */
+
+char		*lm_get_room_name(char *str);
+int			lm_verif_tube(char *str);
 
 /*
  *	debug ou temporaire

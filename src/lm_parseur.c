@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:58:27 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/05 18:46:19 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/06 14:02:00 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,42 +17,38 @@ static int			lm_handle_command(t_sommet **sommet, char *ligne)
 	if (ligne[1] == '#')
 	{
 		if (ft_strequ(&ligne[2], "start"))
-		{
-			get_next_line(0, &ligne);
-			if (lm_add_start(sommet, ligne) == -1)
-				return (-1);
-		}
+			lm_add_start_end(sommet, 0);
 		else if (ft_strequ(&ligne[2], "end"))
-		{
-			get_next_line(0, &ligne);
-			if (lm_add_end(sommet, ligne) == -1)
-				return (-1);
-		}
+			lm_add_start_end(sommet, 1);
 	}
 	return (1);
 }
 
-int		lm_parse_ant(char *ligne)
+int		lm_parse_tube(t_sommet **sommet, char *ligne)
 {
-	int		i;
+	char	*tmp;
 	int		ret;
-
-	ret = 0;
-	i = 0;
-	while (ligne[i])
+/*	if (lm_verif_tube(ligne) == -1)
+		return (-1);*/
+	if (lm_add_tube(sommet, ligne) == -1)
 	{
-		if (ligne[i] && (ligne[i] >= '0' && ligne[i] <= '9' ))
-			ret = (ret * 10) + 	ligne[i] - '0';
-		else
-			return (-1);
-		i++;
+		free(ligne);
+		return (-1);
 	}
-	return (ret);
+	printf("exit lm_parseur.c\n");
+	exit(50);
+	/*
+	while (get_next_line(0, &tmp))
+	{
+		
+	}*/
+		
 }
 
 int		lm_parse_room(t_sommet **sommet, char *ligne)
 {
 	char	*ptr;
+	int		ret;///// vraiment utile ?
 	
 	if (*ligne == '#')
 	{
@@ -65,6 +61,12 @@ int		lm_parse_room(t_sommet **sommet, char *ligne)
 		{
 			lm_add_sommet(sommet, ligne);
 		}
+		else
+		{
+			ret = lm_parse_tube(sommet, ligne);
+			if (ret <= 0)
+				return (ret);// attention si je renvoie 0 ici il se passe quoi ?
+		}
 	}
 	// peut etre verif que les sommets sont bons
 	return (1);
@@ -73,6 +75,7 @@ int		lm_parse_room(t_sommet **sommet, char *ligne)
 int		lm_parseur(t_sommet **sommet)
 {
 	int		ret;
+	int		tmp;
 	char	*ligne;
 
 	get_next_line(0, &ligne);
@@ -84,8 +87,11 @@ int		lm_parseur(t_sommet **sommet)
 	free(ligne);
 	while (get_next_line(0, &ligne))
 	{
-		if (lm_parse_room(sommet, ligne) == -1)
+		tmp = lm_parse_room(sommet, ligne);
+		if (tmp == -1)
 			return (-1);
+		/*if (lm_parse_room(sommet, ligne) == -1)
+			return (-1);*/
 		free(ligne);
 	}
 	return (ret);

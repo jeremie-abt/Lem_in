@@ -1,26 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lm_verif_format.c                                  :+:      :+:    :+:   */
+/*   lm_hashtable_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/05 17:42:46 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/06 10:44:52 by jabt             ###   ########.fr       */
+/*   Created: 2018/06/06 09:52:59 by jabt              #+#    #+#             */
+/*   Updated: 2018/06/06 12:10:55 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		lm_is_good_room(char *room)
+char		*lm_get_room_name(char *str)
 {
-	int		i;
+	char	*room_name;
+	int		length;
 
-	i = 0;
-	while (room[i])
+	room_name = ft_strchr(str, ' ');
+	if (room_name)
 	{
-		if (room[i] == '-')
-			return (0);
+		length = room_name - str;
+		if (!(room_name = ft_strsub(str, 0, length)))
+			return (NULL);
+		return (room_name);
+	}
+	else
+		return (NULL);
+}
+
+int			lm_verif_tube(char *str)
+{	
+	int		i;
+	int		state;
+
+	state = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '-')
+			state++;
+		if (state > 1)
+			return (-1);
 		i++;
 	}
 	return (1);
