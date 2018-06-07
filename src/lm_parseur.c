@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:58:27 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/06 14:02:00 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/07 11:53:21 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,31 @@ static int			lm_handle_command(t_sommet **sommet, char *ligne)
 
 int		lm_parse_tube(t_sommet **sommet, char *ligne)
 {
-	char	*tmp;
+//	char	*tmp;
 	int		ret;
 /*	if (lm_verif_tube(ligne) == -1)
 		return (-1);*/
 	if (lm_add_tube(sommet, ligne) == -1)
 	{
-		free(ligne);
+	//	free(ligne);
 		return (-1);
 	}
-	printf("exit lm_parseur.c\n");
-	exit(50);
-	/*
-	while (get_next_line(0, &tmp))
+	while (get_next_line(0, &ligne))
 	{
-		
-	}*/
-		
+		if (lm_add_tube(sommet, ligne) == -1)
+		{
+		//	free(ligne);
+			return (-1);
+		}
+		free(ligne);
+	}
+	return (1);
 }
 
 int		lm_parse_room(t_sommet **sommet, char *ligne)
 {
 	char	*ptr;
-	int		ret;///// vraiment utile ?
+	//int		ret;///// vraiment utile ?
 	
 	if (*ligne == '#')
 	{
@@ -63,9 +65,11 @@ int		lm_parse_room(t_sommet **sommet, char *ligne)
 		}
 		else
 		{
-			ret = lm_parse_tube(sommet, ligne);
-			if (ret <= 0)
-				return (ret);// attention si je renvoie 0 ici il se passe quoi ?
+			if (lm_parse_tube(sommet, ligne) == -1)
+			{
+			//	free(ligne);
+				return (-1);
+			}
 		}
 	}
 	// peut etre verif que les sommets sont bons
@@ -75,7 +79,7 @@ int		lm_parse_room(t_sommet **sommet, char *ligne)
 int		lm_parseur(t_sommet **sommet)
 {
 	int		ret;
-	int		tmp;
+//	int		tmp;
 	char	*ligne;
 
 	get_next_line(0, &ligne);
@@ -87,9 +91,11 @@ int		lm_parseur(t_sommet **sommet)
 	free(ligne);
 	while (get_next_line(0, &ligne))
 	{
-		tmp = lm_parse_room(sommet, ligne);
-		if (tmp == -1)
+		if (lm_parse_room(sommet, ligne) == -1)
+		{
+			free(ligne);
 			return (-1);
+		}
 		/*if (lm_parse_room(sommet, ligne) == -1)
 			return (-1);*/
 		free(ligne);

@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/06 14:02:06 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/07 11:20:31 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct		s_sommet
 
 typedef struct	s_adj_list
 {
-	char				*neighbor;
+	char				*name;
 	struct s_adj_list	*next;
 }				t_adj_list;
 
@@ -80,5 +80,6 @@ int			lm_add_start(t_sommet **sommet, char *str);
 int			lm_add_end(t_sommet **sommet, char *str);
 void		print_sommet(t_sommet *sommet);
 void		print_hashtable(t_sommet **sommet);
+void		print_all_hashtable(t_sommet **sommet);
 
 #endif

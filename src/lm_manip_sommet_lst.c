@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:16:32 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/06 14:02:02 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/07 11:43:06 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,18 +73,4 @@ int					lm_add_start_end(t_sommet **sommet, int index)
 	ft_bzero(sommet[index], sizeof(t_sommet));
 	sommet[index]->name = new_room;
 	return (1);
-}
-
-t_sommet					*lm_get_sommet(t_sommet **sommet, char *needle)
-{
-	int			key;
-	t_sommet	*iter;
-
-	key = lm_hash(needle);
-	iter = sommet[key];
-	if (!iter)
-		return (NULL);
-	while (!ft_strequ(iter->name, needle))
-		iter = iter->next;
-	return (iter);
 }
