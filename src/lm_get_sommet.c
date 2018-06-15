@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:07:39 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/15 16:00:28 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/15 16:09:49 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,8 @@ t_sommet			*lm_get_sommet(t_sommet **sommet, char *needle)
 
 	key = lm_hash(needle);
 	iter = sommet[key];
-	// test si c debut ou fin
-	if (!iter)
-	{
+	if (!iter || ft_strequ(needle, sommet[0]->name) || ft_strequ(needle, sommet[1]->name))
 		return (lm_get_start_end(sommet, needle));
-	}
 	while (!ft_strequ(iter->name, needle))
 		iter = iter->next;
 	return (iter);
