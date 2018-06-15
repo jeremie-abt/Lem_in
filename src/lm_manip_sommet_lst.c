@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:16:32 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/14 18:46:23 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/15 12:31:56 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int					lm_add_sommet(t_sommet **sommet, char *str)
 	new_str = lm_get_room_name(str);
 	if (new_str)
 	{
-		key = lm_hash(new_str, *sommet);
+		key = lm_hash(new_str);
 		if (!(sommet[key] = lm_init_sommet(sommet[key], new_str)))
 			return (0);
 	}

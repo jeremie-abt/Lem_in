@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:51:11 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/07 11:25:33 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/15 14:54:47 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,22 @@ void	print_all_hashtable(t_sommet **sommet)
 		}
 		i++;
 	}
+}
+
+void	print_all_hashtable_wdistance(t_sommet **sommet)
+{
+	int		i;
+	
+	i = 0;
+	while (i < HASH_SIZE)
+	{
+		if (sommet[i])
+		{
+			printf("HEAD %d : %s sa distance : %d  neighbor ->\n", i, sommet[i]->name, sommet[i]->distance);
+			print_adj_list(sommet[i]->lst);
+//			printf("just first one : %s\n", sommet[i]->lst->name);
+		}
+		i++;
+	}
+
 }

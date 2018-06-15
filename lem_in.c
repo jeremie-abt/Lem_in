@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:11:00 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/14 18:05:11 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/15 13:41:22 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int		main(int argc, char **argv)
 	}
 
 	lm_start_algo(sommet, ants);
+	lm_find_path();
 	//print_all_hashtable(sommet);
 
 	lm_free_hashtable(sommet);

@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 10:58:09 by galemair          #+#    #+#             */
-/*   Updated: 2018/06/14 18:52:29 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/15 12:50:16 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			lm_queue_neighbor(t_sommet *head, t_sommet **queue, t_sommet **sommet)
 	adj_lst = head->lst;
 	while (adj_lst)
 	{
-		tmp = lm_get_adress(adj_lst->name, sommet);
+		tmp = lm_get_sommet(sommet, adj_lst->name);
 		if (tmp->distance == 0 && ft_strcmp(tmp->name, sommet[1]->name) != 0)
 		{
 			add_in_queue(queue, tmp);
@@ -54,5 +54,9 @@ int			lm_start_algo(t_sommet **sommet, int ants)
 	 * boucler sur ca
 	*/
 	get_distance(sommet, &queue);
+	printf("ok je sors :\n\n");
+	print_all_hashtable_wdistance(sommet);
+
+	exit(4);
 	return (0);
 }

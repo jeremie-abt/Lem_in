@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lm_hash_algo.c                                     :+:      :+:    :+:   */
+/*   lm_verif_sommet.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/01 11:44:07 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/15 12:32:58 by jabt             ###   ########.fr       */
+/*   Created: 2018/06/15 14:33:04 by jabt              #+#    #+#             */
+/*   Updated: 2018/06/15 14:42:22 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		lm_hash(char *str)
+int		lm_nb_child(t_sommet **sommet, t_sommet *parent, t_sommet *node)
 {
-	int	ret;
-	int	i;
+	t_adj_list		*adj_list;
+	t_sommet		*tmp;
+	int				distance;
+	int				ret;
 
-	i = 0;
+	distance = node->distance + 1;
+	adj_list = sommet->lst;
 	ret = 0;
-	while (str[i])
+	while (adj_list)
 	{
-		ret += str[i];
-		i++;
+		tmp = lm_get_sommet(sommet, adj_list->name);
+		if (tmp->distance == distance && tmp != parent)
+			ret++;
+		adj_list = adj_list->next;
 	}
-	ret %= HASH_SIZE;
-	if (ret == 0 || ret == 1)
-		return (ret + 2);
 	return (ret);
 }

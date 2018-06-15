@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/14 18:52:30 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/15 13:56:03 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ typedef struct	s_adj_list
 ** 	hashtable function
 */
 
-int			lm_hash(char *str, t_sommet *sommet);
 t_sommet	*lm_get_adress(char *str, t_sommet **sommet);
+int			lm_hash(char *str);
 int			lm_add_hashmap(t_sommet **sommet, char *str);
 int			lm_add_sommet(t_sommet **sommet, char *str);
 int			lm_add_start_end(t_sommet **sommet, int index);
@@ -71,6 +71,8 @@ void		add_in_queue(t_sommet **queue, t_sommet *to_add);
 void		lm_queue_neighbor(t_sommet *head, t_sommet **queue, t_sommet **sommet);
 int			get_distance(t_sommet **sommet, t_sommet **queue);
 int			lm_start_algo(t_sommet **sommet, int ants);
+int			lm_find_path_core(t_sommet **sommet);
+int			lm_find_path_node(t_sommet **sommet);
 
 /*
  * 	parsing function
@@ -97,5 +99,6 @@ int			lm_add_end(t_sommet **sommet, char *str);
 void		print_sommet(t_sommet *sommet);
 void		print_hashtable(t_sommet **sommet);
 void		print_all_hashtable(t_sommet **sommet);
+void		print_all_hashtable_wdistance(t_sommet **sommet);
 
 #endif
