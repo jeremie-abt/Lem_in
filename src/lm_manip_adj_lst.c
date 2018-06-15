@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:40:21 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/07 12:45:29 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/14 10:50:01 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ int				lm_add_tube(t_sommet **sommet, char *pattern)
 		return (-1);
 	}
 	lm_add_neighbor(first_sommet, second_sommet, second, first);
-	printf("first_sommet : %s\n", first_sommet->name);
+/*	printf("first_sommet : %s\n", first_sommet->name);
 	printf("son new voisin : %s\n", first_sommet->lst->name);
 	printf("second_sommet : %s\n", second_sommet->name);
-	printf("son new voisin : %s\n", second_sommet->lst->name);
+	printf("son new voisin : %s\n", second_sommet->lst->name);*/
 //	lm_add_meighbor(sommet[key]);
 	//free(first);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 11:02:54 by galemair          #+#    #+#             */
-/*   Updated: 2018/06/07 11:54:19 by galemair         ###   ########.fr       */
+/*   Updated: 2018/06/14 12:25:32 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,3 @@ t_sommet	*exit_queue(t_sommet **queue)
 	tmp->queue = NULL;
 	return (tmp2);
 }
-

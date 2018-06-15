@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/11 15:30:49 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/14 18:52:30 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct		s_sommet
 	int					visited;
 	struct s_adj_list	*lst;
 	struct s_sommet		*next;
-	struct s_sommet		*file;
+	struct s_sommet		*queue;
 }					t_sommet;
 
 typedef struct	s_adj_list
@@ -42,7 +42,7 @@ typedef struct	s_adj_list
 ** 	hashtable function
 */
 
-int			lm_hash(char *str);
+int			lm_hash(char *str, t_sommet *sommet);
 t_sommet	*lm_get_adress(char *str, t_sommet **sommet);
 int			lm_add_hashmap(t_sommet **sommet, char *str);
 int			lm_add_sommet(t_sommet **sommet, char *str);
@@ -56,6 +56,21 @@ void		lm_free_hashtable(t_sommet **hashtab);
 
 int			lm_add_tube(t_sommet **sommet, char *pattern);
 void		lm_free_adj_list(t_adj_list *adj_list);
+
+/*
+ * 		queue function
+ */
+
+t_sommet	*exit_queue(t_sommet **queue);
+void		add_in_queue(t_sommet **queue, t_sommet *to_add);
+
+/*
+ * 		algo
+ */
+
+void		lm_queue_neighbor(t_sommet *head, t_sommet **queue, t_sommet **sommet);
+int			get_distance(t_sommet **sommet, t_sommet **queue);
+int			lm_start_algo(t_sommet **sommet, int ants);
 
 /*
  * 	parsing function

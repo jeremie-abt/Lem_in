@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:07:39 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/07 11:56:12 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/14 18:52:28 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_sommet			*lm_get_sommet(t_sommet **sommet, char *needle)
 	int			key;
 	t_sommet	*iter;
 
-	key = lm_hash(needle);
+	key = lm_hash(needle, *sommet);
 	iter = sommet[key];
 	if (!iter)
 	{
