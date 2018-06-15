@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/14 18:52:30 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/15 12:46:17 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct	s_adj_list
 ** 	hashtable function
 */
 
-int			lm_hash(char *str, t_sommet *sommet);
+int			lm_hash(char *str);
 t_sommet	*lm_get_adress(char *str, t_sommet **sommet);
 int			lm_add_hashmap(t_sommet **sommet, char *str);
 int			lm_add_sommet(t_sommet **sommet, char *str);

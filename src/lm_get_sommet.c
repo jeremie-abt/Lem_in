@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:07:39 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/14 18:52:28 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/15 14:21:25 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,10 @@ t_sommet			*lm_get_sommet(t_sommet **sommet, char *needle)
 	int			key;
 	t_sommet	*iter;
 
-	key = lm_hash(needle, *sommet);
+	key = lm_hash(needle);
 	iter = sommet[key];
-	if (!iter)
-	{
+	if (!iter || ft_strequ(needle, sommet[0]->name) || ft_strequ(needle, sommet[1]->name))
 		return (lm_get_start_end(sommet, needle));
-	}
 	while (!ft_strequ(iter->name, needle))
 		iter = iter->next;
 ///	printf("addr renvoye : %p pour : %s\n",iter, needle);
