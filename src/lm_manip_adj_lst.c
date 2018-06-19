@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:40:21 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/14 10:50:01 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/18 15:34:11 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@
 static int		lm_add_neighbor(t_sommet *first_sommet, t_sommet *second_sommet, 
 		char *first_neighbor, char *second_neighbor)
 {
-	t_adj_list		*tmp;
-	//t_adj_list		*new;
+	t_adj_lst		*tmp;
+	//t_adj_lst		*new;
 
 	tmp = first_sommet->lst;
-	if (!(first_sommet->lst = malloc(sizeof(t_adj_list))))
+	if (!(first_sommet->lst = malloc(sizeof(t_adj_lst))))
 		return (-1);
 	first_sommet->lst->next = tmp;
 	first_sommet->lst->name = first_neighbor;
 	
 	
 	tmp = second_sommet->lst;
-	if (!(second_sommet->lst = malloc(sizeof(t_adj_list))))
+	if (!(second_sommet->lst = malloc(sizeof(t_adj_lst))))
 	{
-		lm_free_adj_list(first_sommet->lst); // atention fonction pour free une list
+		lm_free_adj_lst(first_sommet->lst); // atention fonction pour free une lst
 		return (-1);
 	}
 	second_sommet->lst->next = tmp;

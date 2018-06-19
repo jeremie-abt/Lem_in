@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 13:49:35 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/15 11:56:51 by galemair         ###   ########.fr       */
+/*   Updated: 2018/06/18 15:34:11 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //int		lm_fill_distance(t_sommet **sommet)
 //{
 ///*	t_sommet		*queue;
-//	t_adj_list		neighbor;
+//	t_adj_lst		neighbor;
 //	int				distance;
 //
 //	distance = 0;
