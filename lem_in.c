@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:11:00 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/19 16:12:17 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/20 12:26:54 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 
-	//lm_start_algo(sommet, ants);
+	lm_start_algo(sommet, ants);
+	print_all_hashtable_wdistance(sommet);
+exit(4);
 
-
-	print_all_hashtable(sommet);
-	exit(5);
+/*	print_all_hashtable(sommet);
+	exit(5);*/
 	lm_find_path_core(sommet);
 	lm_free_hashtable(sommet);
 	ft_bzero(sommet, HASH_SIZE * sizeof(t_sommet *));	
