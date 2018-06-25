@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/15 12:46:17 by galemair         ###   ########.fr       */
+/*   Updated: 2018/06/21 15:00:59 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@
 # include "get_next_line.h"
 
 # define HASH_SIZE 128
+
+typedef	struct	s_input t_input;
+
+struct		s_input
+{
+	char	*line;
+	t_input	*next;
+};
 
 typedef struct		s_sommet
 {
@@ -87,6 +95,14 @@ int			lm_is_good_room(char *room);
 
 char		*lm_get_room_name(char *str);
 int			lm_verif_tube(char *str);
+
+/*
+**	lm_manage_input.c
+*/
+
+t_input		*stock_input(void);
+int			get_line(char **line, t_input *input, int start);
+void		freeanddisplay_input(t_input *input);
 
 /*
  *	debug ou temporaire

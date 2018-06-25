@@ -6,10 +6,10 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:11:00 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/15 13:51:54 by galemair         ###   ########.fr       */
+/*   Updated: 2018/06/25 11:14:08 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+oui
 #include "lem_in.h"
 
 int		main(int argc, char **argv)
@@ -36,7 +36,7 @@ int		main(int argc, char **argv)
 		write(1, "ERROR\n", 6);
 		lm_free_hashtable(sommet);
 		ft_bzero(sommet, HASH_SIZE * sizeof(t_sommet *));	
-		sleep(150);
+//		sleep(150);
 		return (0);
 	}
 

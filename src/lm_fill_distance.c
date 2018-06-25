@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 13:49:35 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/15 11:56:51 by galemair         ###   ########.fr       */
+/*   Updated: 2018/06/20 14:36:06 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@
 //		{veut, vraiment, rien, dire, et ca, c, terrible};
 //		&jesais[0] = vraient;//pas quoi faire;
 //	}*/
+//	salut
 //}

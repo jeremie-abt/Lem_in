@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 11:15:42 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/06 11:45:23 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/20 15:45:36 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
  * 	here just for recup number of ant
  */
 
-int		lm_parse_ant(char *ligne)
+int			lm_parse_ant(char *ligne)
 {
 	int		i;
 	int		ret;
@@ -39,7 +39,7 @@ int		lm_parse_ant(char *ligne)
  * 	first call'll return 1 and second 5
  */
 
-int		lm_parse_digit(char *ligne)
+int			lm_parse_digit(char *ligne)
 {
 	int		i;
 	int		ret;
