@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:58:27 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/11 15:29:46 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/20 15:16:04 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,11 @@ int		lm_parse_tube(t_sommet **sommet, char *ligne)
 /*	if (lm_verif_tube(ligne) == -1)
 		return (-1);*/
 	if (lm_add_tube(sommet, ligne) == -1)
-	{
-	//	free(ligne);
 		return (-1);
-	}
 	while (get_next_line(0, &ligne))
 	{
 		if (lm_add_tube(sommet, ligne) == -1)
-		{
-		//	free(ligne);
 			return (-1);
-		}
 		free(ligne);
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 12:17:03 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/19 14:18:56 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/20 15:29:36 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int				lm_nb_child(t_sommet **sommet, t_sommet *parent)
 
 t_sommet		*lm_loneliest_node(t_sommet *parent, t_sommet **sommet)
 {
-	// parents == node avec lequel je dois chercher ou il va
-	
 	int			distance;
 	int			ret;
 	t_adj_lst	*adj_lst;
@@ -38,16 +36,13 @@ t_sommet		*lm_loneliest_node(t_sommet *parent, t_sommet **sommet)
 	while (adj_lst)
 	{
 		cur_node = lm_get_sommet(sommet, adj_lst->name);	
-	//	printf("debut : adj_lst : %s\n", adj_lst->name);
 		if (!cur_node->visited && distance == cur_node->distance)// cur_node est bien un enfant
 		{
 			ret = lm_nb_child(sommet, cur_node);
 			if (ret < nb_child.nb)
 			{
 				if (ret == 1)
-				{
 					return (cur_node);
-				}
 				nb_child.nb = ret;
 				nb_child.parent = cur_node;
 			}

@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 11:05:59 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/18 15:34:11 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/20 15:22:16 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		lm_free_hashtable(t_sommet **hashtab)
 				if (tmp->lst)
 				{
 					lm_free_adj_lst(tmp->lst);
-					//printf("\ntu ne free pas tes lst d'adj !!!!\n\n");
+					//("\ntu ne free pas tes lst d'adj !!!!\n\n");
 				}
 				tmp = tmp->next;
 				free(hashtab[i]->name);

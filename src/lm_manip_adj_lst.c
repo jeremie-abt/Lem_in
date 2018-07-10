@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:40:21 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/18 15:34:11 by jabt             ###   ########.fr       */
+/*   Updated: 2018/06/20 15:22:16 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int				lm_add_tube(t_sommet **sommet, char *pattern)
 	if (lm_verif_tube(pattern) == -1)
 		return (-1);
 	second = ft_strchr(pattern, '-') + 1;
+	//("pattenr : %p\n", pattern);
+	//printf("pattern : %s et second : %s\n", pattern, second);
 	if (!(first = ft_strsub(pattern, 0, (second - pattern) - 1)))
 	{
 	//	free(second);

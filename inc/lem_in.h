@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/19 13:40:58 by jabt             ###   ########.fr       */
+/*   Updated: 2018/07/10 17:03:08 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,20 @@ typedef struct	s_adj_lst
 	struct s_adj_lst	*next;
 }				t_adj_lst;
 
+typedef struct	s_queue
+{
+	t_sommet		*sommet;
+	struct s_queue	*next;
+}				t_queue;
+
+typedef struct	s_control_queue
+{
+	t_queue		*head;
+	t_queue		*tail;
+}				t_control_queue;
+
+
+
 typedef struct s_nb_child
 {
 	int			nb;
@@ -54,6 +68,8 @@ int			lm_add_hashmap(t_sommet **sommet, char *str);
 int			lm_add_sommet(t_sommet **sommet, char *str);
 int			lm_add_start_end(t_sommet **sommet, int index);
 t_sommet	*lm_get_sommet(t_sommet **sommet, char *needle);
+t_sommet	**lm_extend_graph(t_sommet **sommet);
+t_sommet	**lm_copy_hashtable(t_sommet **src);
 void		lm_free_hashtable(t_sommet **hashtab);
 int			lm_nb_child(t_sommet **sommet, t_sommet *parent);
 t_sommet	*lm_loneliest_node(t_sommet *parent, t_sommet **sommet);
@@ -69,17 +85,23 @@ void		lm_free_adj_lst(t_adj_lst *adj_lst);
  * 		queue function
  */
 
+int			lm_add_elem_queue(t_control_queue *control, t_sommet *new_elem);
+t_sommet	*lm_pop_queue(t_control_queue *control);
+
+
+/*
 t_sommet	*exit_queue(t_sommet **queue);
 void		add_in_queue(t_sommet **queue, t_sommet *to_add);
 void		lm_clear_all_queue(t_sommet **sommet);
-
+*/
 /*
  * 		algo
  */
+//void		lm_queue_neighbor(t_sommet *head, t_sommet **queue, t_sommet **sommet);
 
-void		lm_queue_neighbor(t_sommet *head, t_sommet **queue, t_sommet **sommet);
-int			get_distance(t_sommet **sommet, t_sommet **queue);
-int			lm_start_algo(t_sommet **sommet, int ants);
+int			lm_add_neighboor_queue(t_sommet **sommet, t_sommet *node,
+		t_control_queue *control_queue);
+int			lm_fill_distance(t_sommet **sommet, int ants);
 int			lm_find_path_core(t_sommet **sommet);
 
 /*
@@ -109,5 +131,8 @@ void		print_hashtable(t_sommet **sommet);
 void		print_all_hashtable(t_sommet **sommet);
 void		print_all_hashtable_wdistance(t_sommet **sommet);
 void		debug_queue(t_sommet **sommet);
+void		print_path(t_sommet **sommet, t_sommet *node);
+void		print_queue(t_control_queue *control);
+void		print_node(t_sommet *);
 
 #endif

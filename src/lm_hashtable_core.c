@@ -6,50 +6,37 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:29:35 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/11 15:24:12 by jabt             ###   ########.fr       */
+/*   Updated: 2018/07/10 17:08:27 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-/*
- *		pour l'instant sommet[0] == start	sommet[1] == end
- */
-
-int			lm_add_start(t_sommet **sommet, char *str)
+static t_sommet		*lm_copy_node(t_sommet *src)
 {
-	char	*start_room;
+	t_sommet	*dst;
 
-	if (sommet[0])
-		return (-1);// pour l'instant ca ce n'est pas gere
-	start_room = lm_get_room_name(str);
-	if (start_room)
-	{
-		if (!(sommet[0] = malloc(sizeof(t_sommet))))
-			return (-1);
-	}
+	if (!(dst = malloc(sizeof(t_sommet))))
+		return (NULL);
 	else
-		return (-1);
-	ft_bzero(sommet[0], sizeof(t_sommet));
-	sommet[0]->name = start_room;
-	return (1);
+		ft_memcpy((void *)dst, (void *)src, sizeof(t_sommet));
+	return (dst);
 }
 
-int			lm_add_end(t_sommet **sommet, char *str)
+t_sommet			**lm_copy_hashtable(t_sommet **src)
 {
-	char	*end_room;
+	t_sommet	**dst;
+	int			i;
 
-	if (sommet[1])
-		return (-1);//pour l'instant non gere aussi
-	end_room = lm_get_room_name(str);
-	if (end_room)
+	i = 0;
+	if (!(dst = malloc(HASH_SIZE * sizeof(t_sommet *))))
+		return (NULL);
+	ft_bzero(dst, HASH_SIZE * sizeof(t_sommet *));
+	while (i < HASH_SIZE)
 	{
-		if (!(sommet[1] = malloc(sizeof(t_sommet))))
-			return (-1);
+		if (src[i] && !(dst[i] = lm_copy_node(src[i])))
+			return (NULL);//attention au leaks encore et encore
+		i++;
 	}
-	else
-		return (-1);
-	ft_bzero(sommet[1], sizeof(t_sommet));
-	sommet[1]->name = end_room;
-	return (1);
+	return (dst);
 }

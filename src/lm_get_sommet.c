@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:07:39 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/19 14:16:15 by jabt             ###   ########.fr       */
+/*   Updated: 2018/07/10 15:40:05 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,4 @@ t_sommet			*lm_get_sommet(t_sommet **sommet, char *needle)
 	while (!ft_strequ(iter->name, needle))
 		iter = iter->next;
 	return (iter);
-}
-
-int					lm_get_distance(t_sommet **sommet, char *needle)
-{
-	int			distance;
-	t_sommet	*ret;
-
-	ret = lm_get_sommet(sommet, needle);
-	return (ret->distance);
 }

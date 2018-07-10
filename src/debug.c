@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:51:11 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/19 14:15:44 by jabt             ###   ########.fr       */
+/*   Updated: 2018/07/10 16:52:29 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	print_hashtable(t_sommet **sommet)
 		if (sommet[i])
 		{
 			printf("HEAD %d : %s\n", i, sommet[i]->name);
-
 		}
 		i++;
 	}
@@ -77,6 +76,16 @@ void	print_all_hashtable_wdistance(t_sommet **sommet)
 
 }
 
+void	print_node(t_sommet *node)
+{
+	printf("voici le name : %s\n", node->name);
+	printf("voici la distance : %d\n", node->distance);
+	printf("visited : %d\n", node->visited);
+	printf("lst : %p\n", node->lst);
+	printf("next : %p\n", node->next);
+	printf("queue %p\n", node->queue);
+}
+
 void	debug_queue(t_sommet **sommet)
 {
 	int	i = 0;
@@ -88,5 +97,28 @@ void	debug_queue(t_sommet **sommet)
 			printf("cette queue exist index : %d de la hashtable name : %s\n", i, sommet[i]->name);
 		}
 		i++;
+	}
+}
+
+void	print_path(t_sommet **sommet, t_sommet *node)
+{
+	printf("%s->", sommet[1]->name);
+	while (node)
+	{
+		printf("%s->", node->name);
+		node = node->queue;
+	}
+	printf("\n");
+}
+
+void	print_queue(t_control_queue *control)
+{
+	t_queue	*tail;
+
+	tail = control->tail;
+	while (tail)
+	{
+		printf("current : %s\n", tail->sommet->name);
+		tail = tail->next;
 	}
 }
