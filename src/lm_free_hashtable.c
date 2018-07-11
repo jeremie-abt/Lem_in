@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 11:05:59 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/20 15:22:16 by jabt             ###   ########.fr       */
+/*   Updated: 2018/07/11 18:00:28 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,18 @@ void		lm_free_hashtable(t_sommet **hashtab)
 	i = 0;
 	while (i < HASH_SIZE)
 	{
+
 		if (hashtab[i])
 		{
 			tmp = hashtab[i];
 			while (tmp)
 			{
-				//free(tmp->name); par la suite
+				free(tmp->name);
 				if (tmp->lst)
 				{
 					lm_free_adj_lst(tmp->lst);
-					//("\ntu ne free pas tes lst d'adj !!!!\n\n");
 				}
 				tmp = tmp->next;
-				free(hashtab[i]->name);
 				free(hashtab[i]);
 				hashtab[i] = tmp;
 			}
@@ -41,3 +40,32 @@ void		lm_free_hashtable(t_sommet **hashtab)
 		i++;
 	}
 }
+
+void		lm_free_extend_graph(t_sommet **extend_graph)
+{
+	int			i;
+	t_sommet	*tmp;
+	
+	i = 0;
+	while (i < HASH_SIZE)
+	{
+		if (extend_graph[i])
+		{
+			printf("ishish\n\n\n");
+			tmp = extend_graph[i];
+			while (tmp)
+			{
+				if (tmp->lst)
+				{
+					lm_free_adj_lst_extend_graph(tmp->lst);
+				}
+				tmp = tmp->next;
+				free(extend_graph[i]);
+				extend_graph[i] = tmp;
+			}
+			extend_graph[i] = NULL;
+		}
+		i++;
+	}
+}
+

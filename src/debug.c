@@ -6,17 +6,17 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:51:11 by jabt              #+#    #+#             */
-/*   Updated: 2018/07/10 16:52:29 by jabt             ###   ########.fr       */
+/*   Updated: 2018/07/11 17:18:17 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void print_adj_lst(t_adj_lst *adj_lst)
+void print_adj_lst(t_adj_lst *adj_lst)
 {
 	while (adj_lst)
 	{
-		printf("neghbor : %s\n", adj_lst->name);
+		printf("neighbor : %s\n", adj_lst->name);
 		adj_lst = adj_lst->next;
 	}
 }
@@ -58,6 +58,26 @@ void	print_all_hashtable(t_sommet **sommet)
 	}
 }
 
+void	print_extend_graph(t_sommet **extend_graph)
+{
+	int		i;
+	
+	i = 0;
+	while (i < HASH_SIZE)
+	{
+		if (extend_graph[i])
+		{
+			printf("in)%s neighbor ->\n", extend_graph[i]->name);
+			print_adj_lst(extend_graph[i]->lst);
+			printf("(out)%s neighbor ->\n", extend_graph[i]->next->name);
+			print_adj_lst(extend_graph[i]->next->lst);
+
+//			printf("just first one : %s\n", sommet[i]->lst->name);
+		}
+		i++;
+	}
+}
+
 void	print_all_hashtable_wdistance(t_sommet **sommet)
 {
 	int		i;
@@ -83,9 +103,9 @@ void	print_node(t_sommet *node)
 	printf("visited : %d\n", node->visited);
 	printf("lst : %p\n", node->lst);
 	printf("next : %p\n", node->next);
-	printf("queue %p\n", node->queue);
+	//printf("queue %p\n", node->queue);
 }
-
+/*
 void	debug_queue(t_sommet **sommet)
 {
 	int	i = 0;
@@ -110,7 +130,7 @@ void	print_path(t_sommet **sommet, t_sommet *node)
 	}
 	printf("\n");
 }
-
+*/
 void	print_queue(t_control_queue *control)
 {
 	t_queue	*tail;

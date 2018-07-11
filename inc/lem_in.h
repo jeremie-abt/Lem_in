@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/07/10 17:03:08 by jabt             ###   ########.fr       */
+/*   Updated: 2018/07/11 17:58:02 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct		s_sommet
 	int					visited;
 	struct s_adj_lst	*lst;
 	struct s_sommet		*next;
-	struct s_sommet		*queue;
+//	struct s_sommet		*queue;
 }					t_sommet;
 
 typedef struct	s_adj_lst
@@ -71,8 +71,11 @@ t_sommet	*lm_get_sommet(t_sommet **sommet, char *needle);
 t_sommet	**lm_extend_graph(t_sommet **sommet);
 t_sommet	**lm_copy_hashtable(t_sommet **src);
 void		lm_free_hashtable(t_sommet **hashtab);
+void		lm_free_extend_graph(t_sommet **hashtab);
 int			lm_nb_child(t_sommet **sommet, t_sommet *parent);
 t_sommet	*lm_loneliest_node(t_sommet *parent, t_sommet **sommet);
+t_sommet	*lm_copy_node(t_sommet *src);
+t_sommet	*lm_double_node(t_sommet **sommet, t_sommet *dst, t_sommet *src);
 
 /*
  * 		adjencency lst function
@@ -80,6 +83,11 @@ t_sommet	*lm_loneliest_node(t_sommet *parent, t_sommet **sommet);
 
 int			lm_add_tube(t_sommet **sommet, char *pattern);
 void		lm_free_adj_lst(t_adj_lst *adj_lst);
+void		lm_free_adj_lst_extend_graph(t_adj_lst *adj_lst);
+t_adj_lst	*lm_create_inlst(t_sommet **sommet, t_sommet *node);
+t_adj_lst	*lm_create_outlst(t_sommet **sommet, t_sommet *node);
+int			lm_add_node_lst(t_adj_lst **lst, char *name);
+t_adj_lst	*lm_copy_lst(t_adj_lst *src);
 
 /*
  * 		queue function
@@ -129,10 +137,12 @@ int			lm_add_end(t_sommet **sommet, char *str);
 void		print_sommet(t_sommet *sommet);
 void		print_hashtable(t_sommet **sommet);
 void		print_all_hashtable(t_sommet **sommet);
+void		print_extend_graph(t_sommet **);
 void		print_all_hashtable_wdistance(t_sommet **sommet);
 void		debug_queue(t_sommet **sommet);
 void		print_path(t_sommet **sommet, t_sommet *node);
 void		print_queue(t_control_queue *control);
 void		print_node(t_sommet *);
+void		print_adj_lst(t_adj_lst *);
 
 #endif
