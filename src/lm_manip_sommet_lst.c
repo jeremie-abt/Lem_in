@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:16:32 by jabt              #+#    #+#             */
-/*   Updated: 2018/07/11 11:24:26 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/22 17:22:05 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,55 @@ static t_sommet		*lm_init_sommet(t_sommet *cur_head, char *str)
 		return (NULL);
 	sommet->name  = str;//a voir si ici je ne peux pas simplement faire un bzero
 	sommet->distance = -1;
-	sommet->visited = 0;
+//	sommet->capacity = 0;
 	sommet->lst = NULL;
+	sommet->prev = NULL;
 	sommet->next = cur_head;
 //	sommet->queue = NULL;
 	return (sommet);
+}
+
+/*
+// attention a la gestion derreur de malloc ici
+
+
+int					lm_init_graph(t_sommet **sommet)
+{
+	t_control_queue		control;
+	t_sommet			*cur;
+
+	ft_bzero(&control, sizeof(t_control_queue));
+	lm_add_elem_queue(&control, sommet[1]);
+	sommet[1]->visited = 1; // ??
+	while (control.tail || control.head)
+	{
+		cur = lm_pop_queue(&control);
+		lm_add_neighboor(sommet, cur, &control);
+		printf("cur : %s\n", cur->name);
+		lm_init_neighboor_edge(sommet, cur);
+	}
+	return (1);
+}
+*/
+void				lm_clean_visited(t_sommet **sommet)
+{
+	int			i;
+	t_sommet	*tmp;
+
+	i = 0;
+	while (i < HASH_SIZE)
+	{
+		if (sommet[i])
+		{
+			tmp = sommet[i];
+			while (tmp)
+			{
+				tmp->visited = 0;
+				tmp = tmp->next;
+			}
+		}
+		i++;
+	}
 }
 
 int					lm_add_sommet(t_sommet **sommet, char *str)

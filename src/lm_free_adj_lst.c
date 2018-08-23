@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 11:07:35 by jabt              #+#    #+#             */
-/*   Updated: 2018/07/11 18:03:10 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/20 17:16:03 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		lm_free_adj_lst(t_adj_lst *adj_lst)
 	}
 }
 
-void		lm_free_adj_lst_extend_graph(t_adj_lst *adj_lst)
+void		lm_free_adj_lst_resid_graph(t_adj_lst *adj_lst)
 {
 	t_adj_lst	*save;
 

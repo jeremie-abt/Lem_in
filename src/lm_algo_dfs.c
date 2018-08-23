@@ -1,42 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lm_free_hashtable.c                                :+:      :+:    :+:   */
+/*   lm_algo_dfs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/05 11:05:59 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/20 14:38:13 by jabt             ###   ########.fr       */
+/*   Created: 2018/08/23 14:24:47 by jabt              #+#    #+#             */
+/*   Updated: 2018/08/23 17:00:48 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		lm_free_hashtable(t_sommet **hashtab)
+t_sommet		*lm_get_next_node_dfs(t_sommet **sommet, t_sommet *node)
 {
-	int			i;
+	t_adj_lst	*lst;
+	t_sommet	*cur;
 	t_sommet	*tmp;
-	
-	i = 0;
-	while (i < HASH_SIZE)
-	{
 
-		if (hashtab[i])
+	while (node)
+	{
+		lst = node->lst;
+		while (lst)
 		{
-			tmp = hashtab[i];
-			while (tmp)
+			if (lst->flow == 1)
 			{
-				free(tmp->name);
-				if (tmp->lst)
+				cur = lm_get_sommet(sommet, lst->name);
+				if (!cur->visited)
 				{
-					lm_free_adj_lst(tmp->lst);
+					cur->visited = 1;
+					cur->prev = node;
+					return (cur);
 				}
-				tmp = tmp->next;
-				free(hashtab[i]);
-				hashtab[i] = tmp;
 			}
-			hashtab[i] = NULL;
+			lst = lst->next;
 		}
-		i++;
+		tmp = node;
+		node = node->prev;
+		tmp->prev = NULL;
 	}
+	return (NULL);
 }

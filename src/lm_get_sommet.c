@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:07:39 by jabt              #+#    #+#             */
-/*   Updated: 2018/07/10 15:40:05 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/20 15:56:46 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static t_sommet		*lm_get_start_end(t_sommet **sommet, char *needle)
 		return (NULL);
 }
 
+
+// faire gaf get_sommet me file il bien le sommet dans toutes les circonstance ??
 t_sommet			*lm_get_sommet(t_sommet **sommet, char *needle)
 {
 	int			key;

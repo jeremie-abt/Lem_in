@@ -6,11 +6,57 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:29:35 by jabt              #+#    #+#             */
-/*   Updated: 2018/07/11 15:52:45 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/23 16:35:10 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static t_adj_lst	*lm_copy_lst(t_sommet *node)
+{
+	t_adj_lst	*new_lst;
+	t_adj_lst	*tmp_lst;
+	t_adj_lst	*lst;
+	t_sommet	*cur;
+
+	lst = node->lst;
+	new_lst = NULL;
+	while (lst)
+	{
+		cur = lm_get_sommet(sommet, lst->name);
+		tmp_lst = lm_get_edge(cur->lst, node->name);
+		if (!(lm_new_lst_node(&new_lst, lst->name, 1)))
+		{
+			// attention a bin free;
+			return (NULL);
+		}
+		lst = lst->next;
+	}
+	return (new_lst);
+}
+
+t_sommet		**lm_copy_hashtable(void)
+{
+	t_sommet	**resid_graph;
+	int			i;
+
+	if (!(resid_graph = malloc(sizeof(t_sommet *) * HASH_SIZE)))
+		return (NULL);
+	ft_bzero(resid_graph, sizeof(t_sommet *) * HASH_SIZE);
+	i = 0;
+	while (i < HASH_SIZE)
+	{
+		if (sommet[i])
+		{
+			if (!(resid_graph[i] = lm_copy_node(sommet[i])))
+				return (NULL);
+			if (!(resid_graph[i]->lst = lm_copy_lst(sommet[i])))
+				return (NULL);
+		}
+		i++;
+	}
+	return (resid_graph);
+}
 
 t_sommet		*lm_copy_node(t_sommet *src)
 {
@@ -21,59 +67,4 @@ t_sommet		*lm_copy_node(t_sommet *src)
 	else
 		ft_memcpy((void *)dst, (void *)src, sizeof(t_sommet));
 	return (dst);
-}
-/*
-t_sommet			**lm_copy_hashtable(t_sommet **src)
-{
-	t_sommet	**dst;
-	int			i;
-
-	i = 0;
-	if (!(dst = malloc(HASH_SIZE * sizeof(t_sommet *))))
-		return (NULL);
-	ft_bzero(dst, HASH_SIZE * sizeof(t_sommet *));
-	while (i < HASH_SIZE)
-	{
-		if (src[i] && !(dst[i] = lm_copy_node(src[i])))
-			return (NULL);//attention au leaks encore et encore
-		i++;
-	}
-	return (dst);
-}
-*/
-t_sommet				*lm_double_node(t_sommet **sommet, t_sommet *dst,
-		t_sommet *src)
-{
-	t_sommet	*ret;
-	t_sommet	*tmp;
-
-	if (dst)
-	{
-		;	// attention a ca meme si je pense le patch dans la fonction appelante
-		// rapelle toi en
-	}
-	if (!(ret = lm_copy_node(src)))
-		return (NULL);
-	tmp = ret;
-	if (!(ret->lst = lm_create_inlst(sommet, src)) ||
-			lm_add_node_lst(&ret->lst, src->name) == -1)
-	{
-		free(ret);
-		return (NULL);
-	}
-	if (!(ret = lm_copy_node(src)))
-	{
-		free(tmp);
-		return (NULL);
-	}
-	if (!(ret->lst = lm_create_outlst(sommet, src)) ||
-			lm_add_node_lst(&ret->lst, src->name) == -1)
-	{
-		free(tmp);
-		free(ret);
-		return (NULL);
-	}
-	tmp->next = ret;
-	tmp->next->next = dst;
-	return (tmp);
 }
