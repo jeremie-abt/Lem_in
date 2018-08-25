@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:11:00 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/23 18:04:09 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/25 16:36:26 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,14 @@ int		main(int argc, char **argv)
 		lm_update_main_graph(sommet, resid_graph);// pas besoins de copier le prev
 	}
 
-	print_flow(sommet);
+	lm_fill_distance_flow(sommet);
+	lm_print_ants(sommet, ants);
+
+	
+// gerer tout simplement mon flow et envoyer les fourmis correctement
+// dans mes room je rajoute une variable foumis et voila 	
+
+//	lm_suppr_internal_shortcut(sommet);
 
 	// faire une procedure pour free mon graph de resid
 	
@@ -48,7 +55,6 @@ int		main(int argc, char **argv)
 	//  	REFLECHI BIEN A TES STRUCTURE DE DONNES
 
 	exit(5);
-	lm_fill_distance(sommet, ants);
 
 
 	lm_free_hashtable(sommet);

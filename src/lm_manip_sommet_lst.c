@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:16:32 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/22 17:22:05 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/25 16:45:11 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static t_sommet		*lm_init_sommet(t_sommet *cur_head, char *str)
 	if (!(sommet = malloc(sizeof(t_sommet))))
 		return (NULL);
 	sommet->name  = str;//a voir si ici je ne peux pas simplement faire un bzero
+	sommet->ant = 0;
 	sommet->distance = -1;
 //	sommet->capacity = 0;
 	sommet->lst = NULL;

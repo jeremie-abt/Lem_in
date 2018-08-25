@@ -6,37 +6,11 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:51:11 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/22 17:45:42 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/25 16:56:53 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-/*
-static void	print_flow(t_adj_lst *lst)
-{
-	while (lst)
-	{
-		printf("vers : %s -> %d\n", lst->name, lst->flow);
-		lst = lst->next;
-	}
-}
-
-void	print_hashtable_flow(t_sommet **hashtable)
-{
-	int		i;
-	
-	i = 0;
-	while (i < HASH_SIZE)
-	{
-		if (hashtable[i])
-		{
-			printf("HEAD %d : %s\n", i, hashtable[i]->name);
-			print_flow(hashtable[i]->lst);
-		}
-		i++;
-	}
-}
-*/
 
 void	 print_adj_lst(t_sommet *node, t_adj_lst *adj_lst)
 {
@@ -228,5 +202,20 @@ void	print_stack(t_stack *stack)
 	{
 		printf("stack : %s addr : %p\n", stack->sommet->name, stack);
 		stack = stack->next;
+	}
+}
+
+void	print_ant_path(t_sommet **graph)
+{
+	t_adj_lst	*lst;
+	t_sommet	*cur;
+
+	printf("voici le nombre de fourmis sur chacun de tes paths :\n\n");
+	lst = graph[1]->lst;
+	while (lst)
+	{
+		cur = lm_get_sommet(graph, lst->name);
+		printf("voici le nombre de fourmis ici : %s -> %d\n", cur->name, cur->ant);
+		lst = lst->next;
 	}
 }

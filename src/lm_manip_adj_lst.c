@@ -6,27 +6,12 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:40:21 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/23 17:53:41 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/25 19:05:22 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-/*
-static void		lm_swap_lst(t_adj_lst *first, t_adj_lst *second)
-{
-	t_adj_lst		swap;
-	t_adj_lst		*tmp;
-	t_adj_lst		*secondtmp;
 
-	tmp = second;
-	secondtmp = second->next;
-	ft_memcpy(&swap, first, sizeof(t_adj_lst));
-	ft_memcpy(first, second, sizeof(t_adj_lst));
-	ft_memcpy(second, &swap, sizeof(t_adj_lst));
-	first->next = tmp;
-	second->next = secondtmp;
-}
-*/
 static int		lm_add_neighbor(t_sommet *first_sommet, t_sommet *second_sommet, 
 		char *first_neighbor, char *second_neighbor)
 {
@@ -97,28 +82,25 @@ int				lm_new_lst_node(t_adj_lst **lst, char *name, int flow)
 	return (1);
 }
 
-	
-/*
-void			lm_sort_lst_byorder(t_sommet **sommet)
+int				lm_new_lst_node_atend(t_adj_lst **lst, char *name, int flow)
 {
 	t_adj_lst	*tmp;
-	t_adj_lst	*secondtmp;
-	t_sommet	*cur;
-	t_sommet	*secondcur;
+	t_adj_lst	*new_lst;
 
-	tmp = sommet[1]->lst;
-	while (tmp->next)
+	if (!(new_lst = malloc(sizeof(t_adj_lst))))
+		return (0);
+	tmp = *lst;
+	if (!tmp)
+		*lst = new_lst;
+	else
 	{
-		cur = lm_get_sommet(sommet, tmp->name);
-		secondcur = lm_get_sommet(sommet, tmp->next->name);
-		if (cur->distance > secondcur->distance)
-		{
-			lm_swap_lst(tmp, tmp->next);
-			tmp = sommet[1]->lst;
-		}
-		else
+		while (tmp->next)
 			tmp = tmp->next;
+		tmp->next = new_lst;
 	}
-}
+		new_lst->name = name;
+		new_lst->flow = flow;
+		new_lst->next = NULL;
 
-*/
+	return (1);
+}
