@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/25 19:05:46 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/26 17:42:57 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ t_sommet	*lm_get_adress(char *str, t_sommet **sommet);
 int			lm_add_hashmap(t_sommet **sommet, char *str);
 int			lm_add_sommet(t_sommet **sommet, char *str);
 int			lm_add_start_end(t_sommet **sommet, int index);
-t_sommet	*lm_get_sommet(t_sommet **sommet, char *needle);
 t_sommet	**lm_copy_hashtable(void);
 void		lm_free_hashtable(t_sommet **hashtab);
 int			lm_nb_child(t_sommet **sommet, t_sommet *parent);
@@ -87,6 +86,18 @@ t_sommet	*lm_copy_node(t_sommet *src);
 t_sommet	*lm_double_node(t_sommet **sommet, t_sommet *dst, t_sommet *src);
 int			lm_init_graph(t_sommet **sommet);
 void		lm_update_main_graph(t_sommet **graph, t_sommet **resid_graph);
+t_sommet	*lm_get_sommet(t_sommet **sommet, char *needle);
+t_sommet	*lm_get_next_sommet_by_flow(t_sommet **graph, t_sommet *cur);
+//t_sommet	*lm_get_sommet_by_flow_begin(t_sommet **graph, int combientieme);
+
+/*
+ *
+ * 		manip de tab
+ *
+ */
+
+int			*lm_fill_ants_per_path_tab(t_sommet **graph, int path);
+void		lm_init_save_cur_ant_tab(t_sommet **tab, t_sommet **graph, int size);
 
 /*
  * 		adjencency lst function
@@ -144,6 +155,9 @@ void		lm_print_ants(t_sommet **graph, int ants);
  */
 
 void		lm_print_ants(t_sommet **graph, int ants);
+void		lm_send_first_ant_in_path(t_sommet **graph,
+		t_sommet **tab, int *tab_of_ant, int size);
+void		lm_remove_one_ant(int *tab_of_ant, int size);
 
 /*
  * 	parsing function

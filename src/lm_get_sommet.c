@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:07:39 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/20 15:56:46 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/26 17:22:51 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static t_sommet		*lm_get_start_end(t_sommet **sommet, char *needle)
 		return (NULL);
 }
 
-
 // faire gaf get_sommet me file il bien le sommet dans toutes les circonstance ??
 t_sommet			*lm_get_sommet(t_sommet **sommet, char *needle)
 {
@@ -36,4 +35,18 @@ t_sommet			*lm_get_sommet(t_sommet **sommet, char *needle)
 	while (!ft_strequ(iter->name, needle))
 		iter = iter->next;
 	return (iter);
+}
+
+t_sommet			*lm_get_next_sommet_by_flow(t_sommet **graph, t_sommet *cur)
+{
+	t_adj_lst	*lst;
+
+	lst = cur->lst;
+	if (graph[1] == cur)
+	{
+		printf("ici \n");
+	}
+	while (lst->flow)
+		lst = lst->next;
+	return (lm_get_sommet(graph, lst->name));
 }
