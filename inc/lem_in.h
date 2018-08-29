@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/26 17:42:57 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/29 15:30:50 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdbool.h>
 # include "libft.h"
 # include "get_next_line.h"
+# include "assert.h"
 
 # define HASH_SIZE 128
 
@@ -88,7 +89,6 @@ int			lm_init_graph(t_sommet **sommet);
 void		lm_update_main_graph(t_sommet **graph, t_sommet **resid_graph);
 t_sommet	*lm_get_sommet(t_sommet **sommet, char *needle);
 t_sommet	*lm_get_next_sommet_by_flow(t_sommet **graph, t_sommet *cur);
-//t_sommet	*lm_get_sommet_by_flow_begin(t_sommet **graph, int combientieme);
 
 /*
  *
@@ -96,8 +96,10 @@ t_sommet	*lm_get_next_sommet_by_flow(t_sommet **graph, t_sommet *cur);
  *
  */
 
-int			*lm_fill_ants_per_path_tab(t_sommet **graph, int path);
+void		lm_fill_ants_per_path_tab(t_sommet **graph, int path, int ants,
+		int *tab_of_ants);
 void		lm_init_save_cur_ant_tab(t_sommet **tab, t_sommet **graph, int size);
+int			lm_verif_ant_cur_tab(t_sommet **cur_tab, int size);
 
 /*
  * 		adjencency lst function
@@ -148,13 +150,12 @@ void		lm_init_neighboor_edge(t_sommet **sommet, t_sommet *node);
 int			lm_find_max_flow(t_sommet **graph);
 t_sommet	*lm_get_next_node_dfs(t_sommet **sommet, t_sommet *node);
 int			lm_search_path_dfs(t_sommet **graph);
-void		lm_print_ants(t_sommet **graph, int ants);
 
 /*
  * 		display
  */
 
-void		lm_print_ants(t_sommet **graph, int ants);
+int			lm_print_ants(t_sommet **graph, int ants, int path);
 void		lm_send_first_ant_in_path(t_sommet **graph,
 		t_sommet **tab, int *tab_of_ant, int size);
 void		lm_remove_one_ant(int *tab_of_ant, int size);

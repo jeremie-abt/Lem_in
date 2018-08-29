@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:11:00 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/25 16:36:26 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/29 15:29:50 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		main(int argc, char **argv)
 	int			ants;
 	int i = 0;
 	char		*ligne;
+	int			path;
 //	t_sommet	*sommet[HASH_SIZE];
 	t_sommet	**resid_graph;
 
@@ -34,11 +35,19 @@ int		main(int argc, char **argv)
 	resid_graph = lm_copy_hashtable();
 	while (lm_search_path_dfs(resid_graph))
 	{
+		printf("ouai\n");
 		lm_update_main_graph(sommet, resid_graph);// pas besoins de copier le prev
 	}
+	path = lm_count_path(sommet);
 
 	lm_fill_distance_flow(sommet);
-	lm_print_ants(sommet, ants);
+
+	// il faut vraiment que je gere cette variable
+
+	if (!lm_print_ants(sommet, ants, path))
+	{
+		printf("attention tu dois gerer ce cas lem_in.c ligne 47!!!! \n\n\n\n");
+	}
 
 	
 // gerer tout simplement mon flow et envoyer les fourmis correctement

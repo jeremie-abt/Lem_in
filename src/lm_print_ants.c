@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 13:35:16 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/26 19:09:47 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/29 15:05:22 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,28 +49,52 @@ static void			lm_print_and_shift_path(t_sommet **graph, t_sommet **cur_tab,
 {
 	t_sommet	*next;
 	t_sommet	*cur;
+	t_sommet	*prev;
 
+	/*
+	 * 		up
+	 */
 	cur = cur_tab[combientieme - 1];
 	next = lm_get_next_sommet_by_flow(graph, cur);
-	
-	if (next != graph[1])
+	prev = cur->prev;
+	if (cur->ant)
+	{
+		printf("L%d-%s ", cur->ant, graph[1]->name);
+		cur->ant = prev->ant;
+		if (!cur->ant)
+			cur_tab[combientieme - 1] = NULL;
+	}
+	else if (next != graph[1])
 		cur_tab[combientieme - 1] = next;
 
-// bon faire proprement cette fonction de merde
+/*
+ * 		mid
+ */
 
+	while (prev != graph[0])
+	{
+		if (prev->ant)
+			printf("L%d-%s ", prev->ant, cur->name);
+		cur->ant = prev->ant;
+		cur = prev;
+		prev = prev->prev;
+	}
+/*
+ * 		debut
+ */
 
-
-
-	// fin de chemin on doit transpose le ant au next et le cur_tab doit
-	// devenir next sauf si il est egale au node de fin
-
-
-	// puis milieux
-
-
-
-	// puis debut de chemin
+	assert(cur->prev == graph[0]);
+	assert(prev == graph[0]);
 	
+	if (tab_of_ant[combientieme - 1])
+	{
+		cur->ant++;
+		printf("L%d-%s ", cur->ant, cur->name);
+		tab_of_ant[combientieme - 1]--;
+	}
+	else
+		cur->ant = 0;
+
 }
 
 static int			lm_display_one_turn(t_sommet **graph, int *tab_of_ants, int size)
@@ -89,8 +113,8 @@ static int			lm_display_one_turn(t_sommet **graph, int *tab_of_ants, int size)
 	//	fonction pour initier les premieres fourmis de chaques path
 
 	lm_send_first_ant_in_path(graph, tab, tab_of_ants, size); // attention a decrement mon tab	
-	int stop = 0;
-	while (stop++ < 6/**tab_of_ants > 0*/)
+
+	while (lm_verif_ant_cur_tab(tab, size))
 	{
 		i = 0;
 		while (i < size)//ants existe || ants in path)
@@ -106,48 +130,34 @@ static int			lm_display_one_turn(t_sommet **graph, int *tab_of_ants, int size)
 
 }
 
-void			lm_print_ants(t_sommet **graph, int ants)
+int				lm_print_ants(t_sommet **graph, int ants, int path)
 {
-	//	int			i;
-	//int			path;
 	int			*nb_ants_in_path;
-	t_sommet	*cur;
-	t_sommet	*second_cur;
-	t_adj_lst	*lst;
 
 	lm_sort_lst_byorder(graph);
 	if (!lm_sort_begin_byorder(graph) || !nb_ants_in_path)
 	{
 		//verif si ya pas des trucs a free ...
-		return ;
+		return (0);
+	}
+	if (!(nb_ants_in_path = ft_memalloc(sizeof(int) * path)))
+	{
+		// encore et encore les free
+		return (0);
 	}
 
-	lst = graph[1]->lst;
-	/*while (lst->next && ants > 0) // attention ici a trouver un vraie calcul
-	  {
-	  cur = lm_get_sommet(graph, lst->name);
-	  second_cur = lm_get_sommet(graph, lst->next->name);
-	  cur->ant = (cur->distance + ants) - (second_cur->distance + 1);
-	  second_cur->ant = ants - cur->ant;
-	  nb_ants_in_path += cur->ant;
-	  ants -= cur->ant;	
-	  lst = lst->next;
-	  }*/
-	cur = lm_get_sommet(graph, graph[1]->lst->name);
-	cur->ant = ants;
 
-	//		GERER LA VARIABLE PATH !!!!!!!!
+	lm_fill_ants_per_path_tab(graph, path, ants, nb_ants_in_path);
+	printf("tab0 : %d\n", nb_ants_in_path[0]);
+	printf("tab1 : %d\n", nb_ants_in_path[1]);
+	printf("tab2 : %d\n", nb_ants_in_path[2]);
+	exit(5);
 
-	nb_ants_in_path = lm_fill_ants_per_path_tab(graph, 2);
-	nb_ants_in_path[0] = 3;
-	nb_ants_in_path[1] = 3;
+	//	nb_ants_in_path[0] = 5;
+	//	nb_ants_in_path[1] = 1;
+	//
 	lm_display_one_turn(graph, nb_ants_in_path, 2);
-	//	if (!lm_display_one_turn())
-	//	{
-	//		//free
-	//		return ;
-	//	}
 
 
-	///print_ant_path(graph);
+	return (1);
 }

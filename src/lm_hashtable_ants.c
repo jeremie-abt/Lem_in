@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/26 12:48:47 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/26 18:10:35 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/29 11:19:10 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ void		lm_send_first_ant_in_path(t_sommet **graph, t_sommet **tab,
 		printf("L%d-%s ", cur->ant, cur->name);
 		lst = lst->next;
 		i++;
-		tab[i - 1] = cur;
+
+		tab[i - 1] = lm_get_next_sommet_by_flow(graph, cur);
+		if (tab[i - 1] == graph[1])
+			tab[i - 1] = cur;
+		//tab[i - 1] = cur;
 	}
 	lm_remove_one_ant(tab_of_ant, size);
 	printf("\n\n");
