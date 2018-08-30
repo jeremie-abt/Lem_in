@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/21 15:00:59 by galemair         ###   ########.fr       */
+/*   Updated: 2018/08/30 17:23:04 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,72 @@ typedef struct	s_adj_list
 }				t_adj_list;
 
 /*
-** 	hashtable function
+**		lm_hash_algo.c
 */
-
 int			lm_hash(char *str);
-t_sommet	*lm_get_adress(char *str, t_sommet **sommet);
-int			lm_add_hashmap(t_sommet **sommet, char *str);
-int			lm_add_sommet(t_sommet **sommet, char *str);
-int			lm_add_start_end(t_sommet **sommet, int index);
+
+/*
+**			lm_get_sommet.c
+*/
 t_sommet	*lm_get_sommet(t_sommet **sommet, char *needle);
+
+/*
+**		lm_hashtable_utils.c
+*/
+char		*lm_get_room_name(char *str);
+
+/*
+**		lm_hashtable_core.c
+*/
+int			lm_add_end(t_sommet **sommet, char *str);
+int			lm_add_start(t_sommet **sommet, char *str);
+
+/*
+**		lm_free_hashtable.c
+*/
 void		lm_free_hashtable(t_sommet **hashtab);
 
 /*
- * 		adjencency list function
- */
-
-int			lm_add_tube(t_sommet **sommet, char *pattern);
+** 		lm_free_adj_lst.c
+*/
 void		lm_free_adj_list(t_adj_list *adj_list);
+
+/*
+**		lm_manip_adj_lst.c
+*/
+int			lm_add_tube(t_sommet **sommet, char *pattern);
+
+/*
+**		lm_manip_sommet_lst.c
+*/
+int			lm_add_start_end(t_sommet **sommet, int index);
+int			lm_add_sommet(t_sommet **sommet, char *str);
+
+/*
+**		lm_parseur.c
+*/
+int			lm_parseur(t_sommet **sommet);
+int			lm_parse_room(t_sommet **sommet, char *line);
+int			lm_parse_tube(t_sommet **sommet, char *line);
+
+/*
+**		lm_parsing_utils.c
+*/
+int			lm_parse_digit(char *ligne);	
+int			lm_parse_ant(char *ligne);
+/*
+**		lm_manage_input.c
+*/
+
+t_input		*stock_input(void);
+int			get_line(char **line, t_input *input, int start);
+void		freeanddisplay_input(t_input *input);
+
+/*
+**		lm_verif_format.c	
+*/
+int			lm_is_good_room(char *room);
+int			lm_verif_tube(char *str);
 
 /*
  * 		queue function
@@ -80,29 +129,6 @@ void		lm_queue_neighbor(t_sommet *head, t_sommet **queue, t_sommet **sommet);
 int			get_distance(t_sommet **sommet, t_sommet **queue);
 int			lm_start_algo(t_sommet **sommet, int ants);
 
-/*
- * 	parsing function
- */
-
-int			lm_parse_ant(char *ligne);
-int			lm_parse_digit(char *ligne);
-int			lm_parseur(t_sommet **sommet);
-int			lm_is_good_room(char *room);
-
-/*
- * 	un peu d'utils
- */
-
-char		*lm_get_room_name(char *str);
-int			lm_verif_tube(char *str);
-
-/*
-**	lm_manage_input.c
-*/
-
-t_input		*stock_input(void);
-int			get_line(char **line, t_input *input, int start);
-void		freeanddisplay_input(t_input *input);
 
 /*
  *	debug ou temporaire

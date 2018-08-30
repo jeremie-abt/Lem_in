@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:40:21 by jabt              #+#    #+#             */
-/*   Updated: 2018/06/14 10:50:01 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/30 18:10:28 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,9 @@ int				lm_add_tube(t_sommet **sommet, char *pattern)
 	t_sommet	*first_sommet;
 	t_sommet	*second_sommet;
 
-	if (lm_verif_tube(pattern) == -1)
-		return (-1);
 	second = ft_strchr(pattern, '-') + 1;
 	if (!(first = ft_strsub(pattern, 0, (second - pattern) - 1)))
 	{
-	//	free(second);
 		return (-1);
 	}
 	if (!(second = ft_strdup(second)))
@@ -57,7 +54,9 @@ int				lm_add_tube(t_sommet **sommet, char *pattern)
 		free(first);
 		return (-1);
 	}
-///	key = lm_hash(first);
+//	key = lm_hash(first);
+//	printf("%s\n", first);
+//	printf("%s\n", second);
 	if (!(first_sommet = lm_get_sommet(sommet, first)) ||
 			!(second_sommet = lm_get_sommet(sommet, second)))
 	{

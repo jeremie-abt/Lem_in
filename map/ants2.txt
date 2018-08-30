@@ -2,7 +2,7 @@
 2 5 0
 ##start
 0 1 2
-tagrandmere
+tagrandmere 12 3
 ##end
 5 12 3
 1 9 2
