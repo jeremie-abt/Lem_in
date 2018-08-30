@@ -6,32 +6,33 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 11:15:42 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/26 12:09:38 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/30 11:48:23 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
- * 	here just for recup number of ant
+ * 		read on the standart input one ligne, convert string
+ * 		into numbers
+ * 		return : -1 if the string is not at the good format
+ * 		or number of ants
  */
 
-int		lm_parse_ant(char *ligne)
+int		lm_parse_ant(int *ants)
 {
-	int		i;
-	int		ret;
+	char	*ligne;
 
-	ret = 0;
-	i = 0;
-	while (ligne[i])
+	get_next_line(0, &ligne); // si ligne == NULL
+	if (ligne)
 	{
-		if (ligne[i] && (ligne[i] >= '0' && ligne[i] <= '9' ))
-			ret = (ret * 10) + 	ligne[i] - '0';
-		else
-			return (-1);
-		i++;
+		*ants = ft_atoi(ligne);
+		printf("%s\n", ligne);
+		free(ligne);
 	}
-	return (ret);
+	else
+		return (-1);
+	return (1);
 }
 
 /*

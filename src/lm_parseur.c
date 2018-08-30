@@ -6,21 +6,20 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:58:27 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/20 10:31:47 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/30 18:20:21 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int			lm_handle_command(t_sommet **sommet, char *ligne)
-{
-	if (ligne[1] == '#')
-	{
-		if (ft_strequ(&ligne[2], "start"))
-			lm_add_start_end(sommet, 0);
-		else if (ft_strequ(&ligne[2], "end"))
-			lm_add_start_end(sommet, 1);
-	}
+int			lm_handle_command(t_sommet **sommet, char *ligne)
+{	
+	if (ft_strequ(&ligne[2], "start"))
+		if (lm_add_start_end(sommet, 0) == -1)
+			return (-1);
+	else if (ft_strequ(&ligne[2], "end"))
+		if (lm_add_start_end(sommet, 1) == -1);
+			return (-1);
 	return (1);
 }
 
@@ -41,12 +40,24 @@ int		lm_parse_tube(t_sommet **sommet, char *ligne)
 	return (1);
 }
 
-int		lm_parse_room(t_sommet **sommet, char *ligne)
+/*
+int		lm_parse_and_stock_room(t_sommet **sommet)
 {
 	char	*ptr;
-	//int		ret;///// vraiment utile ?
-	
-	if (*ligne == '#')
+	char	*ligne;
+
+	while (get_next_line(0, &ligne))
+	{
+		if (lm_is_good_name_room(sommet, ligne) == -1)
+		{
+			free(ligne);
+			return (-1);
+		}
+		free(ligne);
+	}
+
+		
+	if (ligne[0] == '#' && ligne[1])
 	{
 		if (lm_handle_command(sommet, ligne) == -1)
 			return (-1);
@@ -54,11 +65,9 @@ int		lm_parse_room(t_sommet **sommet, char *ligne)
 	else
 	{
 		if (lm_is_good_room(ligne))
-		{
 			lm_add_sommet(sommet, ligne);
-		}
 		else
-		{
+			// attention ici
 			if (lm_parse_tube(sommet, ligne) == -1)
 			{
 			//	free(ligne);
@@ -69,16 +78,26 @@ int		lm_parse_room(t_sommet **sommet, char *ligne)
 	// peut etre verif que les sommets sont bons
 	return (1);
 }
-
-int		lm_parseur(t_sommet **sommet)
+*/
+int		lm_parseur(t_sommet **sommet, int *ants)
 {
+/*	int 	ret;
+	char	*ligne;
+
+	if (lm_parse_ant(ants) == -1)
+		return (-1);
+	if (lm_parse_and_stock_room(sommet) == -1)
+		return (-1);
+*/
+
+
 	int		ret;
-//	int		tmp;
 	char	*ligne;
 
 	get_next_line(0, &ligne);
 	if ((ret = lm_parse_ant(ligne)) == -1)
 	{
+		write(1, "ERROR\n", 6);
 		free(ligne);
 		return (-1);
 	}
@@ -90,8 +109,6 @@ int		lm_parseur(t_sommet **sommet)
 			free(ligne);
 			return (-1);
 		}
-		/*if (lm_parse_room(sommet, ligne) == -1)
-			return (-1);*/
 		free(ligne);
 	}
 	return (ret);

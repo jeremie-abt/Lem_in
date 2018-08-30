@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/26 12:48:47 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/29 11:19:10 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/29 16:36:11 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ void		lm_send_first_ant_in_path(t_sommet **graph, t_sommet **tab,
 		//tab[i - 1] = cur;
 	}
 	lm_remove_one_ant(tab_of_ant, size);
-	printf("\n\n");
+	printf("\n");
 }

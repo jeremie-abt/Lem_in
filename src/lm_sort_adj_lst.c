@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:39:26 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/25 19:07:40 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/29 16:35:36 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void		lm_swap_lst(t_adj_lst *first, t_adj_lst *second)
 {
+	printf("ya bien un swap\n");
+	exit(4);
 	t_adj_lst		swap;
 	t_adj_lst		*tmp;
 	t_adj_lst		*secondtmp;

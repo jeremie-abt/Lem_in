@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 13:35:16 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/29 15:05:22 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/29 16:35:09 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,7 @@ static int			lm_display_one_turn(t_sommet **graph, int *tab_of_ants, int size)
 			return (0);
 		lm_init_save_cur_ant_tab(tab, graph, size);
 	}
-	//	fonction pour initier les premieres fourmis de chaques path
-
-	lm_send_first_ant_in_path(graph, tab, tab_of_ants, size); // attention a decrement mon tab	
-
+	lm_send_first_ant_in_path(graph, tab, tab_of_ants, size);	
 	while (lm_verif_ant_cur_tab(tab, size))
 	{
 		i = 0;
@@ -125,7 +122,6 @@ static int			lm_display_one_turn(t_sommet **graph, int *tab_of_ants, int size)
 		printf("\n");
 	}
 
-	exit(4);
 	return (1);
 
 }
@@ -133,6 +129,8 @@ static int			lm_display_one_turn(t_sommet **graph, int *tab_of_ants, int size)
 int				lm_print_ants(t_sommet **graph, int ants, int path)
 {
 	int			*nb_ants_in_path;
+	t_adj_lst	*lst;
+
 
 	lm_sort_lst_byorder(graph);
 	if (!lm_sort_begin_byorder(graph) || !nb_ants_in_path)
@@ -146,18 +144,8 @@ int				lm_print_ants(t_sommet **graph, int ants, int path)
 		return (0);
 	}
 
-
 	lm_fill_ants_per_path_tab(graph, path, ants, nb_ants_in_path);
-	printf("tab0 : %d\n", nb_ants_in_path[0]);
-	printf("tab1 : %d\n", nb_ants_in_path[1]);
-	printf("tab2 : %d\n", nb_ants_in_path[2]);
-	exit(5);
-
-	//	nb_ants_in_path[0] = 5;
-	//	nb_ants_in_path[1] = 1;
-	//
 	lm_display_one_turn(graph, nb_ants_in_path, 2);
-
 
 	return (1);
 }

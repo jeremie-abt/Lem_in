@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:07:39 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/26 17:22:51 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/30 14:35:27 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,26 @@ t_sommet			*lm_get_next_sommet_by_flow(t_sommet **graph, t_sommet *cur)
 		lst = lst->next;
 	return (lm_get_sommet(graph, lst->name));
 }
+
+t_sommet			*lm_get_next_node(t_sommet **graph, t_sommet *node)
+{
+	t_adj_lst	*lst;
+	t_sommet	*cur;
+	t_sommet	*tmp;
+
+	cur = NULL;
+	lst = node->lst;
+	while (lst)
+	{
+		tmp = lm_get_sommet(graph, lst->name);
+		if (lst->flow == 1 && !tmp->visited)
+		{
+			cur = lm_get_sommet(graph, lst->name);
+			return (cur);
+		}
+		lst = lst->next;
+	}
+	return (cur);
+}
+
+

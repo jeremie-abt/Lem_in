@@ -6,32 +6,11 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 14:03:04 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/23 17:41:23 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/30 16:55:04 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-static t_sommet		*lm_get_next_node(t_sommet **graph, t_sommet *node)
-{
-	t_adj_lst	*lst;
-	t_sommet	*cur;
-	t_sommet	*tmp;
-
-	cur = NULL;
-	lst = node->lst;
-	while (lst)
-	{
-		tmp = lm_get_sommet(graph, lst->name);
-		if (lst->flow == 1 && !tmp->visited)
-		{
-			cur = lm_get_sommet(graph, lst->name);
-			return (cur);
-		}
-		lst = lst->next;
-	}
-	return (cur);
-}
 
 static void			lm_reverse_path(t_sommet **graph, t_sommet *node)
 {
@@ -84,4 +63,22 @@ int				lm_search_path_dfs(t_sommet **graph)
 		lst = lst->next;
 	}
 	return (ret);
+}
+
+int		lm_find_max_flow(t_sommet **graph)
+{
+	t_sommet	**resid_graph;	
+	int			path;
+	int			tmp;
+	
+	path = 0;
+	tmp = 0;
+	resid_graph = lm_copy_hashtable();
+	while ((tmp = lm_search_path_dfs(resid_graph)))
+	{
+		path += tmp;
+		lm_update_main_graph(sommet, resid_graph);
+	}
+	// faire la procedure pour free le resid graph
+	return (path);
 }

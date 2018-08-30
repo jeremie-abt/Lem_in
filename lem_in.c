@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:11:00 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/29 15:29:50 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/30 17:36:11 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,28 @@ int		main(int argc, char **argv)
 
 
 	ft_bzero(sommet, HASH_SIZE * sizeof(t_sommet *));	
-	if ((ants = lm_parseur(sommet)) == -1)
+	if (lm_parseur(sommet, &ants) == -1)
 	{
-		write(1, "ERROR\n", 6);
 		lm_free_hashtable(sommet);
-		ft_bzero(sommet, HASH_SIZE * sizeof(t_sommet *));	
+		write(1, "ERROR\n", 6);
+		ft_bzero(sommet, HASH_SIZE * sizeof(t_sommet *));
 		return (0);
 	}
 //	lm_fill_distance(sommet, ants);
-	resid_graph = lm_copy_hashtable();
+	
+/*	resid_graph = lm_copy_hashtable();
 	while (lm_search_path_dfs(resid_graph))
 	{
 		printf("ouai\n");
 		lm_update_main_graph(sommet, resid_graph);// pas besoins de copier le prev
-	}
-	path = lm_count_path(sommet);
+	}*/
 
-	lm_fill_distance_flow(sommet);
+	path = lm_find_best_flow(sommet, ants);
+
+
+	//path = lm_find_max_flow(sommet);
+
+	//lm_fill_distance_flow(sommet);
 
 	// il faut vraiment que je gere cette variable
 

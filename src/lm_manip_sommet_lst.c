@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:16:32 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/25 16:45:11 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/30 17:30:13 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ int					lm_init_graph(t_sommet **sommet)
 	return (1);
 }
 */
+
+/*
+ * 		EXECUTION
+ * 		put all visited node that are equal to 1 to 0 and put their prev to NULL
+ */
+
 void				lm_clean_visited(t_sommet **sommet)
 {
 	int			i;
@@ -64,7 +70,11 @@ void				lm_clean_visited(t_sommet **sommet)
 			tmp = sommet[i];
 			while (tmp)
 			{
-				tmp->visited = 0;
+				if (tmp->visited == 1 && i != 0)
+				{
+					tmp->visited = 0;
+					tmp->prev = NULL;
+				}
 				tmp = tmp->next;
 			}
 		}
@@ -95,10 +105,14 @@ int					lm_add_start_end(t_sommet **sommet, int index)
 	char	*new_room;
 
 	if (sommet[index])
+	{
+		printf("\n\n\ngere ce cas bolloosss lm_manip_sommet.c\n\n\n");
+		assert(0);
 		return (-1);//pour l'instant non gere aussi
+	}
 	get_next_line(0, &ligne);
 	new_room = lm_get_room_name(ligne);
-	if (new_room && lm_is_good_room(new_room))
+	if (new_room && lm_is_good_name_room(new_room))
 	{
 		if (!(sommet[index] = malloc(sizeof(t_sommet))))
 		{
