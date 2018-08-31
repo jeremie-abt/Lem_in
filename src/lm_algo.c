@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:39:02 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/30 18:27:58 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/31 10:53:59 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int			lm_find_best_flow(t_sommet **sommet, int ants)
 		path++;
 		lm_clean_visited(sommet);
 	}
+	return (1); // verifier ce return
 }
 
 /*

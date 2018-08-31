@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:16:32 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/30 17:30:13 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/31 11:08:24 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int					lm_add_sommet(t_sommet **sommet, char *str)
 
 int					lm_add_start_end(t_sommet **sommet, int index)
 {
-	char	*ligne;
+	char	*line;
 	char	*new_room;
 
 	if (sommet[index])
@@ -110,13 +110,14 @@ int					lm_add_start_end(t_sommet **sommet, int index)
 		assert(0);
 		return (-1);//pour l'instant non gere aussi
 	}
-	get_next_line(0, &ligne);
-	new_room = lm_get_room_name(ligne);
-	if (new_room && lm_is_good_name_room(new_room))
+
+	get_line(&line, NULL, 0);
+	new_room = lm_get_room_name(line);
+	if (new_room && lm_is_good_room(new_room))
 	{
 		if (!(sommet[index] = malloc(sizeof(t_sommet))))
 		{
-			free(ligne);
+			free(line);
 			if (new_room)
 				free(new_room);
 			return (-1);
@@ -124,12 +125,12 @@ int					lm_add_start_end(t_sommet **sommet, int index)
 	}
 	else
 	{
-		free(ligne);
+		free(line);
 		if (new_room)
 			free(new_room);
 		return (-1);
 	}
-	free(ligne);
+	free(line);
 	ft_bzero(sommet[index], sizeof(t_sommet));
 	sommet[index]->name = new_room;
 	return (1);

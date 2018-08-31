@@ -6,10 +6,9 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:11:00 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/30 17:36:11 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/31 10:56:45 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "lem_in.h"
 
 int		main(int argc, char **argv)
@@ -24,13 +23,17 @@ int		main(int argc, char **argv)
 
 
 	ft_bzero(sommet, HASH_SIZE * sizeof(t_sommet *));	
-	if (lm_parseur(sommet, &ants) == -1)
+	if ((ants = lm_parseur(sommet)) == -1)
 	{
-		lm_free_hashtable(sommet);
 		write(1, "ERROR\n", 6);
+		lm_free_hashtable(sommet);
 		ft_bzero(sommet, HASH_SIZE * sizeof(t_sommet *));
 		return (0);
 	}
+
+print_all_hashtable(sommet);
+exit(5);
+
 //	lm_fill_distance(sommet, ants);
 	
 /*	resid_graph = lm_copy_hashtable();
@@ -73,6 +76,5 @@ int		main(int argc, char **argv)
 
 	lm_free_hashtable(sommet);
 	ft_bzero(sommet, HASH_SIZE * sizeof(t_sommet *));
-
 	return (0);
 }

@@ -6,38 +6,49 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 17:42:46 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/30 17:54:52 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/31 09:47:34 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-/*
-int		lm_is_good_name_room(t_sommet **sommet, char *room)
+int		lm_is_good_room(char *room)
 {
 	int		i;
 	int		ret;
 
 	i = 0;
-	if (*room == 'L' || (room[0] == '#' && room[1] != '#'))
+	if (*room == 'L')
 		return (-1);
-	if (*room == '#')
+	while (*room && *room != ' ')
+		room++;
+	while (*room)
 	{
-		ret = lm_handle_command(sommet, room);
-		return (ret); // attention ca va peut etre pose pb
+		if (*room == ' ')
+			i++;
+		else if (!ft_isdigit(*room))
+			return (-1);
+		room++;
 	}
-	while (room[i] && room[i] != ' ' && room[i] != '\n')
+	if (i == 2)
+		return (1);
+	return (-1);
+}
+
+int			lm_verif_tube(char *str)
+{	
+	int		i;
+	int		state;
+
+	state = 0;
+	i = 0;
+	while (str[i])
 	{
-		if (room[i] == '-')
-			return (0);
+		if (str[i] == '-')
+			state++;
 		i++;
 	}
-	if (!room[i] || room[i] == '\n')
+	if (state != 1)
 		return (-1);
 	return (1);
 }
-*/
-
-// une fonctino qui manage la premiere partie d'une room
-//
-// et une fonction pour la deuxieme partie

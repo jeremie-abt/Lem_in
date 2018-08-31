@@ -1,1 +1,1 @@
-gcc visualizer.c -I inc -I ~/.brew/Cellar/sdl2/2.0.8/include/SDL2/ -L ~/.brew/Cellar/sdl2/2.0.8/lib/ -lSDL2
+gcc visualizer.c -I inc -I ~/.brew/Cellar/sdl2/2.0.8/include/SDL2/ -L ~/.brew/Cellar/sdl2/2.0.8/lib/ -lSDL2 -I ~/.brew/Cellar/sdl2_image/2.0.3/include/SDL2/ -L ~/.brew/Cellar/sdl2_image/2.0.3/lib -lSDL2_image

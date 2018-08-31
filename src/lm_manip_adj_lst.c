@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:40:21 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/25 19:05:22 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/31 09:32:41 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,9 @@ int				lm_add_tube(t_sommet **sommet, char *pattern)
 	t_sommet	*first_sommet;
 	t_sommet	*second_sommet;
 
-	if (lm_verif_tube(pattern) == -1)
-		return (-1);
 	second = ft_strchr(pattern, '-') + 1;
 	if (!(first = ft_strsub(pattern, 0, (second - pattern) - 1)))
 	{
-		//	free(second);
 		return (-1);
 	}
 	if (!(second = ft_strdup(second)))
@@ -57,6 +54,9 @@ int				lm_add_tube(t_sommet **sommet, char *pattern)
 		free(first);
 		return (-1);
 	}
+//	key = lm_hash(first);
+//	printf("%s\n", first);
+//	printf("%s\n", second);
 	if (!(first_sommet = lm_get_sommet(sommet, first)) ||
 			!(second_sommet = lm_get_sommet(sommet, second)))
 	{
@@ -65,6 +65,11 @@ int				lm_add_tube(t_sommet **sommet, char *pattern)
 		return (-1);
 	}
 	lm_add_neighbor(first_sommet, second_sommet, second, first);
+/*	printf("first_sommet : %s\n", first_sommet->name);
+	printf("son new voisin : %s\n", first_sommet->lst->name);
+	printf("second_sommet : %s\n", second_sommet->name);
+	printf("son new voisin : %s\n", second_sommet->lst->name);*/
+//	lm_add_meighbor(sommet[key]);
 	//free(first);
 	return (1);
 }

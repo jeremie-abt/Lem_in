@@ -6,12 +6,12 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 14:03:04 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/30 16:55:04 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/31 10:55:17 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
+/*
 static void			lm_reverse_path(t_sommet **graph, t_sommet *node)
 {
 	t_adj_lst	*edge;
@@ -81,4 +81,4 @@ int		lm_find_max_flow(t_sommet **graph)
 	}
 	// faire la procedure pour free le resid graph
 	return (path);
-}
+}*/

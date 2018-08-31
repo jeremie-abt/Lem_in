@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/30 17:55:31 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/31 10:53:34 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@
 # include "assert.h"
 
 # define HASH_SIZE 128
+
+typedef	struct	s_input t_input;
+
+struct		s_input
+{
+	char	*line;
+	t_input	*next;
+};
 
 typedef struct		s_sommet
 {
@@ -73,7 +81,6 @@ typedef struct	s_shortcut
 /*
 ** 	hashtable function
 */
-
 int			lm_hash(char *str);
 t_sommet	*lm_get_adress(char *str, t_sommet **sommet);
 int			lm_add_hashmap(t_sommet **sommet, char *str);
@@ -143,8 +150,8 @@ void		lm_clear_all_queue(t_sommet **sommet);
 
 int			lm_add_neighboor_bydist(t_sommet **sommet, t_sommet *node,
 		t_control_queue *control_queue);
-int			lm_add_neighboor(t_sommet **sommet, t_sommet *node,
-		t_control_queue *control_queue);
+//int			lm_add_neighboor(t_sommet **sommet, t_sommet *node,
+//		t_control_queue *control_queue);
 int			lm_fill_distance(t_sommet **sommet, int ants);
 void		lm_fill_distance_flow(t_sommet **graph);
 int			lm_augmenting_path(t_sommet **sommet);
@@ -158,6 +165,7 @@ int			lm_find_max_flow(t_sommet **graph);
 t_sommet	*lm_get_next_node_dfs(t_sommet **sommet, t_sommet *node);
 int			lm_search_path_dfs(t_sommet **graph);
 int			lm_find_best_flow(t_sommet **sommet, int ants);
+int			lm_find_one_path_with_bfs(t_sommet **sommet);
 
 /*
  * 		display
@@ -172,13 +180,25 @@ void		lm_remove_one_ant(int *tab_of_ant, int size);
  * 	parsing function
  */
 
-int			lm_parse_ant(int *ants);
+int			lm_parse_ant(char *ligne);
 int			lm_parse_digit(char *ligne);
-int			lm_parseur(t_sommet **sommet, int *ants);
-//int			lm_is_good_room(char *room_name);
+int			lm_parseur(t_sommet **sommet);
+int			lm_is_good_room(char *room);
 int			lm_parse_room_and_stock_room(t_sommet **sommet);
-int			lm_handle_command(t_sommet **sommet, char *ligne);
+//int			lm_handle_command(t_sommet **sommet, char *ligne);
 int			lm_is_good_name_room(t_sommet **sommet, char *room);
+
+
+/*	
+ *	fonction a gautier (le con)
+ */
+
+t_input     *stock_input(void);
+int         get_line(char **line, t_input *input, int start);
+void        freeanddisplay_input(t_input *input);
+
+
+
 
 /*
  * 	un peu d'utils

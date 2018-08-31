@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:32:23 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/30 17:14:46 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/31 10:51:50 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 
 
-static int		lm_bfs_valid_path(t_sommet **graph, t_sommmet * node)
+static int		lm_bfs_valid_path(t_sommet **graph, t_sommet * node)
 {
 	assert(node->prev != NULL);
 	assert(node == graph[1]);
@@ -109,15 +109,16 @@ int		lm_find_one_path_with_bfs(t_sommet **sommet)
 	while (control.head || control.tail)
 	{
 		cur = lm_pop_queue(&control);
-		if (cur == graph[1])
-			return (lm_bfs_valid_path(graph, cur));
+		if (cur == sommet[1])
+			return (lm_bfs_valid_path(sommet, cur));
 		else
-			if (!lm_add_neighboor(graph, cur, &control));
+			if (!lm_add_neighboor(sommet, cur, &control))
 			{
 				lm_free_queue(&control);
 				return (-1);
 			}
 	}
+	return (-1); // verifier ca
 }
 
 /*
