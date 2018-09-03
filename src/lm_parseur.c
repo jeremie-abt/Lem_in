@@ -68,8 +68,5 @@ int		lm_parseur(t_sommet **sommet)
 			return (-1);
 		}
 	}
-	print_all_hashtable(sommet);
-	exit (0);
-	freeanddisplay_input(input);
 	return (ants);
 }

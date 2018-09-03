@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:51:11 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/31 09:06:27 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/03 19:42:49 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,16 +116,22 @@ void	print_all_hashtable_wdistance(t_sommet **hashtable)
 void	print_hashtable_distance_and_prev(t_sommet **hashtable)
 {
 	int		i;
+	t_sommet *cur;
 	
 	i = 0;
 	while (i < HASH_SIZE)
 	{
 		if (hashtable[i])
 		{
-			if (hashtable[i]->prev)
-				printf("HEAD %d : %s sa distance : %d  prev -> %s\n", i, hashtable[i]->name, hashtable[i]->distance, hashtable[i]->prev->name);
-			else
-				printf("HEAD %d : %s sa distance : %d  prev -> NULL\n", i, hashtable[i]->name, hashtable[i]->distance);
+			cur = hashtable[i];
+			while (cur)
+			{
+				if (cur->prev)
+					printf("HEAD %d : %s sa distance : %d  prev -> %s\n", i, cur->name, cur->distance, cur->prev->name);
+				else
+					printf("HEAD %d : %s sa distance : %d  prev -> NULL\n", i, cur->name, cur->distance);
+				cur = cur->next;
+			}
 
 //			printf("just first one : %s\n", hashtable[i]->lst->name);
 		}
@@ -133,6 +139,33 @@ void	print_hashtable_distance_and_prev(t_sommet **hashtable)
 	}
 
 }
+
+void	print_hashtable_visited_and_prev(t_sommet **hashtable)
+{
+	int			i;
+	t_sommet	*cur;
+	
+	i = 0;
+	while (i < HASH_SIZE)
+	{
+		if (hashtable[i])
+		{
+			cur = hashtable[i];
+			while (cur)
+			{
+				if (cur->prev)
+					printf("HEAD %d : %s visited : %d  prev -> %s\n", i, cur->name, cur->visited, cur->prev->name);
+				else
+					printf("HEAD %d : %s sa visited : %d  prev -> NULL\n", i, cur->name, cur->visited);
+				cur = cur->next;
+			}
+//			printf("just first one : %s\n", cur->lst->name);
+		}
+		i++;
+	}
+
+}
+
 void	print_flow(t_sommet **hashtable)
 {
 	int		i;
@@ -158,9 +191,6 @@ void	print_flow(t_sommet **hashtable)
 	}
 
 }
-
-
-
 
 void	print_node(t_sommet *node)
 {
@@ -218,4 +248,18 @@ void	print_ant_path(t_sommet **graph)
 		printf("voici le nombre de fourmis ici : %s -> %d\n", cur->name, cur->ant);
 		lst = lst->next;
 	}
+}
+
+int		is_node_in_graph(t_sommet **graph, t_sommet *node)
+{
+	int		i;
+
+	i = 0;
+	while (i < HASH_SIZE)
+	{
+		if (graph[i] == node)
+			return (1);
+		i++;
+	}
+	return (0);
 }

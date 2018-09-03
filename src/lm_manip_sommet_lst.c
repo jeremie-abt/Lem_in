@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:16:32 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/31 11:08:24 by jabt             ###   ########.fr       */
+/*   Updated: 2018/08/31 11:51:19 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_sommet		*lm_init_sommet(t_sommet *cur_head, char *str)
 	sommet->name  = str;//a voir si ici je ne peux pas simplement faire un bzero
 	sommet->ant = 0;
 	sommet->distance = -1;
-//	sommet->capacity = 0;
+	sommet->visited = 0;
 	sommet->lst = NULL;
 	sommet->prev = NULL;
 	sommet->next = cur_head;

@@ -6,103 +6,27 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:32:23 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/31 10:51:50 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/03 18:01:20 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
- * 		but : valider un path -> mettre un visited = 2 sur tous les nodes du path
- * 		input : graph de flow et un node qui doit etre le dernier relie
- * 		a un prev
- * 		on remonte tous le path et on met des visited = 2 sur tous les node
- * 		en commencent par le previous de node
- */
-
-
-
-
-static int		lm_bfs_valid_path(t_sommet **graph, t_sommet * node)
-{
-	assert(node->prev != NULL);
-	assert(node == graph[1]);
-
-	t_sommet	*cur;
-
-	cur = node->prev;
-	node->prev = NULL;
-	if (cur == graph[0])
-		return (2);
-	while (cur != graph[0])
-	{
-		cur->visited = 2;
-		cur = cur->prev;
-	}
-	return (1);
-}
-
-/*
- * 		OUTPOUT
- * 		tous les nodes de mon path on ete mis a visited = 2 sauf le fin
- * 		et le fin->prev a ete remis a null
- * 		RETURN
- * 		return 1 : ok
- * 		return 2 : connexion direct between start and end donc un seul path
- */
-
-
-/*			---------------------------			*/
-/*			---------------------------			*/
-/*			---------------------------			*/
-
-/*
- * 		INPUT
- * 		procedure pour ajouter tous les voisins bfs
- * 		Je recois un graph de flow et un node dans ce graph
- * 		je veux ajouter tous les neighboor qui ne sont pas visited
- * 		le node de debut doit etre visited
- */
-
-static int		lm_add_neighboor(t_sommet **graph, t_sommet *node,
-		t_control_queue *control)
-{
-	assert(graph[0]->visited > 0);
-
-	t_adj_lst	*lst;
-	t_sommet	*cur;
-
-	lst = node->lst;
-	while (lst)
-	{
-		cur = lm_get_sommet(graph, lst->name);
-		if (cur->visited == 0)
-		{
-			if (!lm_add_elem_queue(control, cur))
-				return (-1);
-			cur->visited++;
-			cur->prev = node;
-		}
-		lst = lst->next;
-	}
-	return (1);
-}
-
-
-/*
  * 		INPUT
  *		Je recois un graph de flow sous forme de hashtable
- *		je ne peut toucher que au node visited->0
+ *		je ne peut toucher que au node visited == 0
  *		la valeur visited des nodes debut et fin est egale a 0
  */
 
 
-int		lm_find_one_path_with_bfs(t_sommet **sommet)
+int			lm_find_one_path_with_bfs(t_sommet **sommet, int *ants, int cur_nb_path)
 {
 	t_control_queue		control;
 	t_sommet			*cur;
 
 	sommet[0]->visited = 1;
+	sommet[1]->visited = 0;
 	ft_bzero(&control, sizeof(t_control_queue));
 	if (!lm_add_elem_queue(&control, sommet[0]))
 		return (-1);
@@ -110,22 +34,105 @@ int		lm_find_one_path_with_bfs(t_sommet **sommet)
 	{
 		cur = lm_pop_queue(&control);
 		if (cur == sommet[1])
-			return (lm_bfs_valid_path(sommet, cur));
+		{
+			cur_nb_path++;
+			cur = lm_bfs_valid_path(sommet, cur);
+			if (lm_is_worth_path(sommet, cur, ants, cur_nb_path))
+				return (1);
+			else
+				return (0);
+		}
 		else
 			if (!lm_add_neighboor(sommet, cur, &control))
-			{
-				lm_free_queue(&control);
-				return (-1);
-			}
+				return (-1);//procedure pour free
 	}
-	return (-1); // verifier ca
+	return (0);
+}
+
+/*{*/
+/*
+ * 		OUTPOUT
+ *		return = 1 if one worth path is found
+ *		return 0 if 0 path are found or if the founded path aren't worth
+ *		return -1 to indicate a problem to the calling procedure, meaning quitting
+ *		correctly the program
+ */
+
+/*
+ * 	INPUT
+ * 	graph like above i can touch only 0s visited node
+ */
+
+t_sommet		*lm_get_node_to_reverse_bfs(t_sommet **resid_graph)
+{
+	t_control_queue		control;
+	t_sommet			*cur;
+	int					distance;
+
+	distance = 1;
+	resid_graph[0]->visited = 1;
+	resid_graph[1]->visited = 0;
+	ft_bzero(&control, sizeof(t_control_queue));
+	if (!lm_add_elem_queue(&control, resid_graph[0]))
+		return (NULL);
+	while (control.head || control.tail)
+	{
+		cur = lm_pop_queue(&control);
+		if (cur != resid_graph[1] && cur->visited == 2)
+		{
+			return (cur);
+		}
+		else
+			if (!lm_add_neighboor_visited2(resid_graph, cur, &control))
+				return (NULL);// procedure pour free ici
+	}
+	return (NULL);	
 }
 
 /*
- * 		OUTPOUT
- *		return -1 = print ERROR et quitter proprement
- *		return 0 = aucun path trouve
- *		return 1 = 1 path trouve
- *		return 2 -> connexion (tube) entre salle start et end trouve
- *		donc go direct envoyer toutes mes fourmis
+ * 	OUTPOUT
+ * 	return the first node reach by a bfs which has its visited value to
+ * 	2 and isn't the end node
+ * 	NULL if there is no such node, meaning no path in the resid_graph
  */
+
+/*
+ * 	INPUT
+ * 	the resid_graph and one node within it
+ * 	PROCEDURE
+ * 	i want to run a BFS unti the end node is reached 
+ * 	with all the nodes that aren't visited == 2
+ * 	and relaxe the distance, meaning for e(u,v) if dist(v) > dist(u) + 1
+ * 	then dist(v) = dist(u) + 1
+ */
+
+int				lm_relaxing_bfs(t_sommet **resid_graph, t_sommet *node)
+{
+	t_control_queue		control;
+	t_sommet			*cur;
+	int					state;
+
+	// reviser cette fonction
+	state = 0;
+	resid_graph[0]->visited = 1;
+	resid_graph[1]->visited = 0;
+	ft_bzero(&control, sizeof(t_control_queue));
+	if (!lm_add_elem_queue(&control, node))
+		return (-1);
+	while (control.head || control.tail)
+	{
+		cur = lm_pop_queue(&control);
+		if (!state && cur == resid_graph[1])
+			state = 1;
+		else
+		{
+			if (!state)
+			{
+				if (!lm_add_neighboor(resid_graph, cur, &control))
+					return (-1);//procedure pour free
+			}
+		}
+		lm_relaxe_all_edge_node(resid_graph, cur);
+	}
+	return (0);
+}

@@ -6,39 +6,11 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 13:35:16 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/29 16:35:09 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/02 15:42:50 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-/*
-
-   static int		lm_disperse_ants(t_sommet **graph, int path)
-   {
-   t_adj_lst		*lst;
-   t_sommet		*cur;
-   int				*ants_per_path;
-
-   if (!(ants_per_path = malloc(sizeof(int) * path)))
-   return (0);
-   lm_fill_ants_per_path_tab(graph, ants_per_path, path);
-   lst = graph[1]->lst;
-   while (lst)
-   {
-   cur = lm_get_sommet(graph, lst->name);
-   }
-   return (1);
-   }
-
-*/
-
-/*
- *
- *		ATTENTION CALCUL TRES HASARDEUX EN DESSOUS ET SURTOUT FAUX
- *		IL EST CLAIREMENT FAUXX !!!
- *
- */
 
 /*
  * 		format of printing : Lnb_fourmi-room
@@ -59,7 +31,7 @@ static void			lm_print_and_shift_path(t_sommet **graph, t_sommet **cur_tab,
 	prev = cur->prev;
 	if (cur->ant)
 	{
-		printf("L%d-%s ", cur->ant, graph[1]->name);
+		printf("COLOR%d-%s ", cur->ant, graph[1]->name);
 		cur->ant = prev->ant;
 		if (!cur->ant)
 			cur_tab[combientieme - 1] = NULL;
@@ -111,7 +83,7 @@ static int			lm_display_one_turn(t_sommet **graph, int *tab_of_ants, int size)
 		lm_init_save_cur_ant_tab(tab, graph, size);
 	}
 	lm_send_first_ant_in_path(graph, tab, tab_of_ants, size);	
-	while (lm_verif_ant_cur_tab(tab, size))
+	while (lm_verif_ant_cur_tab(tab, &size))
 	{
 		i = 0;
 		while (i < size)//ants existe || ants in path)
@@ -121,10 +93,18 @@ static int			lm_display_one_turn(t_sommet **graph, int *tab_of_ants, int size)
 		}
 		printf("\n");
 	}
-
 	return (1);
 
 }
+
+/*
+ * 	INPUT
+ * 	hashtable which represent a graph under those constraints :
+ * 	the node juste before end of the path i'll use need to have
+ * 	their distance node all node within a path shall have their
+ * 	prev node init and all the forward edge of a path need to
+ * 	have their flow to 0
+ */
 
 int				lm_print_ants(t_sommet **graph, int ants, int path)
 {
@@ -133,7 +113,7 @@ int				lm_print_ants(t_sommet **graph, int ants, int path)
 
 
 	lm_sort_lst_byorder(graph);
-	if (!lm_sort_begin_byorder(graph) || !nb_ants_in_path)
+	if (!lm_sort_begin_byorder(graph))
 	{
 		//verif si ya pas des trucs a free ...
 		return (0);

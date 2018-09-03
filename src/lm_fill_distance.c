@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/31 09:18:33 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/31 09:19:04 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/02 14:07:06 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void			lm_fill_distance_flow(t_sommet **graph)
 		lst = lst->next;
 	}
 }
-
+/*
 int			lm_fill_distance(t_sommet **sommet, int ants)
 {
 	t_control_queue		control;
@@ -110,3 +110,4 @@ int			lm_fill_distance(t_sommet **sommet, int ants)
 	ft_bzero(&control, sizeof(t_control_queue));
 	return (0);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/31 10:53:34 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/03 18:26:31 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,13 @@ typedef struct	s_shortcut
 /*
 ** 	hashtable function
 */
-int			lm_hash(char *str);
+
+int			lm_hash(char *str);/*{*/
 t_sommet	*lm_get_adress(char *str, t_sommet **sommet);
 int			lm_add_hashmap(t_sommet **sommet, char *str);
 int			lm_add_sommet(t_sommet **sommet, char *str);
 int			lm_add_start_end(t_sommet **sommet, int index);
-t_sommet	**lm_copy_hashtable(void);
+t_sommet	**lm_copy_hashtable(t_sommet **graph);
 int			lm_nb_child(t_sommet **sommet, t_sommet *parent);
 t_sommet	*lm_loneliest_node(t_sommet *parent, t_sommet **sommet);
 t_sommet	*lm_copy_node(t_sommet *src);
@@ -96,62 +97,61 @@ void		lm_update_main_graph(t_sommet **graph, t_sommet **resid_graph);
 t_sommet	*lm_get_sommet(t_sommet **sommet, char *needle);
 t_sommet	*lm_get_next_node(t_sommet **graph, t_sommet *node);
 t_sommet	*lm_get_next_sommet_by_flow(t_sommet **graph, t_sommet *cur);
+t_sommet	*lm_get_last_node_of_path(t_sommet **graph, t_sommet *node);/*}*/
 
 /*
- *
  * 		manip de tab
- *
  */
 
+/*{*/
 void		lm_fill_ants_per_path_tab(t_sommet **graph, int path, int ants,
 		int *tab_of_ants);
 void		lm_init_save_cur_ant_tab(t_sommet **tab, t_sommet **graph, int size);
-int			lm_verif_ant_cur_tab(t_sommet **cur_tab, int size);
+int			lm_verif_ant_cur_tab(t_sommet **cur_tab, int *size);
+/*}*/
 
 /*
  * 		adjencency lst function
  */
 
+/*{*/
 int			lm_add_tube(t_sommet **sommet, char *pattern);
-int			lm_new_lst_node(t_adj_lst **lst, char *name, int flow);
+int			lm_new_lst_node(t_adj_lst **head_new_lst, t_adj_lst *cur_lst);
 int			lm_new_lst_node_atend(t_adj_lst **lst, char *name, int flow);
-
-//void		lm_free_adj_lst_resid_graph(t_adj_lst *adj_lst);
-//t_adj_lst	*lm_create_inlst(t_sommet **sommet, t_sommet *node);
-//t_adj_lst	*lm_create_outlst(t_sommet **sommet, t_sommet *node);
-//t_adj_lst	*lm_copy_lst(t_adj_lst *src);
+/*}*/
 
 /*
  * 		free procedure
  */
 
+/*{*/
 void		lm_free_adj_lst(t_adj_lst *adj_lst);
 void		lm_free_hashtable(t_sommet **hashtab);
 void		lm_free_queue(t_control_queue *control);
+/*}*/
 
 /*
  * 		queue / stack function
  */
 
+/*{*/
 int			lm_add_elem_queue(t_control_queue *control, t_sommet *new_elem);
 int			lm_add_elem_stack(t_stack **head, t_sommet *new_elem);
 t_sommet	*lm_pop_queue(t_control_queue *control);
 t_sommet	*lm_pop_stack(t_stack **head);
+/*}*/
 
-
-/*
-t_sommet	*exit_queue(t_sommet **queue);
-void		add_in_queue(t_sommet **queue, t_sommet *to_add);
-void		lm_clear_all_queue(t_sommet **sommet);
-*/
 /*
  * 		algo
  */
 
+/*{*/
 int			lm_add_neighboor_bydist(t_sommet **sommet, t_sommet *node,
 		t_control_queue *control_queue);
-//int			lm_add_neighboor(t_sommet **sommet, t_sommet *node,
-//		t_control_queue *control_queue);
+int			lm_add_neighboor(t_sommet **sommet, t_sommet *node,
+		t_control_queue *control_queue);
+int			lm_add_neighboor_visited2(t_sommet **sommet, t_sommet *node,
+		t_control_queue *control_queue);
 int			lm_fill_distance(t_sommet **sommet, int ants);
 void		lm_fill_distance_flow(t_sommet **graph);
 int			lm_augmenting_path(t_sommet **sommet);
@@ -164,22 +164,44 @@ void		lm_init_neighboor_edge(t_sommet **sommet, t_sommet *node);
 int			lm_find_max_flow(t_sommet **graph);
 t_sommet	*lm_get_next_node_dfs(t_sommet **sommet, t_sommet *node);
 int			lm_search_path_dfs(t_sommet **graph);
-int			lm_find_best_flow(t_sommet **sommet, int ants);
-int			lm_find_one_path_with_bfs(t_sommet **sommet);
+int			lm_find_best_flow(t_sommet **sommet, int *ants);
+int			lm_find_one_path_with_bfs(t_sommet **sommet, int *ants,
+		int cur_nb_path);
+t_sommet	*lm_get_node_to_reverse_bfs(t_sommet **resid_graph);
+int			lm_relaxing_bfs(t_sommet **resid_graph, t_sommet *node);
+void		lm_relaxe_all_edge_node(t_sommet **graph, t_sommet *node);
+void		lm_reverse_valid_path(t_sommet **resid_graph, t_sommet **graph,
+		t_sommet *node);
+
+/*}*/
 
 /*
  * 		display
  */
 
+/*{*/
 int			lm_print_ants(t_sommet **graph, int ants, int path);
 void		lm_send_first_ant_in_path(t_sommet **graph,
 		t_sommet **tab, int *tab_of_ant, int size);
 void		lm_remove_one_ant(int *tab_of_ant, int size);
+/*}*/
+
+/*
+ * 	path manip
+ */
+
+/*{*/
+void		lm_cancel_chosen_path(t_sommet **graph, t_sommet *node);
+int			lm_is_worth_path(t_sommet **graph, t_sommet *node, int *ants,
+		int path);
+t_sommet	*lm_bfs_valid_path(t_sommet **graph, t_sommet *node);
+/*}*/
 
 /*
  * 	parsing function
  */
 
+/*{*/
 int			lm_parse_ant(char *ligne);
 int			lm_parse_digit(char *ligne);
 int			lm_parseur(t_sommet **sommet);
@@ -187,30 +209,32 @@ int			lm_is_good_room(char *room);
 int			lm_parse_room_and_stock_room(t_sommet **sommet);
 //int			lm_handle_command(t_sommet **sommet, char *ligne);
 int			lm_is_good_name_room(t_sommet **sommet, char *room);
-
+/*}*/
 
 /*	
  *	fonction a gautier (le con)
  */
 
+/*{*/
 t_input     *stock_input(void);
 int         get_line(char **line, t_input *input, int start);
 void        freeanddisplay_input(t_input *input);
-
-
-
+/*}*/
 
 /*
  * 	un peu d'utils
  */
 
+/*{*/
 char		*lm_get_room_name(char *str);
 int			lm_verif_tube(char *str);
+/*}*/
 
 /*
  *	debug ou temporaire
  */
 
+/*{*/
 int			lm_add_start(t_sommet **hashtable, char *str);
 int			lm_add_end(t_sommet **hashtable, char *str);
 void		print_sommet(t_sommet *hashtable);
@@ -219,6 +243,7 @@ void		print_all_hashtable(t_sommet **hashtable);
 void		print_resid_graph(t_sommet **);
 void		print_all_hashtable_wdistance(t_sommet **hashtable);
 void		print_hashtable_distance_and_prev(t_sommet **hashtable);
+void		print_hashtable_visited_and_prev(t_sommet **hashtable);
 void		debug_queue(t_sommet **hashtable);
 void		print_path(t_sommet **hashtable, t_sommet *node);
 void		print_queue(t_control_queue *control);
@@ -229,5 +254,7 @@ void		print_adj_lst_distance(t_sommet **, t_sommet *, t_adj_lst *);
 void		print_hashtable_flow(t_sommet **hashtable);
 void		print_stack(t_stack *stack);
 void		print_ant_path(t_sommet **graph);
+int			is_node_in_graph(t_sommet **graph, t_sommet *node);
+/*}*/
 
 #endif

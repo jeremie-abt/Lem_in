@@ -6,11 +6,66 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:39:02 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/31 10:53:59 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/03 20:01:45 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+/*
+ * 	INPUT
+ * 	graph de resid qui contient le graph original copie a l'identique
+ * 	avec son flow, si ya pas de flow ca ne doit pas rentrer la
+ */
+
+static 	int			lm_optimize_and_reverse_shortcut(t_sommet **graph, 
+		t_sommet **resid_graph, int ants)
+{
+	// subroutine pour avoir le premier node qui est visited == 2
+	t_sommet	*save_last_node;	
+	t_sommet	*cur_graph;
+	t_sommet	*cur_resid_graph;
+	int			distance;
+
+
+	save_last_node = lm_get_node_to_reverse_bfs(resid_graph);
+	save_last_node = lm_get_sommet(graph, save_last_node->name);
+
+	cur_graph = lm_get_sommet(graph, save_last_node->name);
+	cur_graph = cur_graph->prev;
+	cur_resid_graph = lm_get_sommet(resid_graph, cur_graph->name);
+	cur_resid_graph->distance = cur_graph->distance;
+	printf("debut relaxing ...\n");
+	while (cur_resid_graph != resid_graph[0])
+	{
+		//  cur graph = le bon node dans le vraie graph
+		// une procedure de bfs relaxant
+		// attention a verifier les dist de mon resid_graph
+
+		lm_relaxing_bfs(resid_graph, cur_resid_graph);
+		
+		// en gros ici je veux voir si le path que je viens de trouver 
+		// est rentable ou pas
+		
+		cur_resid_graph = cur_resid_graph->prev;
+		cur_graph = lm_get_sommet(graph, cur_resid_graph->name);
+
+		cur_resid_graph->distance = cur_graph->distance;
+
+		//	print_hashtable_visited_and_prev(resid_graph);
+		//	lm_reverse_valid_path(resid_graph, graph, save_last_node);
+
+	}
+	printf("JE SORS\n\n");
+	exit(4);
+	return (54);
+}
+
+/*
+ * 	OUTPOUT
+ *	un flow modifie ou pas s'il etait deja le plus opti
+ */
+
 
 /*
  * 		INPUT
@@ -22,30 +77,53 @@
  * 		via un bfs donc sans faire attention aux shortcut
  */
 
-int			lm_find_best_flow(t_sommet **sommet, int ants)
+static int			lm_find_shortest_distinct_path(t_sommet **sommet,
+		int *ants)
 {
 	int		ret;
 	int		path;
-
-	// il me faut une subroutine de BFS simple qui va la ou visited == 0	
-
-	ret = 0;
+	
 	path = 0;
-	while (path < ants && (ret = lm_find_one_path_with_bfs(sommet)))
+	ret = lm_find_one_path_with_bfs(sommet, ants, path);
+	if (sommet[1]->prev == sommet[0])
+		return (1);
+	while (ret && path < *ants)
 	{
-		if (ret == 2)
-		{
-			printf("attention a ce que tu fais dans ce cas la lm_algo.c\n\n");
-			exit(4);
-			return (1);
-		}
+	
+		// verif si le path qui vient detre trouve est rentable
+		if (path > 0)
+			;// procedure pour verif lefficacite dun path
 		path++;
 		lm_clean_visited(sommet);
+		ret = lm_find_one_path_with_bfs(sommet, ants, path);
 	}
-	return (1); // verifier ce return
+	lm_clean_visited(sommet);
+	return (path);
 }
 
 /*
  * 		RETURN
  * 		nombre de path
+ * 		chaque node etant dans un path a part debut et end
+ * 		doivent avoir leurs node prev a leur precedent et visited = 2
  */
+
+int					lm_find_best_flow(t_sommet **sommet, int *ants)
+{
+	int			path;
+	int			save_ants;
+	t_sommet	**resid_graph;
+	
+	save_ants = *ants;
+	path = lm_find_shortest_distinct_path(sommet, ants);
+	sommet[1]->distance = 0;
+	resid_graph = lm_copy_hashtable(sommet);// go enlever cette globale de merde
+	lm_fill_distance_flow(sommet);// ca devrait pas me remplir la fin
+	// c'est vraiment naze
+	lm_optimize_and_reverse_shortcut(sommet, resid_graph, save_ants);
+	
+	printf("exit juste avant optimize and reverse shortcut \n");
+	exit(5);
+	return (path);
+}
+

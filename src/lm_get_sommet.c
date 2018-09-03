@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:07:39 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/31 09:20:19 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/03 13:52:52 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_sommet			*lm_get_sommet(t_sommet **sommet, char *needle)
 	return (iter);
 }
 
+
+
 t_sommet			*lm_get_next_sommet_by_flow(t_sommet **graph, t_sommet *cur)
 {
 	t_adj_lst	*lst;
@@ -50,6 +52,8 @@ t_sommet			*lm_get_next_sommet_by_flow(t_sommet **graph, t_sommet *cur)
 	return (lm_get_sommet(graph, lst->name));
 }
 
+
+/*
 t_sommet			*lm_get_next_node(t_sommet **graph, t_sommet *node)
 {
 	t_adj_lst	*lst;
@@ -70,5 +74,18 @@ t_sommet			*lm_get_next_node(t_sommet **graph, t_sommet *node)
 	}
 	return (cur);
 }
+*/
 
+t_sommet			*lm_get_last_node_of_path(t_sommet **graph, t_sommet *node)
+{
+	t_adj_lst	*lst;
+	t_sommet	*tmp;
 
+	tmp = lm_get_next_sommet_by_flow(graph, node);
+	while (tmp != graph[1])
+	{
+		node = tmp;
+		tmp = lm_get_next_sommet_by_flow(graph, node);
+	}
+	return (node); // attention a bien test
+}

@@ -6,21 +6,20 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:11:00 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/31 10:56:45 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/03 19:30:08 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lem_in.h"
 
 int		main(int argc, char **argv)
 {
-	int 		ret;
+	int 		tmp_fourmis;
 	int			ants;
 	int i = 0;
 	char		*ligne;
 	int			path;
 //	t_sommet	*sommet[HASH_SIZE];
 	t_sommet	**resid_graph;
-
 
 	ft_bzero(sommet, HASH_SIZE * sizeof(t_sommet *));	
 	if ((ants = lm_parseur(sommet)) == -1)
@@ -31,8 +30,6 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 
-print_all_hashtable(sommet);
-exit(5);
 
 //	lm_fill_distance(sommet, ants);
 	
@@ -42,9 +39,14 @@ exit(5);
 		printf("ouai\n");
 		lm_update_main_graph(sommet, resid_graph);// pas besoins de copier le prev
 	}*/
+	tmp_fourmis = ants;
+	path = lm_find_best_flow(sommet, &tmp_fourmis);
 
-	path = lm_find_best_flow(sommet, ants);
 
+	//print_hashtable_visited_and_prev(sommet);
+	//exit(4);
+	//printf("exit dans lem_in.c apres le lm_find_best_flowi avec ce nombre de path : %d\n", path);
+	//exit(5);
 
 	//path = lm_find_max_flow(sommet);
 
@@ -57,6 +59,7 @@ exit(5);
 		printf("attention tu dois gerer ce cas lem_in.c ligne 47!!!! \n\n\n\n");
 	}
 
+	exit(5);
 	
 // gerer tout simplement mon flow et envoyer les fourmis correctement
 // dans mes room je rajoute une variable foumis et voila 	
@@ -71,7 +74,6 @@ exit(5);
 	//  	compter le nombre de path
 	//  	REFLECHI BIEN A TES STRUCTURE DE DONNES
 
-	exit(5);
 
 
 	lm_free_hashtable(sommet);

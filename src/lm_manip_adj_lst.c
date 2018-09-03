@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:40:21 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/31 09:32:41 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/02 16:21:25 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,16 @@ int				lm_add_tube(t_sommet **sommet, char *pattern)
 	return (1);
 }
 
-int				lm_new_lst_node(t_adj_lst **lst, char *name, int flow)
+int				lm_new_lst_node(t_adj_lst **head_new_lst, t_adj_lst *cur_lst)
 {
 	t_adj_lst	*tmp;
 
-	tmp = *lst;
-	if (!(*lst = malloc(sizeof(t_adj_lst))))
+	tmp = *head_new_lst;
+	if (!(*head_new_lst = malloc(sizeof(t_adj_lst))))
 		return (0);
-	(*lst)->name = name;
-	(*lst)->flow = flow;
-	(*lst)->next = tmp;
+	(*head_new_lst)->name = cur_lst->name;
+	(*head_new_lst)->flow = cur_lst->flow;
+	(*head_new_lst)->next = tmp;
 	return (1);
 }
 
@@ -109,3 +109,4 @@ int				lm_new_lst_node_atend(t_adj_lst **lst, char *name, int flow)
 
 	return (1);
 }
+
