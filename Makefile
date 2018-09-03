@@ -6,7 +6,7 @@
 #    By: galemair <galemair@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 11:22:13 by galemair          #+#    #+#              #
-#    Updated: 2018/09/03 15:48:23 by galemair         ###   ########.fr        #
+#    Updated: 2018/09/03 15:51:23 by galemair         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,3 +39,4 @@ SRCS	=	debug.c					\
 			lm_sort_adj_lst.c		\
 			lm_update_main_graph.c	\
 			lm_verif_format.c
+
