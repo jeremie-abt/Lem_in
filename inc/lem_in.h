@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/31 10:53:34 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/03 15:03:15 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,12 +190,14 @@ int			lm_is_good_name_room(t_sommet **sommet, char *room);
 
 
 /*	
- *	fonction a gautier (le con)
+ *	fonction a gautier (le con) "On dit fonctions de Gautier" (Qui est le con ?)
  */
 
-t_input     *stock_input(void);
+int			stock_input(t_input **input);
 int         get_line(char **line, t_input *input, int start);
 void        freeanddisplay_input(t_input *input);
+
+
 
 
 

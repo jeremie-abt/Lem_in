@@ -21,8 +21,8 @@ static int			lm_handle_command(t_sommet **sommet, char *line)
 			lm_add_start_end(sommet, 0);
 		else if (ft_strequ(&line[2], "end"))
 			lm_add_start_end(sommet, 1);
-		else
-			return (-1); // line beginning with ## are commands
+	//	else
+	//		return (-1); // line beginning with ## are commands
 	}
 	return (1);
 }
@@ -52,8 +52,10 @@ int		lm_parseur(t_sommet **sommet)
 	char	*line;
 	t_input	*input;
 
-	input = stock_input();
+	stock_input(&input);
 	get_line(&line, input, 1);
+	while (line[0] == '#')
+		get_line(&line, input, 0);
 	if ((ants = lm_parse_ant(line)) == -1)
 		return (-1);
 	while (get_line(&line, input, 0))
@@ -68,8 +70,6 @@ int		lm_parseur(t_sommet **sommet)
 			return (-1);
 		}
 	}
-	print_all_hashtable(sommet);
-	exit (0);
 	freeanddisplay_input(input);
 	return (ants);
 }

@@ -6,14 +6,14 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 11:15:42 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/31 09:44:30 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/03 15:01:35 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
- * 	here just for recup number of ant
+ * 	here just to recup number of ant
  */
 
 int			lm_parse_ant(char *ligne)
@@ -31,6 +31,8 @@ int			lm_parse_ant(char *ligne)
 			return (-1);
 		i++;
 	}
+	if (ret <= 0)
+		return (-1);
 	return (ret);
 }
 

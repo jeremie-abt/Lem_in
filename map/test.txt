@@ -5,4 +5,3 @@ zic 43 12
 ##end
 tra 12 43
 sal-zic
-zic-tra
