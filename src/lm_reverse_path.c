@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 15:33:59 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/03 17:28:22 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/04 16:17:47 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static t_sommet		*lm_reverse_one_part(t_sommet **resid_graph,
 
 	//edge = second_node->lst;
 //	tmp = resid_graph[1];
-	while (second_node->visited == 1)
+	while (second_node->visited != 2 && second_node != resid_graph[0])
 	{
 		second_node->visited = 2;
 		edge = lm_get_edge(second_node->lst, first_node->name);
@@ -109,7 +109,6 @@ void			lm_reverse_valid_path(t_sommet **resid_graph,
 	lm_reverse_one_part(resid_graph, cur, cur->prev);
 	print_flow(resid_graph);
 	printf("\n\n");
-	print_hashtable_distance_and_prev(resid_graph);
 	exit(4);
 
 }

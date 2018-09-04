@@ -6,11 +6,43 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:29:35 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/03 18:45:46 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/04 15:03:46 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+/*
+ * 	INPUT sur le nex node d'un node de hastable
+ */
+
+static t_sommet		*lm_copy_all_adj_node(t_sommet *node)// a bien test quand ;e;e
+{
+	t_sommet	*ret;
+	t_sommet	*save_ret;
+
+	if (!(ret = lm_copy_node(node)))
+		return (NULL);
+
+	save_ret = ret;
+	while (node->next)
+	{
+		if (!(ret->next = lm_copy_node(node->next)))
+		{
+			// free et ret null
+			return (NULL);
+		}
+		node = node->next;
+		ret = ret->next;
+	}
+	return (save_ret);
+}
+
+/*
+ *	RETURN
+ *	toute la liste a partir du node copie
+ *	null si pb
+ */
 
 static t_adj_lst	*lm_copy_lst(t_sommet *node)
 {
@@ -77,6 +109,9 @@ t_sommet		**lm_copy_hashtable(t_sommet **graph)
 				return (NULL);
 			if (!(resid_graph[i]->lst = lm_copy_lst(graph[i])))
 				return (NULL);
+			if (graph[i]->next)
+				if (!(resid_graph[i]->next = lm_copy_all_adj_node(graph[i]->next)))//procedure pour copier tous les nodes apres
+					return (NULL);
 		}
 		i++;
 	}

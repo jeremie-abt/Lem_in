@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:32:23 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/03 18:01:20 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/04 14:31:01 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,16 @@ int			lm_find_one_path_with_bfs(t_sommet **sommet, int *ants, int cur_nb_path)
 		{
 			cur_nb_path++;
 			cur = lm_bfs_valid_path(sommet, cur);
-			if (lm_is_worth_path(sommet, cur, ants, cur_nb_path))
+			if (lm_is_worth_path_bfs(sommet, cur, ants, cur_nb_path))
 				return (1);
 			else
 				return (0);
 		}
 		else
+		{
 			if (!lm_add_neighboor(sommet, cur, &control))
 				return (-1);//procedure pour free
+		}
 	}
 	return (0);
 }
@@ -123,16 +125,18 @@ int				lm_relaxing_bfs(t_sommet **resid_graph, t_sommet *node)
 	{
 		cur = lm_pop_queue(&control);
 		if (!state && cur == resid_graph[1])
-			state = 1;
-		else
 		{
-			if (!state)
-			{
-				if (!lm_add_neighboor(resid_graph, cur, &control))
-					return (-1);//procedure pour free
-			}
+			state = 1;
 		}
-		lm_relaxe_all_edge_node(resid_graph, cur);
+		else if (!state)
+		{
+			if (!lm_add_neighboor_relaxing(resid_graph, cur, &control))
+				return (-1);//procedure pour free
+
+		}
+	//	lm_relaxe_all_edge_node(resid_graph, cur);
+//		cur->visited = (cur->visited != 2) ? 3 : 2;
+	
 	}
 	return (0);
 }

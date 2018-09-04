@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:51:11 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/03 19:42:49 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/04 16:08:03 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,15 +177,19 @@ void	print_flow(t_sommet **hashtable)
 	{
 		if (hashtable[i])
 		{
-			printf("HEAD %d : %s flow :\n", i, hashtable[i]->name);
-			lst = hashtable[i]->lst;
-			while (lst)
+			cur = hashtable[i];
+			while (cur)
 			{
-				printf("flow vers %s : %d\n", lst->name, lst->flow);
-				lst = lst->next;
+				printf("HEAD %d : %s flow :\n", i, cur->name);
+				lst = cur->lst;
+				while (lst)
+				{
+					printf("flow vers %s : %d\n", lst->name, lst->flow);
+					lst = lst->next;
+				}
+				printf("\n");
+				cur = cur->next;
 			}
-			printf("\n");
-//			printf("just first one : %s\n", hashtable[i]->lst->name);
 		}
 		i++;
 	}

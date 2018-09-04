@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/31 15:49:18 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/02 16:55:15 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/04 14:30:23 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,48 +78,4 @@ t_sommet		*lm_bfs_valid_path(t_sommet **graph, t_sommet *node)
  * 		return the node of the path wich has been treated
  * 		if the start and end are connected, then return the start node
  */
-
-/*
- * 		INPUT
- * 		hashtable avec le node du path qui vient juste d'etre ajouter par mon bfs
- */
-
-int				lm_is_worth_path(t_sommet **graph, t_sommet *node, int *ants,
-		int path)
-{
-	static t_sommet		*cur;
-	
-	if (node == graph[0])	
-		return (1);
-	if (!cur)
-	{
-		cur = node;
-		if (*ants > 0)
-			return (1);
-	}
-	else
-	{
-		(*ants) -= (node->distance - cur->distance) * (path - 1);
-		if (*ants >= path)
-		{
-			cur = node;
-			*ants -= path;
-			return (1);
-		}
-		else
-		{
-			lm_cancel_chosen_path(graph, node);
-			return (0);//procedure pour annuler ce chemin
-		}
-	}
-	return (0);
-}
-
-/*
- * 		OUTPOUT
- * 		si le path est worth return 1
- * 		sinon return 0 et enlever le path choisis car il n'est pas
- * 		rentalbe
- */
-
 
