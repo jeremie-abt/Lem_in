@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 16:17:06 by galemair          #+#    #+#             */
-/*   Updated: 2018/09/03 15:05:47 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/04 16:02:49 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	freeanddisplay_input(t_input *input)
 		free(tmp);
 	}
 }
+
 int		get_line(char **line, t_input *input, int start)
 {
 	static t_input	*current_line;
@@ -39,6 +40,7 @@ int		get_line(char **line, t_input *input, int start)
 	current_line = current_line->next;
 	return (1);
 }
+
 int		check_line_validity(char *str)
 {
 	int	mp_flag;
@@ -53,6 +55,7 @@ int		check_line_validity(char *str)
 		return (-1);
 	return (1);
 }
+
 int		stock_input(t_input **input)
 {
 	t_input	*tmp;

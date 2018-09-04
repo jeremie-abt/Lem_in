@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/03 15:03:15 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/04 16:23:06 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,8 @@ int			lm_is_good_room(char *room);
 int			lm_parse_room_and_stock_room(t_sommet **sommet);
 //int			lm_handle_command(t_sommet **sommet, char *ligne);
 int			lm_is_good_name_room(t_sommet **sommet, char *room);
+char		*lm_get_room_name(char *str);
+int			lm_get_name_length(char *str);
 
 
 /*	

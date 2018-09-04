@@ -6,14 +6,14 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:40:21 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/03 13:38:56 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/04 16:05:56 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int		lm_add_neighbor(t_sommet *first_sommet, t_sommet *second_sommet, 
-		char *first_neighbor, char *second_neighbor)
+static int		lm_add_neighbor(t_sommet *first_sommet,
+	t_sommet *second_sommet, char *first_neighbor, char *second_neighbor)
 {
 	t_adj_lst		*tmp;
 
@@ -22,12 +22,10 @@ static int		lm_add_neighbor(t_sommet *first_sommet, t_sommet *second_sommet,
 		return (-1);
 	first_sommet->lst->next = tmp;
 	first_sommet->lst->name = first_neighbor;
-
-
 	tmp = second_sommet->lst;
 	if (!(second_sommet->lst = malloc(sizeof(t_adj_lst))))
 	{
-		lm_free_adj_lst(first_sommet->lst); // atention fonction pour free une lst
+		lm_free_adj_lst(first_sommet->lst);
 		return (-1);
 	}
 	second_sommet->lst->next = tmp;
@@ -45,7 +43,8 @@ int				lm_add_tube(t_sommet **sommet, char *pattern)
 	t_sommet	*second_sommet;
 
 	second = ft_strchr(pattern, '-') + 1;
-	if (!sommet[0] || !sommet[1] || !(first = ft_strsub(pattern, 0, (second - pattern) - 1))) // It verifies also that end and start exist
+	if (!sommet[0] || !sommet[1] || !(first = ft_strsub(pattern, 0,
+		(second - pattern) - 1)))
 		return (-1);
 	if (!(second = ft_strdup(second)))
 	{
@@ -93,9 +92,8 @@ int				lm_new_lst_node_atend(t_adj_lst **lst, char *name, int flow)
 			tmp = tmp->next;
 		tmp->next = new_lst;
 	}
-		new_lst->name = name;
-		new_lst->flow = flow;
-		new_lst->next = NULL;
-
+	new_lst->name = name;
+	new_lst->flow = flow;
+	new_lst->next = NULL;
 	return (1);
 }

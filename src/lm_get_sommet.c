@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:07:39 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/03 15:02:38 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/04 16:02:15 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ t_sommet			*lm_get_sommet(t_sommet **sommet, char *needle)
 
 	key = lm_hash(needle);
 	iter = sommet[key];
-	if (!iter || ft_strequ(needle, sommet[0]->name) || ft_strequ(needle, sommet[1]->name))
+	if (!iter || ft_strequ(needle, sommet[0]->name) ||
+		ft_strequ(needle, sommet[1]->name))
 		return (lm_get_start_end(sommet, needle));
 	while (!ft_strequ(iter->name, needle))
 		iter = iter->next;
@@ -70,5 +71,3 @@ t_sommet			*lm_get_next_node(t_sommet **graph, t_sommet *node)
 	}
 	return (cur);
 }
-
-

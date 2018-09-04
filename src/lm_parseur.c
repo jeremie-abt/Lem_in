@@ -2,12 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lm_parseur.c                                       :+:      :+:    :+:   */
-/*   lm_parseur.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: galemair <galemair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/01 11:58:27 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/30 18:10:48 by galemair         ###   ########.fr       */
+/*   Created: 2018/09/04 16:11:37 by galemair          #+#    #+#             */
+/*   Updated: 2018/09/04 16:31:15 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +20,11 @@ static int			lm_handle_command(t_sommet **sommet, char *line)
 			lm_add_start_end(sommet, 0);
 		else if (ft_strequ(&line[2], "end"))
 			lm_add_start_end(sommet, 1);
-	//	else
-	//		return (-1); // line beginning with ## are commands
 	}
 	return (1);
 }
 
-
-int		lm_parse_room(t_sommet **sommet, char *line)
+int					lm_parse_room(t_sommet **sommet, char *line)
 {
 	int	mp_flag;
 
@@ -46,7 +42,7 @@ int		lm_parse_room(t_sommet **sommet, char *line)
 	return (1);
 }
 
-int		lm_parseur(t_sommet **sommet)
+int					lm_parseur(t_sommet **sommet)
 {
 	int		ants;
 	char	*line;
