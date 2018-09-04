@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:39:02 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/04 16:29:11 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/04 17:17:21 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static 	int			lm_optimize_and_reverse_shortcut(t_sommet **graph,
 		lm_reverse_valid_path(resid_graph, graph, save_last_node);
 	}
 	else
-		;// procedure pour bloquer la edge
-	exi(0);
+		lm_reverse_wrong_path(resid_graph, graph, save_last_node);// procedure pour bloquer la edge
+	exit(0);
 	return (54);
 }
 

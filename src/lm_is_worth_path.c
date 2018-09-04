@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:19:40 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/04 14:30:02 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/04 17:19:01 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int		lm_is_worth_path_flow(void) // bon evidemment il faudra faire cette fonction
 {
-	return (1);	
+	return (0);	
 }
 
 /*

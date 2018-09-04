@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/04 14:27:55 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/04 17:18:24 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,8 @@ t_sommet	*lm_get_node_to_reverse_bfs(t_sommet **resid_graph);
 int			lm_relaxing_bfs(t_sommet **resid_graph, t_sommet *node);
 void		lm_relaxe_all_edge_node(t_sommet **graph, t_sommet *node);
 void		lm_reverse_valid_path(t_sommet **resid_graph, t_sommet **graph,
+		t_sommet *node);
+void		lm_reverse_wrong_path(t_sommet **resid_graph, t_sommet **graph,
 		t_sommet *node);
 
 /*}*/
