@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/04 17:18:24 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/05 18:41:17 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,8 +166,8 @@ void		lm_init_neighboor_edge(t_sommet **sommet, t_sommet *node);
 int			lm_find_max_flow(t_sommet **graph);
 t_sommet	*lm_get_next_node_dfs(t_sommet **sommet, t_sommet *node);
 int			lm_search_path_dfs(t_sommet **graph);
-int			lm_find_best_flow(t_sommet **sommet, int *ants);
-int			lm_find_one_path_with_bfs(t_sommet **sommet, int *ants,
+int			lm_find_best_flow(t_sommet **sommet, int ants);
+int			lm_find_one_path_with_bfs(t_sommet **sommet, int ants,
 		int cur_nb_path);
 t_sommet	*lm_get_node_to_reverse_bfs(t_sommet **resid_graph);
 int			lm_relaxing_bfs(t_sommet **resid_graph, t_sommet *node);
@@ -196,10 +196,11 @@ void		lm_remove_one_ant(int *tab_of_ant, int size);
 
 /*{*/
 void		lm_cancel_chosen_path(t_sommet **graph, t_sommet *node);
-int			lm_is_worth_path_bfs(t_sommet **graph, t_sommet *node, int *ants,
+int			lm_is_worth_path_bfs(t_sommet **graph, int ants,
 		int path);
-t_sommet	*lm_bfs_valid_path(t_sommet **graph, t_sommet *node);
-int			lm_is_worth_path_flow(void);
+void		lm_bfs_valid_path(t_sommet **graph);
+int			lm_is_worth_path_flow(t_sommet **graph, t_sommet **resid_graph,
+		t_sommet *first_node);
 
 /*}*/
 

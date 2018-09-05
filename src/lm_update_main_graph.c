@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 16:23:41 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/04 17:38:34 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/05 13:45:44 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void			lm_update_main_graph(t_sommet **graph, t_sommet **resid_graph)
 	i = 0;
 	while (i < HASH_SIZE)
 	{
-		if (ommet[i])
+		if (sommet[i])
 		{
-			cur = ommet[i];
+			cur = sommet[i];
 			resid_cur = resid_graph[i];
 			while (cur)
 			{

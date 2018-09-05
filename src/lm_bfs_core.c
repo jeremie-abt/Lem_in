@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:32:23 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/04 14:31:01 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/05 14:32:04 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  */
 
 
-int			lm_find_one_path_with_bfs(t_sommet **sommet, int *ants, int cur_nb_path)
+int			lm_find_one_path_with_bfs(t_sommet **sommet, int ants, int cur_nb_path)
 {
 	t_control_queue		control;
 	t_sommet			*cur;
@@ -35,12 +35,13 @@ int			lm_find_one_path_with_bfs(t_sommet **sommet, int *ants, int cur_nb_path)
 		cur = lm_pop_queue(&control);
 		if (cur == sommet[1])
 		{
-			cur_nb_path++;
-			cur = lm_bfs_valid_path(sommet, cur);
+			//cur_nb_path++;
+/*			cur = lm_bfs_valid_path(sommet, cur);
 			if (lm_is_worth_path_bfs(sommet, cur, ants, cur_nb_path))
 				return (1);
 			else
-				return (0);
+				return (0);*/
+			return (1);
 		}
 		else
 		{

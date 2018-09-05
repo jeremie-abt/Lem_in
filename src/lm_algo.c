@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:39:02 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/04 17:17:21 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/05 18:40:55 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,16 @@ static 	int			lm_optimize_and_reverse_shortcut(t_sommet **graph,
 
 		//	print_hashtable_visited_and_prev(resid_graph);
 	}
-	if (resid_graph[1]->prev && lm_is_worth_path_flow())
+	if (resid_graph[1]->prev && lm_is_worth_path_flow(graph, resid_graph, save_last_node))
 	{
 		lm_reverse_valid_path(resid_graph, graph, save_last_node);
+		return (1);
 	}
 	else
+	{
 		lm_reverse_wrong_path(resid_graph, graph, save_last_node);// procedure pour bloquer la edge
-	exit(0);
-	return (54);
+		return (0);
+	}
 }
 
 /*
@@ -80,24 +82,31 @@ static 	int			lm_optimize_and_reverse_shortcut(t_sommet **graph,
  */
 
 static int			lm_find_shortest_distinct_path(t_sommet **sommet,
-		int *ants)
+		int ants)
 {
 	int		ret;
 	int		path;
 	
 	path = 0;
-	ret = lm_find_one_path_with_bfs(sommet, ants, path);
-	if (sommet[1]->prev == sommet[0])
-		return (1);
-	while (ret && path < *ants)
+	//ret = lm_find_one_path_with_bfs(sommet, ants, path);
+	//if (sommet[1]->prev == sommet[0])
+	//	return (1);
+	while (lm_find_one_path_with_bfs(sommet, ants, path)/*ret && path < ants*/)
 	{
 	
 		// verif si le path qui vient detre trouve est rentable
-		if (path > 0)
-			;// procedure pour verif lefficacite dun path
-		path++;
+		if (lm_is_worth_path_bfs(sommet, ants, path))
+		{
+			lm_bfs_valid_path(sommet);
+			path++;// procedure pour verif lefficacite dun path
+		}
+		else
+		{
+			//procedure pour reverse un path
+			break ;
+		}
 		lm_clean_visited(sommet);
-		ret = lm_find_one_path_with_bfs(sommet, ants, path);
+		//ret = lm_find_one_path_with_bfs(sommet, ants, path);
 	}
 	lm_clean_visited(sommet);
 	return (path);
@@ -110,19 +119,22 @@ static int			lm_find_shortest_distinct_path(t_sommet **sommet,
  * 		doivent avoir leurs node prev a leur precedent et visited = 2
  */
 
-int					lm_find_best_flow(t_sommet **sommet, int *ants)
+int					lm_find_best_flow(t_sommet **sommet, int ants)
 {
 	int			path;
-	int			save_ants;
+//	int			save_ants;
 	t_sommet	**resid_graph;
 	
-	save_ants = *ants;
+///	save_ants = *ants;
 	path = lm_find_shortest_distinct_path(sommet, ants);
+	
 	sommet[1]->distance = 0;
+	
 	resid_graph = lm_copy_hashtable(sommet);// go enlever cette globale de merde
+	
 	lm_fill_distance_flow(sommet);// ca devrait pas me remplir la fin
 	// c'est vraiment naze
-	lm_optimize_and_reverse_shortcut(sommet, resid_graph, save_ants);
+	lm_optimize_and_reverse_shortcut(sommet, resid_graph, ants);
 	
 	printf("exit juste apres optimize and reverse shortcut \n");
 	exit(5);

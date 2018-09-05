@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:11:00 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/03 19:30:08 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/05 13:47:35 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lem_in.h"
@@ -40,7 +40,7 @@ int		main(int argc, char **argv)
 		lm_update_main_graph(sommet, resid_graph);// pas besoins de copier le prev
 	}*/
 	tmp_fourmis = ants;
-	path = lm_find_best_flow(sommet, &tmp_fourmis);
+	path = lm_find_best_flow(sommet, tmp_fourmis);
 
 
 	//print_hashtable_visited_and_prev(sommet);

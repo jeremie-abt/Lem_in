@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:20:54 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/04 17:36:21 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/05 13:46:55 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void			lm_reverse_first_part(t_sommet **resid_graph, t_sommet *node)
 	}
 }
 
-void			lm_block_shortcut(t_sommet **resid_graph, t_som)
+//void			lm_block_shortcut(t_sommet **resid_graph, t_som)
 
 /*
  *	INPUT

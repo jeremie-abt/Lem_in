@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/31 15:49:18 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/04 14:30:23 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/05 14:38:28 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,22 @@ void			lm_cancel_chosen_path(t_sommet **graph, t_sommet *node)
  * 		par le previous de node
  */
 
-t_sommet		*lm_bfs_valid_path(t_sommet **graph, t_sommet *node)
+void			lm_bfs_valid_path(t_sommet **graph)
 {
-	assert(node->prev != NULL);
-	assert(node == graph[1]);
+	assert(graph[1]->prev != NULL);
 
 	t_sommet	*cur;
+	t_sommet	*node;
 	t_adj_lst	*edge;
 	int			length;
 
 	length = 0;
+	node = graph[1];
 	cur = node->prev;
 	edge = lm_get_edge(cur->lst, node->name);
 	edge->flow = 0;
 	if (cur == graph[0])
-		return (cur);
+		return ;
 	while (cur != graph[0])
 	{
 		length++;
@@ -66,7 +67,7 @@ t_sommet		*lm_bfs_valid_path(t_sommet **graph, t_sommet *node)
 	cur = node->prev;
 	cur->distance = length;
 	node->prev = NULL;
-	return (cur);
+//	return (cur);
 } 
 
 /*
