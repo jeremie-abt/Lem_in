@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:39:02 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/05 18:40:55 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/06 17:44:55 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ static 	int			lm_optimize_and_reverse_shortcut(t_sommet **graph,
 	t_sommet	*save_last_node;	
 	t_sommet	*cur_graph;
 	t_sommet	*cur_resid_graph;
-	int			distance;
 
+
+// mettre resid_graph[0]->visited = 1 au debut iter boucle
 
 	if (!(save_last_node = lm_get_node_to_reverse_bfs(resid_graph)))
 		return (0);
@@ -36,31 +37,23 @@ static 	int			lm_optimize_and_reverse_shortcut(t_sommet **graph,
 	cur_resid_graph->distance = cur_graph->distance;
 	while (cur_resid_graph != resid_graph[0])
 	{
-		//  cur graph = le bon node dans le vraie graph
-		// une procedure de bfs relaxant
-		// attention a verifier les dist de mon resid_graph
-
 		lm_relaxing_bfs(resid_graph, cur_resid_graph);
-		
-		printf("\n\n");
-		// en gros ici je veux voir si le path que je viens de trouver 
-		// est rentable ou pas
-		
 		cur_resid_graph = cur_resid_graph->prev;
 		cur_graph = lm_get_sommet(graph, cur_resid_graph->name);
-		
 		cur_resid_graph->distance = cur_graph->distance;
-
-		//	print_hashtable_visited_and_prev(resid_graph);
 	}
-	if (resid_graph[1]->prev && lm_is_worth_path_flow(graph, resid_graph, save_last_node))
+	if (resid_graph[1]->prev && lm_is_worth_path_flow(graph, resid_graph,
+				save_last_node, ants))
 	{
 		lm_reverse_valid_path(resid_graph, graph, save_last_node);
+		// bref bien verif tout ca
 		return (1);
 	}
 	else
 	{
-		lm_reverse_wrong_path(resid_graph, graph, save_last_node);// procedure pour bloquer la edge
+		printf("dans algo.c prevoir cequil ce passe pour reverse_wrong_path\n");
+		exit(24866548);
+		lm_reverse_wrong_path(resid_graph, graph, save_last_node);// faire cette procedure
 		return (0);
 	}
 }

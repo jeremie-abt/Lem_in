@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/05 18:41:17 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/06 16:06:30 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include "assert.h"
 
 # define HASH_SIZE 128
+# define NB_PATH 0
+# define SUPP_ANT 1
 
 typedef	struct	s_input t_input;
 
@@ -200,7 +202,7 @@ int			lm_is_worth_path_bfs(t_sommet **graph, int ants,
 		int path);
 void		lm_bfs_valid_path(t_sommet **graph);
 int			lm_is_worth_path_flow(t_sommet **graph, t_sommet **resid_graph,
-		t_sommet *first_node);
+		t_sommet *first_node, int ants);
 
 /*}*/
 

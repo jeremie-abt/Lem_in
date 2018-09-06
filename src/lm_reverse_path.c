@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 15:33:59 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/04 17:22:23 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/06 17:42:59 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void		lm_reverse_shortcut_valid(t_sommet **resid_graph,
 		t_sommet *first_node, t_sommet *end_node)
 {
 	//ici normalement je dois avoir first 6 et second 3 dans le resid graph
-	t_sommet	*test;
+	t_sommet	*tmp;
 	t_sommet	*second_node;
 	t_adj_lst	*edge;
 
@@ -37,13 +37,15 @@ static void		lm_reverse_shortcut_valid(t_sommet **resid_graph,
 	{
 		edge = lm_get_edge(second_node->lst, first_node->name);
 		edge->flow = 1;
+		tmp = second_node->prev;
 		if (second_node != end_node)
 		{
 			second_node->visited = 0;
 			second_node->distance = -1;
+			second_node->prev = NULL;
 		}
 		first_node = second_node;
-		second_node = second_node->prev;
+		second_node = tmp;
 	}
 }
 
@@ -107,6 +109,9 @@ void			lm_reverse_valid_path(t_sommet **resid_graph,
 	lm_reverse_shortcut_valid(resid_graph, node, cur);
 	cur = lm_get_sommet(resid_graph, node->name);
 	lm_reverse_one_part(resid_graph, cur, cur->prev);
+
+	lm_update_main_graph(graph, resid_graph);
+
 }
 
 /*

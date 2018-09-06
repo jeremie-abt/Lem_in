@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 16:23:41 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/05 13:45:44 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/06 17:33:36 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,13 @@ void			lm_update_main_graph(t_sommet **graph, t_sommet **resid_graph)
 			{
 				if (resid_cur->prev)
 				{
-					// update le prev dans le main graph
-					//lm_update_parent_main_graph(cur, resid_cur);
 					tmp = lm_get_sommet(graph, resid_cur->prev->name);
 					cur->prev = tmp;
 				}
+				else
+					cur->prev = NULL;
+				cur->distance = resid_cur->distance;
+				cur->visited = resid_cur->visited;
 				lm_update_lst(cur->lst, resid_cur->lst);
 				cur = cur->next;
 				resid_cur = resid_cur->next;
