@@ -6,31 +6,31 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:07:39 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/06 11:44:59 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 13:20:51 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static t_sommet		*lm_get_start_end(t_sommet **sommet, char *needle)
+static t_sommet		*lm_get_start_end(t_sommet **graph, char *needle)
 {
-	if (ft_strequ(sommet[0]->name, needle))
-		return (sommet[0]);
-	else if (ft_strequ(sommet[1]->name, needle))
-		return (sommet[1]);
+	if (ft_strequ(graph[0]->name, needle))
+		return (graph[0]);
+	else if (ft_strequ(graph[1]->name, needle))
+		return (graph[1]);
 	else
 		return (NULL);
 }
 
-t_sommet			*lm_get_sommet(t_sommet **sommet, char *needle)
+t_sommet			*lm_get_sommet(t_sommet **graph, char *needle)
 {
 	int			key;
 	t_sommet	*iter;
 
 	key = lm_hash(needle);
-	iter = sommet[key];
-	if (!iter || ft_strequ(needle, sommet[0]->name) || ft_strequ(needle, sommet[1]->name))
-		return (lm_get_start_end(sommet, needle));
+	iter = graph[key];
+	if (!iter || ft_strequ(needle, graph[0]->name) || ft_strequ(needle, graph[1]->name))
+		return (lm_get_start_end(graph, needle));
 	while (!ft_strequ(iter->name, needle))
 		iter = iter->next;
 	return (iter);

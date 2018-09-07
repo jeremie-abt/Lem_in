@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:20:54 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/05 13:46:55 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 10:50:20 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,12 @@ void			lm_reverse_wrong_path(t_sommet **resid_graph, t_sommet **graph,
 		t_sommet *node)
 {
 	t_sommet	*resid_node;
+	t_adj_lst	*edge;
 
+	resid_graph[1]->prev = NULL;
+	resid_graph[1]->visited = 0;
+	resid_graph[1]->distance = 0;
 	resid_node = lm_get_sommet(resid_graph, node->name);
-
-	printf("voici le node : %s\n", node->name);
-	exit(4);
+	edge = lm_get_edge(resid_node->prev->lst, resid_node->name);
+	edge->flow = 0;
 }

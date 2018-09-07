@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:51:11 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/04 16:08:03 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 12:06:51 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,4 +266,21 @@ int		is_node_in_graph(t_sommet **graph, t_sommet *node)
 		i++;
 	}
 	return (0);
+}
+
+void	print_tab_ant(t_sommet **tab, int size)
+{
+	int i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (tab[i])
+		{
+			printf("tab[%d] : %s\n", i, tab[i]->name);
+		}
+		else
+			printf("tab[%d] : NULL\n", i);
+		i++;
+	}
 }

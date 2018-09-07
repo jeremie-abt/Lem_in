@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 13:35:16 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/02 15:42:50 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 14:02:17 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void			lm_print_and_shift_path(t_sommet **graph, t_sommet **cur_tab,
 	cur = cur_tab[combientieme - 1];
 	next = lm_get_next_sommet_by_flow(graph, cur);
 	prev = cur->prev;
+	//printf("cur : %s ant : %d\n", cur->name, cur->ant);
 	if (cur->ant)
 	{
 		printf("COLOR%d-%s ", cur->ant, graph[1]->name);
@@ -38,6 +39,8 @@ static void			lm_print_and_shift_path(t_sommet **graph, t_sommet **cur_tab,
 	}
 	else if (next != graph[1])
 		cur_tab[combientieme - 1] = next;
+//	else if (!cur->ant) // bon wtf verif ca
+//		cur_tab[combientieme - 1] = NULL;
 
 /*
  * 		mid
@@ -83,12 +86,14 @@ static int			lm_display_one_turn(t_sommet **graph, int *tab_of_ants, int size)
 		lm_init_save_cur_ant_tab(tab, graph, size);
 	}
 	lm_send_first_ant_in_path(graph, tab, tab_of_ants, size);	
-	while (lm_verif_ant_cur_tab(tab, &size))
+	while (lm_verif_ant_cur_tab(tab, size))
 	{
+//		print_tab_ant(tab, size);
 		i = 0;
 		while (i < size)//ants existe || ants in path)
 		{
-			lm_print_and_shift_path(graph, tab, tab_of_ants, i + 1);
+			if (tab[i])
+				lm_print_and_shift_path(graph, tab, tab_of_ants, i + 1);
 			i++;
 		}
 		printf("\n");
@@ -125,7 +130,7 @@ int				lm_print_ants(t_sommet **graph, int ants, int path)
 	}
 
 	lm_fill_ants_per_path_tab(graph, path, ants, nb_ants_in_path);
-	lm_display_one_turn(graph, nb_ants_in_path, 2);
+	lm_display_one_turn(graph, nb_ants_in_path, path);
 
 	return (1);
 }

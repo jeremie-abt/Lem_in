@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/22 14:03:04 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/03 15:34:58 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 13:20:51 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		lm_find_max_flow(t_sommet **graph)
 	while ((tmp = lm_search_path_dfs(resid_graph)))
 	{
 		path += tmp;
-		lm_update_main_graph(sommet, resid_graph);
+		lm_update_main_graph(graph, resid_graph);
 	}
 	// faire la procedure pour free le resid graph
 	return (path);

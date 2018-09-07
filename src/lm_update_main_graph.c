@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 16:23:41 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/06 17:33:36 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 14:00:02 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,15 @@
  * 		sec_lst = resid_graph
  */
 
-static void		lm_update_lst(t_adj_lst *first_lst, t_adj_lst *sec_lst)
+static void		lm_update_lst(t_adj_lst *lst, t_adj_lst *resid_lst)
 {
 	t_adj_lst	*edge;
 
-	while (sec_lst)
+	while (resid_lst)
 	{
-		if (sec_lst->flow == 0)
-		{
-			edge = lm_get_edge(first_lst, sec_lst->name);
-			edge->flow = 0;
-		}
-		sec_lst = sec_lst->next;
+		edge = lm_get_edge(lst, resid_lst->name);
+		edge->flow = resid_lst->flow;
+		resid_lst = resid_lst->next;
 	}
 }
 
@@ -50,9 +47,9 @@ void			lm_update_main_graph(t_sommet **graph, t_sommet **resid_graph)
 	i = 0;
 	while (i < HASH_SIZE)
 	{
-		if (sommet[i])
+		if (graph[i])
 		{
-			cur = sommet[i];
+			cur = graph[i];
 			resid_cur = resid_graph[i];
 			while (cur)
 			{

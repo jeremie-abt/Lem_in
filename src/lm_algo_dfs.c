@@ -17,7 +17,7 @@
 
 #include "lem_in.h"
 /*
-t_sommet		*lm_get_next_node_dfs(t_sommet **sommet, t_sommet *node)
+t_sommet		*lm_get_next_node_dfs(t_sommet **graph, t_sommet *node)
 {
 	t_adj_lst	*lst;
 	t_sommet	*cur;
@@ -30,7 +30,7 @@ t_sommet		*lm_get_next_node_dfs(t_sommet **sommet, t_sommet *node)
 		{
 			if (lst->flow == 1)
 			{
-				cur = lm_get_sommet(sommet, lst->name);
+				cur = lm_get_sommet(graph, lst->name);
 				if (!cur->visited)
 				{
 					cur->visited = 1;

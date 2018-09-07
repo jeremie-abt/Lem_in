@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:29:35 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/04 15:03:46 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 13:26:12 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static t_sommet		*lm_copy_all_adj_node(t_sommet *node)// a bien test quand ;e;e
  *	null si pb
  */
 
-static t_adj_lst	*lm_copy_lst(t_sommet *node)
+static t_adj_lst	*lm_copy_lst(t_sommet **graph, t_sommet *node)
 {
 	t_adj_lst	*new_lst;
 	t_adj_lst	*tmp_lst;
@@ -55,7 +55,7 @@ static t_adj_lst	*lm_copy_lst(t_sommet *node)
 	new_lst = NULL;
 	while (lst)
 	{
-		cur = lm_get_sommet(sommet, lst->name);
+		cur = lm_get_sommet(graph, lst->name);
 		tmp_lst = lm_get_edge(cur->lst, node->name);
 		if (!(lm_new_lst_node(&new_lst, lst)))
 		{
@@ -107,7 +107,7 @@ t_sommet		**lm_copy_hashtable(t_sommet **graph)
 		{
 			if (!(resid_graph[i] = lm_copy_node(graph[i])))
 				return (NULL);
-			if (!(resid_graph[i]->lst = lm_copy_lst(graph[i])))
+			if (!(resid_graph[i]->lst = lm_copy_lst(graph, graph[i])))
 				return (NULL);
 			if (graph[i]->next)
 				if (!(resid_graph[i]->next = lm_copy_all_adj_node(graph[i]->next)))//procedure pour copier tous les nodes apres

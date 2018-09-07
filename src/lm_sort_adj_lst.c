@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:39:26 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/02 15:41:22 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 13:20:51 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ static void		lm_swap_lst(t_adj_lst *first, t_adj_lst *second)
  * 		the second node is the second shortest path etc...
  */
 
-void			lm_sort_lst_byorder(t_sommet **sommet)
+void			lm_sort_lst_byorder(t_sommet **graph)
 {
 	t_adj_lst	*tmp;
 	t_adj_lst	*secondtmp;
 	t_sommet	*cur;
 	t_sommet	*secondcur;
 
-	tmp = sommet[1]->lst;
+	tmp = graph[1]->lst;
 	while (tmp->next)
 	{
-		cur = lm_get_sommet(sommet, tmp->name);
-		secondcur = lm_get_sommet(sommet, tmp->next->name);
+		cur = lm_get_sommet(graph, tmp->name);
+		secondcur = lm_get_sommet(graph, tmp->next->name);
 		if (secondcur->distance == -1)
 			tmp = tmp->next;
 		else if (cur->distance == -1)
@@ -53,13 +53,13 @@ void			lm_sort_lst_byorder(t_sommet **sommet)
 			if (secondcur->distance > 0)
 			{
 				lm_swap_lst(tmp, tmp->next);
-				tmp = sommet[1]->lst;
+				tmp = graph[1]->lst;
 			}
 		}
 		else if (cur->distance > secondcur->distance)
 		{
 				lm_swap_lst(tmp, tmp->next);
-				tmp = sommet[1]->lst;	
+				tmp = graph[1]->lst;	
 		}
 		else
 			tmp = tmp->next;
@@ -72,20 +72,20 @@ void			lm_sort_lst_byorder(t_sommet **sommet)
  * 		to longest path
  */
 
-int				lm_sort_begin_byorder(t_sommet **sommet)
+int				lm_sort_begin_byorder(t_sommet **graph)
 {
 	t_adj_lst	*lst;
 	t_adj_lst	*new_lst;
 	t_sommet	*cur;	
 
 	new_lst = NULL;
-	lst = sommet[1]->lst;
+	lst = graph[1]->lst;
 	while (lst)
 	{
-		cur = lm_get_sommet(sommet, lst->name);
+		cur = lm_get_sommet(graph, lst->name);
 		if (cur->prev)
 		{
-			while (cur->prev != sommet[0])
+			while (cur->prev != graph[0])
 				cur = cur->prev;
 			if (!(lm_new_lst_node_atend(&new_lst, cur->name, 0)))
 			{
@@ -95,8 +95,8 @@ int				lm_sort_begin_byorder(t_sommet **sommet)
 		}
 		lst = lst->next;
 	}
-	lst = sommet[0]->lst;
-	sommet[0]->lst = new_lst;
+	lst = graph[0]->lst;
+	graph[0]->lst = new_lst;
 	return (1);
 }
 

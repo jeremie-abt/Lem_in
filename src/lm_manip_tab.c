@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/26 12:04:01 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/02 13:45:04 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 12:04:02 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,20 @@ void			lm_remove_one_ant(int *tab_of_ant, int size)
 
 // jeter un petit coup d'oeil par ici
 
-int				lm_verif_ant_cur_tab(t_sommet **cur_tab, int *size)
+int				lm_verif_ant_cur_tab(t_sommet **cur_tab, int size)
 {
 	int		size_iter;
+	int		test;
 
-	size_iter = *size - 1;
+	test = 0;
+	size_iter = size - 1;
 	while (size_iter >= 0)
 	{
-		if (cur_tab[size_iter])
-			return (1);
-		(*size)--;
+		if (!cur_tab[size_iter])
+			test++;
 		size_iter--;
 	}
-	if (size_iter <= 0 && !cur_tab[0])
+	if (size == test)
 		return (0);
 	return (1);
 }

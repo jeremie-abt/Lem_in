@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:39:02 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/06 17:58:24 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 14:12:44 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,9 @@ static 	int			lm_optimize_and_reverse_shortcut(t_sommet **graph,
 	t_sommet	*cur_resid_graph;
 	int			ret;
 
-	// mettre resid_graph[0]->visited = 1 au debut iter boucle
-
 	ret = 0;
 	while  ((save_last_node = lm_get_node_to_reverse_bfs(resid_graph))) // debugger un peu cette fonction aussi
 	{
-		ret++;
-		resid_graph[0]->visited = 1;
 		save_last_node = lm_get_sommet(graph, save_last_node->name);
 		cur_graph = lm_get_sommet(graph, save_last_node->name);
 		cur_graph = cur_graph->prev;
@@ -49,16 +45,11 @@ static 	int			lm_optimize_and_reverse_shortcut(t_sommet **graph,
 					save_last_node, ants))
 		{
 			lm_reverse_valid_path(resid_graph, graph, save_last_node);
-			// bref bien verif tout ca
-	//		return (1);
+			ret++;
 		}
 		else
-		{
-			printf("dans algo.c prevoir cequil ce passe pour reverse_wrong_path\n");
-			exit(24866548);
-			lm_reverse_wrong_path(resid_graph, graph, save_last_node);// faire cette procedure
-	//		return (0);
-		}
+			lm_reverse_wrong_path(resid_graph, graph, save_last_node);
+		lm_clean_resid_graph(resid_graph);
 	}
 	return (ret);
 }
@@ -79,23 +70,23 @@ static 	int			lm_optimize_and_reverse_shortcut(t_sommet **graph,
  * 		via un bfs donc sans faire attention aux shortcut
  */
 
-static int			lm_find_shortest_distinct_path(t_sommet **sommet,
+static int			lm_find_shortest_distinct_path(t_sommet **graph,
 		int ants)
 {
 	int		ret;
 	int		path;
 
 	path = 0;
-	//ret = lm_find_one_path_with_bfs(sommet, ants, path);
-	//if (sommet[1]->prev == sommet[0])
+	//ret = lm_find_one_path_with_bfs(graph, ants, path);
+	//if (graph[1]->prev == graph[0])
 	//	return (1);
-	while (lm_find_one_path_with_bfs(sommet, ants, path)/*ret && path < ants*/)
+	while (lm_find_one_path_with_bfs(graph, ants, path)/*ret && path < ants*/)
 	{
 
 		// verif si le path qui vient detre trouve est rentable
-		if (lm_is_worth_path_bfs(sommet, ants, path))
+		if (lm_is_worth_path_bfs(graph, ants, path))
 		{
-			lm_bfs_valid_path(sommet);
+			lm_bfs_valid_path(graph);
 			path++;// procedure pour verif lefficacite dun path
 		}
 		else
@@ -103,10 +94,10 @@ static int			lm_find_shortest_distinct_path(t_sommet **sommet,
 			//procedure pour reverse un path
 			break ;
 		}
-		lm_clean_visited(sommet);
-		//ret = lm_find_one_path_with_bfs(sommet, ants, path);
+		lm_clean_visited(graph);
+		//ret = lm_find_one_path_with_bfs(graph, ants, path);
 	}
-	lm_clean_visited(sommet);
+	lm_clean_visited(graph);
 	return (path);
 }
 
@@ -117,25 +108,26 @@ static int			lm_find_shortest_distinct_path(t_sommet **sommet,
  * 		doivent avoir leurs node prev a leur precedent et visited = 2
  */
 
-int					lm_find_best_flow(t_sommet **sommet, int ants)
+int					lm_find_best_flow(t_sommet **graph, int ants)
 {
 	int			path;
 	//	int			save_ants;
 	t_sommet	**resid_graph;
 
 	///	save_ants = *ants;
-	path = lm_find_shortest_distinct_path(sommet, ants);
+	path = lm_find_shortest_distinct_path(graph, ants);
 
-	sommet[1]->distance = 0;
+	graph[1]->distance = 0;
 
-	resid_graph = lm_copy_hashtable(sommet);// go enlever cette globale de merde
+	resid_graph = lm_copy_hashtable(graph);// go enlever cette globale de merde
 
-	lm_fill_distance_flow(sommet);// ca devrait pas me remplir la fin
+	lm_fill_distance_flow(graph);// ca devrait pas me remplir la fin
 	// c'est vraiment naze
-	path += lm_optimize_and_reverse_shortcut(sommet, resid_graph, ants);
+	path += lm_optimize_and_reverse_shortcut(graph, resid_graph, ants);
+	lm_free_resid_graph(resid_graph);
+	free(resid_graph);
+	ft_bzero(resid_graph, sizeof(t_sommet *) * HASH_SIZE);
 
-	//printf("exit juste apres optimize and reverse shortcut \n");
-	//exit(5);
 	return (path);
 }
 

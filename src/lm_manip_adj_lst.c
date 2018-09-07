@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:40:21 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/02 16:21:25 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 13:20:51 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int		lm_add_neighbor(t_sommet *first_sommet, t_sommet *second_sommet,
 	return (1);
 }
 
-int				lm_add_tube(t_sommet **sommet, char *pattern)
+int				lm_add_tube(t_sommet **graph, char *pattern)
 {
 	char		*second;
 	char		*first;
@@ -57,8 +57,8 @@ int				lm_add_tube(t_sommet **sommet, char *pattern)
 //	key = lm_hash(first);
 //	printf("%s\n", first);
 //	printf("%s\n", second);
-	if (!(first_sommet = lm_get_sommet(sommet, first)) ||
-			!(second_sommet = lm_get_sommet(sommet, second)))
+	if (!(first_sommet = lm_get_sommet(graph, first)) ||
+			!(second_sommet = lm_get_sommet(graph, second)))
 	{
 		free(second);
 		free(first);
@@ -69,7 +69,7 @@ int				lm_add_tube(t_sommet **sommet, char *pattern)
 	printf("son new voisin : %s\n", first_sommet->lst->name);
 	printf("second_sommet : %s\n", second_sommet->name);
 	printf("son new voisin : %s\n", second_sommet->lst->name);*/
-//	lm_add_meighbor(sommet[key]);
+//	lm_add_meighbor(graph[key]);
 	//free(first);
 	return (1);
 }

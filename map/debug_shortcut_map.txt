@@ -1,0 +1,40 @@
+3
+##start
+room1 5 0
+room2 5 0
+room3 5 0
+room4 5 0
+room5 5 0
+room6 5 0
+room7 5 0
+room8 5 0
+room9 5 0
+room10 5 0
+room11 5 0
+room12 5 0
+room13 5 0
+room14 5 0
+room15 5 0
+room16 5 0
+room17 5 0
+##end
+room18 12 3
+room1-room2
+room2-room4
+room4-room6
+room6-room8
+room8-room10
+room10-room12
+room12-room14
+room14-room18
+room1-room3
+room3-room14
+room3-room5
+room5-room7
+room7-room9
+room9-room11
+room11-room13
+room13-room15
+room15-room16
+room16-room17
+room17-room18

@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:32:23 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/05 14:32:04 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 13:20:51 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,24 @@
  */
 
 
-int			lm_find_one_path_with_bfs(t_sommet **sommet, int ants, int cur_nb_path)
+int			lm_find_one_path_with_bfs(t_sommet **graph, int ants, int cur_nb_path)
 {
 	t_control_queue		control;
 	t_sommet			*cur;
 
-	sommet[0]->visited = 1;
-	sommet[1]->visited = 0;
+	graph[0]->visited = 1;
+	graph[1]->visited = 0;
 	ft_bzero(&control, sizeof(t_control_queue));
-	if (!lm_add_elem_queue(&control, sommet[0]))
+	if (!lm_add_elem_queue(&control, graph[0]))
 		return (-1);
 	while (control.head || control.tail)
 	{
 		cur = lm_pop_queue(&control);
-		if (cur == sommet[1])
+		if (cur == graph[1])
 		{
 			//cur_nb_path++;
-/*			cur = lm_bfs_valid_path(sommet, cur);
-			if (lm_is_worth_path_bfs(sommet, cur, ants, cur_nb_path))
+/*			cur = lm_bfs_valid_path(graph, cur);
+			if (lm_is_worth_path_bfs(graph, cur, ants, cur_nb_path))
 				return (1);
 			else
 				return (0);*/
@@ -45,14 +45,13 @@ int			lm_find_one_path_with_bfs(t_sommet **sommet, int ants, int cur_nb_path)
 		}
 		else
 		{
-			if (!lm_add_neighboor(sommet, cur, &control))
+			if (!lm_add_neighboor(graph, cur, &control))
 				return (-1);//procedure pour free
 		}
 	}
 	return (0);
 }
 
-/*{*/
 /*
  * 		OUTPOUT
  *		return = 1 if one worth path is found
