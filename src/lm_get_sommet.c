@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:07:39 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 15:22:48 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 16:20:05 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ t_sommet			*lm_get_sommet(t_sommet **graph, char *needle)
 	return (iter);
 }
 
-
-
 t_sommet			*lm_get_next_sommet_by_flow(t_sommet **graph, t_sommet *cur)
 {
 	t_adj_lst	*lst;
@@ -52,42 +50,4 @@ t_sommet			*lm_get_next_sommet_by_flow(t_sommet **graph, t_sommet *cur)
 	while (lst->flow)
 		lst = lst->next;
 	return (lm_get_sommet(graph, lst->name));
-}
-
-
-/*
-t_sommet			*lm_get_next_node(t_sommet **graph, t_sommet *node)
-{
-	t_adj_lst	*lst;
-	t_sommet	*cur;
-	t_sommet	*tmp;
-
-	cur = NULL;
-	lst = node->lst;
-	while (lst)
-	{
-		tmp = lm_get_sommet(graph, lst->name);
-		if (lst->flow == 1 && !tmp->visited)
-		{
-			cur = lm_get_sommet(graph, lst->name);
-			return (cur);
-		}
-		lst = lst->next;
-	}
-	return (cur);
-}
-*/
-
-t_sommet			*lm_get_last_node_of_path(t_sommet **graph, t_sommet *node)
-{
-	t_adj_lst	*lst;
-	t_sommet	*tmp;
-
-	tmp = lm_get_next_sommet_by_flow(graph, node);
-	while (tmp != graph[1])
-	{
-		node = tmp;
-		tmp = lm_get_next_sommet_by_flow(graph, node);
-	}
-	return (node); // attention a bien test
 }

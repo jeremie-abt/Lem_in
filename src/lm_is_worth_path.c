@@ -6,21 +6,16 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:19:40 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/06 14:11:39 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 16:28:58 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static t_sommet	*lm_get_last_node_by_flow(t_sommet **graph, t_sommet *node)
-{
-	return (NULL);	
-}
-
 /*
- * 	INPUT
- * 	node jsute avant node de fin
- */
+** 	INPUT
+** 	node jsute avant node de fin
+*/
 
 static void		lm_count_length_path(t_sommet *node)
 {
@@ -38,9 +33,10 @@ static void		lm_count_length_path(t_sommet *node)
 }
 
 /*
- * 		INPUT
- * 		hashtable avec le node du path qui vient juste d'etre ajouter par mon bfs
- */
+** 		INPUT
+** 		hashtable avec le node du path qui vient
+**		juste d'etre ajouter par mon bfs
+*/
 
 int				lm_is_worth_path_bfs(t_sommet **graph, int ants,
 		int path)
@@ -82,10 +78,8 @@ int				lm_is_worth_path_bfs(t_sommet **graph, int ants,
 }
 
 /*
- * 		OUTPOUT
- * 		si le path est worth return 1
- * 		sinon return 0 et enlever le path choisis car il n'est pas
- * 		rentalbe
- */
-
-
+** 		OUTPOUT
+** 		si le path est worth return 1
+** 		sinon return 0 et enlever le path choisis car il n'est pas
+** 		rentalbe
+*/

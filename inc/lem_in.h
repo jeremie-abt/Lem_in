@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 15:17:26 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 15:40:57 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,7 @@ t_sommet	*lm_double_node(t_sommet **graph, t_sommet *dst, t_sommet *src);
 int			lm_init_graph(t_sommet **graph);
 void		lm_update_main_graph(t_sommet **graph, t_sommet **resid_graph);
 t_sommet	*lm_get_sommet(t_sommet **graph, char *needle);
-t_sommet	*lm_get_next_node(t_sommet **graph, t_sommet *node);
 t_sommet	*lm_get_next_sommet_by_flow(t_sommet **graph, t_sommet *cur);
-t_sommet	*lm_get_last_node_of_path(t_sommet **graph, t_sommet *node);/*}*/
 
 /*
  * 		manip de tab
@@ -147,15 +145,12 @@ t_sommet	*lm_pop_stack(t_stack **head);
  */
 
 /*{*/
-int			lm_add_neighboor_bydist(t_sommet **graph, t_sommet *node,
-		t_control_queue *control_queue);
 int			lm_add_neighboor(t_sommet **graph, t_sommet *node,
 		t_control_queue *control_queue);
 int			lm_add_neighboor_relaxing(t_sommet **graph, t_sommet *node,
 		t_control_queue *control_queue);
 int			lm_add_neighboor_visited2(t_sommet **graph, t_sommet *node,
 		t_control_queue *control_queue);
-int			lm_fill_distance(t_sommet **graph, int ants);
 void		lm_fill_distance_flow(t_sommet **graph);
 int			lm_augmenting_path(t_sommet **graph);
 void		lm_sort_lst_byorder(t_sommet **graph);

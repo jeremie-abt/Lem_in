@@ -6,15 +6,15 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 13:35:16 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 14:02:17 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 16:01:57 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
- * 		format of printing : Lnb_fourmi-room
- */
+** 		format of printing : Lnb_fourmi-room
+*/
 
 static void			lm_print_and_shift_path(t_sommet **graph, t_sommet **cur_tab,
 		int *tab_of_ant, int combientieme)
@@ -23,13 +23,9 @@ static void			lm_print_and_shift_path(t_sommet **graph, t_sommet **cur_tab,
 	t_sommet	*cur;
 	t_sommet	*prev;
 
-	/*
-	 * 		up
-	 */
 	cur = cur_tab[combientieme - 1];
 	next = lm_get_next_sommet_by_flow(graph, cur);
 	prev = cur->prev;
-	//printf("cur : %s ant : %d\n", cur->name, cur->ant);
 	if (cur->ant)
 	{
 		printf("COLOR%d-%s ", cur->ant, graph[1]->name);
@@ -39,13 +35,6 @@ static void			lm_print_and_shift_path(t_sommet **graph, t_sommet **cur_tab,
 	}
 	else if (next != graph[1])
 		cur_tab[combientieme - 1] = next;
-//	else if (!cur->ant) // bon wtf verif ca
-//		cur_tab[combientieme - 1] = NULL;
-
-/*
- * 		mid
- */
-
 	while (prev != graph[0])
 	{
 		if (prev->ant)
@@ -54,13 +43,8 @@ static void			lm_print_and_shift_path(t_sommet **graph, t_sommet **cur_tab,
 		cur = prev;
 		prev = prev->prev;
 	}
-/*
- * 		debut
- */
-
 	assert(cur->prev == graph[0]);
 	assert(prev == graph[0]);
-	
 	if (tab_of_ant[combientieme - 1])
 	{
 		cur->ant++;
@@ -69,7 +53,6 @@ static void			lm_print_and_shift_path(t_sommet **graph, t_sommet **cur_tab,
 	}
 	else
 		cur->ant = 0;
-
 }
 
 static int			lm_display_one_turn(t_sommet **graph, int *tab_of_ants, int size)
@@ -103,19 +86,18 @@ static int			lm_display_one_turn(t_sommet **graph, int *tab_of_ants, int size)
 }
 
 /*
- * 	INPUT
- * 	hashtable which represent a graph under those constraints :
- * 	the node juste before end of the path i'll use need to have
- * 	their distance node all node within a path shall have their
- * 	prev node init and all the forward edge of a path need to
- * 	have their flow to 0
- */
+** 	INPUT
+** 	hashtable which represent a graph under those constraints :
+** 	the node juste before end of the path i'll use need to have
+** 	their distance node all node within a path shall have their
+** 	prev node init and all the forward edge of a path need to
+** 	have their flow to 0
+*/
 
-int				lm_print_ants(t_sommet **graph, int ants, int path)
+int					lm_print_ants(t_sommet **graph, int ants, int path)
 {
 	int			*nb_ants_in_path;
 	t_adj_lst	*lst;
-
 
 	lm_sort_lst_byorder(graph);
 	if (!lm_sort_begin_byorder(graph))
@@ -128,9 +110,7 @@ int				lm_print_ants(t_sommet **graph, int ants, int path)
 		// encore et encore les free
 		return (0);
 	}
-
 	lm_fill_ants_per_path_tab(graph, path, ants, nb_ants_in_path);
 	lm_display_one_turn(graph, nb_ants_in_path, path);
-
 	return (1);
 }

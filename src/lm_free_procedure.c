@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 16:54:06 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 13:37:05 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 16:04:12 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,41 +24,38 @@ static void		lm_free_adj_resid_graph_lst(t_adj_lst *adj_lst)
 	}
 }
 
-void		lm_free_adj_lst(t_adj_lst *adj_lst)
+void			lm_free_adj_lst(t_adj_lst *adj_lst)
 {
 	t_adj_lst	*save;
 
 	while (adj_lst)
 	{
-		free(adj_lst->name);
 		save = adj_lst;
 		adj_lst = adj_lst->next;
 		free(save);
 	}
 }
 
-void		lm_free_adj_lst_resid_graph(t_adj_lst *adj_lst)
+void			lm_free_adj_lst_resid_graph(t_adj_lst *adj_lst)
 {
 	t_adj_lst	*save;
 
 	while (adj_lst)
 	{
-		printf("voici le next : %p\n", adj_lst->next);
 		save = adj_lst;
 		adj_lst = adj_lst->next;
 		free(save);
 	}
 }
 
-void		lm_free_hashtable(t_sommet **hashtab)
+void			lm_free_hashtable(t_sommet **hashtab)
 {
 	int			i;
 	t_sommet	*tmp;
-	
+
 	i = 0;
 	while (i < HASH_SIZE)
 	{
-
 		if (hashtab[i])
 		{
 			tmp = hashtab[i];
@@ -79,11 +76,11 @@ void		lm_free_hashtable(t_sommet **hashtab)
 	}
 }
 
-void		lm_free_resid_graph(t_sommet **resid_graph)
+void			lm_free_resid_graph(t_sommet **resid_graph)
 {
 	int			i;
 	t_sommet	*tmp;
-	
+
 	i = 0;
 	while (i < HASH_SIZE)
 	{
@@ -102,17 +99,16 @@ void		lm_free_resid_graph(t_sommet **resid_graph)
 		}
 		i++;
 	}
-
 }
 
 /*
- * 		INPUT
- * 		struct t_control_queue which must not be dynamically allocated
- * 		t_control_queue.head point on a chained list which must be free
- * 		but the variable inside this head must not be freed
- */
+** 		INPUT
+** 		struct t_control_queue which must not be dynamically allocated
+** 		t_control_queue.head point on a chained list which must be free
+** 		but the variable inside this head must not be freed
+*/
 
-void		lm_free_queue(t_control_queue *control)
+void			lm_free_queue(t_control_queue *control)
 {
 	t_queue		*cur;
 	t_queue		*tmp;

@@ -6,30 +6,29 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:29:35 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 15:20:50 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 16:26:13 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
- * 	INPUT sur le nex node d'un node de hastable
- */
+** 	INPUT sur le nex node d'un node de hastable
+*/
 
-static t_sommet		*lm_copy_all_adj_node(t_sommet *node)// a bien test quand ;e;e
+static t_sommet			*lm_copy_all_adj_node(t_sommet *node)
 {
 	t_sommet	*ret;
 	t_sommet	*save_ret;
 
 	if (!(ret = lm_copy_node(node)))
 		return (NULL);
-
 	save_ret = ret;
 	while (node->next)
 	{
 		if (!(ret->next = lm_copy_node(node->next)))
 		{
-			// free et ret null
+			//free et ret null
 			return (NULL);
 		}
 		node = node->next;
@@ -39,12 +38,12 @@ static t_sommet		*lm_copy_all_adj_node(t_sommet *node)// a bien test quand ;e;e
 }
 
 /*
- *	RETURN
- *	toute la liste a partir du node copie
- *	null si pb
- */
+**	RETURN
+**	toute la liste a partir du node copie
+**	null si pb
+*/
 
-static t_adj_lst	*lm_copy_lst(t_sommet **graph, t_sommet *node)
+static t_adj_lst		*lm_copy_lst(t_sommet **graph, t_sommet *node)
 {
 	t_adj_lst	*new_lst;
 	t_adj_lst	*tmp_lst;
@@ -67,7 +66,7 @@ static t_adj_lst	*lm_copy_lst(t_sommet **graph, t_sommet *node)
 	return (new_lst);
 }
 
-void			lm_update_prev(t_sommet **resid_graph, t_sommet **graph)
+void					lm_update_prev(t_sommet **resid_graph, t_sommet **graph)
 {
 	int			i;
 	t_sommet	*cur;
@@ -83,7 +82,8 @@ void			lm_update_prev(t_sommet **resid_graph, t_sommet **graph)
 			while (cur)
 			{
 				if (cur->prev)
-					resid_cur->prev = lm_get_sommet(resid_graph, cur->prev->name);
+					resid_cur->prev = lm_get_sommet(resid_graph,
+							cur->prev->name);
 				cur = cur->next;
 				resid_cur = resid_cur->next;
 			}
@@ -92,7 +92,7 @@ void			lm_update_prev(t_sommet **resid_graph, t_sommet **graph)
 	}
 }
 
-t_sommet		**lm_copy_hashtable(t_sommet **graph)
+t_sommet				**lm_copy_hashtable(t_sommet **graph)
 {
 	t_sommet	**resid_graph;
 	int			i;
@@ -103,14 +103,15 @@ t_sommet		**lm_copy_hashtable(t_sommet **graph)
 	i = 0;
 	while (i < HASH_SIZE)
 	{
-		if (graph[i])// attention je ne copie pas chaque node la
+		if (graph[i])
 		{
 			if (!(resid_graph[i] = lm_copy_node(graph[i])))
 				return (NULL);
 			if (!(resid_graph[i]->lst = lm_copy_lst(graph, graph[i])))
 				return (NULL);
 			if (graph[i]->next)
-				if (!(resid_graph[i]->next = lm_copy_all_adj_node(graph[i]->next)))//procedure pour copier tous les nodes apres
+				if (!(resid_graph[i]->next =
+							lm_copy_all_adj_node(graph[i]->next)))
 					return (NULL);
 		}
 		i++;
@@ -119,7 +120,7 @@ t_sommet		**lm_copy_hashtable(t_sommet **graph)
 	return (resid_graph);
 }
 
-t_sommet		*lm_copy_node(t_sommet *src)
+t_sommet				*lm_copy_node(t_sommet *src)
 {
 	t_sommet	*dst;
 
