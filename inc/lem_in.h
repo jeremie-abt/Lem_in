@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 13:38:26 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 15:17:26 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "assert.h"
 
 # define HASH_SIZE 128
-# define NB_PATH 0
-# define SUPP_ANT 1
+
+typedef	struct	s_input t_input;
 
 typedef	struct	s_input t_input;
 
@@ -116,7 +116,7 @@ int			lm_verif_ant_cur_tab(t_sommet **cur_tab, int size);
 
 /*{*/
 int			lm_add_tube(t_sommet **graph, char *pattern);
-int			lm_new_lst_node(t_adj_lst **head_new_lst, t_adj_lst *cur_lst);
+int			lm_new_lst_node(t_adj_lst **lst, char *name, int flow);
 int			lm_new_lst_node_atend(t_adj_lst **lst, char *name, int flow);
 /*}*/
 
@@ -215,20 +215,23 @@ int			lm_parse_ant(char *ligne);
 int			lm_parse_digit(char *ligne);
 int			lm_parseur(t_sommet **graph);
 int			lm_is_good_room(char *room);
-int			lm_parse_room_and_stock_room(t_sommet **graph);
-//int			lm_handle_command(t_sommet **graph, char *ligne);
-int			lm_is_good_name_room(t_sommet **graph, char *room);
-/*}*/
+int			lm_parse_room_and_stock_room(t_sommet **sommet);
+//int			lm_handle_command(t_sommet **sommet, char *ligne);
+int			lm_is_good_name_room(t_sommet **sommet, char *room);
+char		*lm_get_room_name(char *str);
+int			lm_get_name_length(char *str);
+
 
 /*	
- *	fonction a gautier (le con)
+ *	fonction a gautier (le con) "On dit fonctions de Gautier" (Qui est le con ?)
  */
 
-/*{*/
-t_input     *stock_input(void);
+int			stock_input(t_input **input);
 int         get_line(char **line, t_input *input, int start);
 void        freeanddisplay_input(t_input *input);
 /*}*/
+
+
 
 /*
  * 	un peu d'utils

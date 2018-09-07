@@ -20,8 +20,8 @@ SRC	=	ft_atoi.c\
 		ft_memdel.c\
 		ft_memmove.c\
 		ft_memset.c\
-		ft_merge_str.c\
 		ft_merge.c\
+		ft_merge_str.c\
 		ft_putchar.c\
 		ft_putchar_fd.c\
 		ft_putendl.c\
@@ -59,8 +59,8 @@ SRC	=	ft_atoi.c\
 		ft_strtrim.c\
 		ft_tolower.c\
 		ft_toupper.c\
-		ft_reduce.c			\
-		ft_char_in_str.c	\
+		ft_reduce.c\
+		ft_char_in_str.c\
 		get_next_line.c
 FLAGS	=	-Wall -Wextra -Werror
 NAME	=	libft.a
@@ -75,8 +75,8 @@ $(NAME): $(OBJS)
 	@echo "\n\033[32mLIBFT COMPILED\n"
 
 %.o : %.c
-	@printf "✅ "	
-	@gcc -o $@ -c $< $(FLAGS)
+	@printf "🐜 "
+	@gcc -o $@ -c $< $(FLAGS) -I includes/
 
 clean:
 	@rm -f $(OBJS)
@@ -85,3 +85,4 @@ fclean:clean
 	@rm -f $(NAME)
 
 re:fclean all
+

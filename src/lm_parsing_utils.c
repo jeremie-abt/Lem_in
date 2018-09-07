@@ -6,15 +6,15 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 11:15:42 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/31 09:44:30 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/04 16:13:27 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
- * 	here just for recup number of ant
- */
+** 	here just to recup number of ant
+*/
 
 int			lm_parse_ant(char *ligne)
 {
@@ -25,19 +25,21 @@ int			lm_parse_ant(char *ligne)
 	i = 0;
 	while (ligne[i])
 	{
-		if (ligne[i] && (ligne[i] >= '0' && ligne[i] <= '9' ))
-			ret = (ret * 10) + 	ligne[i] - '0';
+		if (ligne[i] && (ligne[i] >= '0' && ligne[i] <= '9'))
+			ret = (ret * 10) + ligne[i] - '0';
 		else
 			return (-1);
 		i++;
 	}
+	if (ret <= 0)
+		return (-1);
 	return (ret);
 }
 
 /*
- * 	here for parse a numbre like 1-5
- * 	first call'll return 1 and second 5
- */
+** 	here for parse a numbre like 1-5
+** 	first call'll return 1 and second 5
+*/
 
 int			lm_parse_digit(char *ligne)
 {
@@ -48,8 +50,8 @@ int			lm_parse_digit(char *ligne)
 	i = 0;
 	while (ligne[i])
 	{
-		if (ligne[i] && (ligne[i] >= '0' && ligne[i] <= '9' ))
-			ret = (ret * 10) + 	ligne[i] - '0';
+		if (ligne[i] && (ligne[i] >= '0' && ligne[i] <= '9'))
+			ret = (ret * 10) + ligne[i] - '0';
 		else if (ligne[i] == '-' || !ligne[i])
 			return (ret);
 		else

@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 17:42:46 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/31 09:47:34 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/04 16:14:07 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int		lm_is_good_room(char *room)
 	return (-1);
 }
 
-int			lm_verif_tube(char *str)
-{	
+int		lm_verif_tube(char *str)
+{
 	int		i;
 	int		state;
 
@@ -46,6 +46,8 @@ int			lm_verif_tube(char *str)
 	{
 		if (str[i] == '-')
 			state++;
+		if (str[i] == ' ')
+			return (-1);
 		i++;
 	}
 	if (state != 1)

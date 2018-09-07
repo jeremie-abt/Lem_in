@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lm_hashtable_utils.c                               :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/06 09:52:59 by jabt              #+#    #+#             */
-/*   Updated: 2018/08/31 11:04:04 by jabt             ###   ########.fr       */
+/*   Created: 2018/04/03 16:19:06 by galemair          #+#    #+#             */
+/*   Updated: 2018/04/03 17:42:03 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem_in.h"
+#include "libft.h"
 
-char		*lm_get_room_name(char *str)
+char	*ft_strnew(size_t size)
 {
-	char	*room_name;
-	int		length;
+	char *str;
 
-	room_name = ft_strchr(str, ' ');
-	if (room_name)
-	{
-		length = room_name - str;
-		if (!(room_name = ft_strsub(str, 0, length)))
-			return (NULL);
-		return (room_name);
-	}
-	else
+	if ((str = malloc(sizeof(*str) * size + 1)) == NULL)
 		return (NULL);
+	ft_bzero(str, size + 1);
+	return (str);
 }

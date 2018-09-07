@@ -5,10 +5,3 @@ room2 2 3
 depart 1 2
 ##end
 fin 9 2
-#salut
-room3 5 4
-room1-room2
-room3-room2
-room1-room3
-depart-room1
-fin-room2

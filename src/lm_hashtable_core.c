@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:29:35 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 13:26:12 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 15:20:50 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static t_adj_lst	*lm_copy_lst(t_sommet **graph, t_sommet *node)
 	{
 		cur = lm_get_sommet(graph, lst->name);
 		tmp_lst = lm_get_edge(cur->lst, node->name);
-		if (!(lm_new_lst_node(&new_lst, lst)))
+		if (!(lm_new_lst_node(&new_lst, lst->name, lst->flow)))
 		{
 			// attention a bin free;
 			return (NULL);

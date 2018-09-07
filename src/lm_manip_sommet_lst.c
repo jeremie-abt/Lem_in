@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:16:32 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 13:20:51 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/07 15:13:50 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,56 +112,32 @@ void				lm_clean_resid_graph(t_sommet **resid_graph)
 	resid_graph[1]->distance = 0;
 }
 
-int					lm_add_sommet(t_sommet **graph, char *str)
+int					lm_add_sommet(t_sommet **sommet, char *str)
 {
-	char	*new_str;
 	int		key;
 
-	new_str = lm_get_room_name(str);
-	if (new_str)
-	{
-		key = lm_hash(new_str);
-		if (!(graph[key] = lm_init_sommet(graph[key], new_str)))
-			return (0);
-	}
-	else
-		return (0);
+	key = lm_hash(lm_get_room_name(str));
+	if (!(sommet[key] = lm_init_sommet(sommet[key],
+		ft_strsub(str, 0, lm_get_name_length(str)))))
+		return (-1);
 	return (1);
 }
 
 int					lm_add_start_end(t_sommet **graph, int index)
 {
 	char	*line;
-	char	*new_room;
 
 	if (graph[index])
-	{
-		printf("\n\n\ngere ce cas bolloosss lm_manip_sommet.c\n\n\n");
-		assert(0);
-		return (-1);//pour l'instant non gere aussi
-	}
-
+		return (-1);
 	get_line(&line, NULL, 0);
-	new_room = lm_get_room_name(line);
-	if (new_room && lm_is_good_room(new_room))
+	if (lm_is_good_room(line) == 1)
 	{
 		if (!(graph[index] = malloc(sizeof(t_sommet))))
-		{
-			free(line);
-			if (new_room)
-				free(new_room);
 			return (-1);
-		}
+		ft_bzero(graph[index], sizeof(t_sommet));
+		graph[index]->name = ft_strsub(line, 0, lm_get_name_length(line));
 	}
 	else
-	{
-		free(line);
-		if (new_room)
-			free(new_room);
 		return (-1);
-	}
-	free(line);
-	ft_bzero(graph[index], sizeof(t_sommet));
-	graph[index]->name = new_room;
 	return (1);
 }
