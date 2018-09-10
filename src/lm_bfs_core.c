@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:32:23 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 16:17:10 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/10 18:11:08 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int				lm_find_one_path_with_bfs(t_sommet **graph, int ants,
 		else
 		{
 			if (!lm_add_neighboor(graph, cur, &control))
-				return (-1);//procedure pour free
+			{
+				lm_free_queue(&control);
+				return (-1);
+			}
 		}
 	}
 	return (0);
@@ -77,7 +80,10 @@ t_sommet		*lm_get_node_to_reverse_bfs(t_sommet **resid_graph)
 		else
 		{
 			if (!lm_add_neighboor_visited2(resid_graph, cur, &control))
-				return (NULL);// procedure pour free ici
+			{
+				lm_free_queue(&control);
+				return (NULL);
+			}
 		}
 	}
 	return (NULL);
@@ -120,7 +126,10 @@ int				lm_relaxing_bfs(t_sommet **resid_graph, t_sommet *node)
 		else if (!state)
 		{
 			if (!lm_add_neighboor_relaxing(resid_graph, cur, &control))
-				return (-1);//procedure pour free
+			{
+				lm_free_queue(&control);
+				return (-1);
+			}
 		}
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: galemair <galemair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 16:11:37 by galemair          #+#    #+#             */
-/*   Updated: 2018/09/07 15:11:36 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/10 18:42:33 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,15 @@ static int			lm_handle_command(t_sommet **graph, char *line)
 	if (line[1] == '#')
 	{
 		if (ft_strequ(&line[2], "start"))
-			lm_add_start_end(graph, 0);
+		{
+			if (lm_add_start_end(graph, 0) == -1)
+				return (-1);
+		}
 		else if (ft_strequ(&line[2], "end"))
-			lm_add_start_end(graph, 1);
+		{
+			if (lm_add_start_end(graph, 1) == -1)
+				return (-1);
+		}
 	}
 	return (1);
 }
@@ -56,11 +62,12 @@ int					lm_parseur(t_sommet **graph)
 		return (-1);
 	while (get_line(&line, input, 0))
 	{
-		if (lm_parse_room(graph, line) == -1)
+		if (lm_parse_room(graph, line) == -1)// gros c'est tendu la tu lances
+			// mon algo avec des fails d'allocation
 		{
-		//	if (lm_find_max(graph) > 0)
+			//if (lm_find_max(graph) > 0)
 		//	{
-		//		freeanddisplay(input);
+		//		freeanddisplay_input(input);
 		//		return (ants);
 		//	}
 			return (-1);

@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 10:07:39 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 16:20:05 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/10 17:14:42 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ t_sommet			*lm_get_next_sommet_by_flow(t_sommet **graph, t_sommet *cur)
 	lst = cur->lst;
 	if (graph[1] == cur)
 	{
-		printf("iiici \n");
-		exit(5);
+		return (NULL);
 	}
 	while (lst->flow)
 		lst = lst->next;

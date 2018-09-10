@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 16:54:06 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 16:04:12 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/10 13:53:47 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,26 +98,5 @@ void			lm_free_resid_graph(t_sommet **resid_graph)
 			resid_graph[i] = NULL;
 		}
 		i++;
-	}
-}
-
-/*
-** 		INPUT
-** 		struct t_control_queue which must not be dynamically allocated
-** 		t_control_queue.head point on a chained list which must be free
-** 		but the variable inside this head must not be freed
-*/
-
-void			lm_free_queue(t_control_queue *control)
-{
-	t_queue		*cur;
-	t_queue		*tmp;
-
-	cur = control->head;
-	while (cur)
-	{
-		tmp = cur->next;
-		free(cur);
-		cur = tmp;
 	}
 }

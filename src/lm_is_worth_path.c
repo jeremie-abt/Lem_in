@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:19:40 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 16:28:58 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/10 14:13:02 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,27 @@ static void		lm_count_length_path(t_sommet *node)
 	tmp->distance = ret;
 }
 
+static int		lm_count_worthiness(t_sommet **graph, int worthiness,
+		int ret, int path)
+{
+	int		tmp;
+
+	if (!worthiness)
+	{
+		worthiness = (graph[1]->prev->distance - ret) + path + 1;
+		return (worthiness);
+	}
+	else
+	{
+		tmp = (graph[1]->prev->distance - ret) - 1;
+		if (tmp >= 0)
+			worthiness = worthiness + ((tmp * path) + path + 1);
+		else
+			worthiness++;
+		return (worthiness);
+	}
+}
+
 /*
 ** 		INPUT
 ** 		hashtable avec le node du path qui vient
@@ -44,9 +65,8 @@ int				lm_is_worth_path_bfs(t_sommet **graph, int ants,
 	static int		ret;
 	static int		worthiness;
 	int				tmp;
-	assert(graph[1]->prev);
-	
-	lm_count_length_path(graph[1]->prev);	
+
+	lm_count_length_path(graph[1]->prev);
 	if (ret == 0)
 	{
 		if (ants > 0)
@@ -55,24 +75,10 @@ int				lm_is_worth_path_bfs(t_sommet **graph, int ants,
 	}
 	else
 	{
-		if (!worthiness)
-		{
-			worthiness = (graph[1]->prev->distance - ret) + path + 1;
-			ret = graph[1]->prev->distance;
-			if (worthiness <= ants)
-				return (1);
-		}
-		else
-		{
-			tmp = (graph[1]->prev->distance - ret) - 1;
-			if (tmp >= 0)
-				worthiness = worthiness + ((tmp * path) + path + 1);
-			else
-				worthiness++;
-			ret = graph[1]->prev->distance;
-			if (worthiness <= ants)
-				return (1);
-		}
+		worthiness = lm_count_worthiness(graph, worthiness, ret, path);
+		ret = graph[1]->prev->distance;
+		if (worthiness <= ants)
+			return (1);
 	}
 	return (0);
 }

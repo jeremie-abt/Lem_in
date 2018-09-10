@@ -6,13 +6,19 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:11:00 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 16:00:22 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/10 18:47:25 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		main(int argc, char **argv)
+static void		lm_quit_properly(t_sommet **graph)
+{
+	lm_free_hashtable(graph);
+	exit(42);
+}
+
+int				main(int argc, char **argv)
 {
 	int			ants;
 	int			path;
@@ -22,17 +28,24 @@ int		main(int argc, char **argv)
 	if ((ants = lm_parseur(graph)) == -1)
 	{
 		write(1, "ERROR\n", 6);
-		lm_free_hashtable(graph);
-		ft_bzero(graph, HASH_SIZE * sizeof(t_sommet *));
-		return (0);
+		lm_quit_properly(graph);
 	}
+	printf("\n");
 	path = lm_find_best_flow(graph, ants);
-	if (!lm_print_ants(graph, ants, path))
+	//print_hashtable_distance_and_prev(graph);
+//	exit(0);
+	if (path <= 0)
 	{
-		// bien free
-		exit(-1);
+		write(1, "ERROR\n", 6);
+		lm_quit_properly(graph);
 	}
-	lm_free_hashtable(graph);
-	ft_bzero(graph, HASH_SIZE * sizeof(t_sommet *));
+	if (graph[1]->prev == graph[0])
+		lm_quit_properly(graph);
+	if (lm_core_print_ants(graph, ants, path) == -1)
+	{
+		write(1, "ERROR\n", 6);
+		lm_quit_properly(graph);
+	}
+	lm_quit_properly(graph);
 	return (0);
 }

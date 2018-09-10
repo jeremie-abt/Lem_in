@@ -6,15 +6,11 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 16:23:41 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 14:00:02 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/10 16:33:18 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-/*
- * 		sec_lst = resid_graph
- */
 
 static void		lm_update_lst(t_adj_lst *lst, t_adj_lst *resid_lst)
 {
@@ -37,6 +33,28 @@ static void		lm_update_parent_main_graph(t_sommet **graph, t_sommet *node,
 	node->prev = tmp;
 }
 
+static void		lm_update_node(t_sommet **graph, t_sommet *node,
+		t_sommet *resid_node)
+{
+	t_sommet	*tmp;
+
+	while (node)
+	{
+		if (resid_node->prev)
+		{
+			tmp = lm_get_sommet(graph, resid_node->prev->name);
+			node->prev = tmp;
+		}
+		else
+			node->prev = NULL;
+		node->distance = resid_node->distance;
+		node->visited = resid_node->visited;
+		lm_update_lst(node->lst, resid_node->lst);
+		node = node->next;
+		resid_node = resid_node->next;
+	}
+}
+
 void			lm_update_main_graph(t_sommet **graph, t_sommet **resid_graph)
 {
 	int			i;
@@ -48,26 +66,7 @@ void			lm_update_main_graph(t_sommet **graph, t_sommet **resid_graph)
 	while (i < HASH_SIZE)
 	{
 		if (graph[i])
-		{
-			cur = graph[i];
-			resid_cur = resid_graph[i];
-			while (cur)
-			{
-				if (resid_cur->prev)
-				{
-					tmp = lm_get_sommet(graph, resid_cur->prev->name);
-					cur->prev = tmp;
-				}
-				else
-					cur->prev = NULL;
-				cur->distance = resid_cur->distance;
-				cur->visited = resid_cur->visited;
-				lm_update_lst(cur->lst, resid_cur->lst);
-				cur = cur->next;
-				resid_cur = resid_cur->next;
-			}
-		}
+			lm_update_node(graph, graph[i], resid_graph[i]);
 		i++;
 	}
 }
-

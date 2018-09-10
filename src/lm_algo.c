@@ -6,11 +6,21 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:39:02 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 16:10:49 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/10 18:01:59 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+static void			lm_iter_reverse_shortcut(t_sommet **graph,
+		t_sommet **resid_graph, t_shortcut *scut)
+{
+	scut->save_last_node = lm_get_sommet(graph, scut->save_last_node->name);
+	scut->cur_graph = lm_get_sommet(graph, scut->save_last_node->name);
+	scut->cur_graph = scut->cur_graph->prev;
+	scut->cur_resid_graph = lm_get_sommet(resid_graph, scut->cur_graph->name);
+	scut->cur_resid_graph->distance = scut->cur_graph->distance;
+}
 
 /*
 ** 		INPUT
@@ -21,34 +31,29 @@
 static int			lm_optimize_and_reverse_shortcut(t_sommet **graph,
 		t_sommet **resid_graph, int ants)
 {
-	t_sommet	*save_last_node;
-	t_sommet	*cur_graph;
-	t_sommet	*cur_resid_graph;
+	t_shortcut	scut;
 	int			ret;
 
 	ret = 0;
-	while ((save_last_node = lm_get_node_to_reverse_bfs(resid_graph)))
+	while ((scut.save_last_node = lm_get_node_to_reverse_bfs(resid_graph)))
 	{
-		save_last_node = lm_get_sommet(graph, save_last_node->name);
-		cur_graph = lm_get_sommet(graph, save_last_node->name);
-		cur_graph = cur_graph->prev;
-		cur_resid_graph = lm_get_sommet(resid_graph, cur_graph->name);
-		cur_resid_graph->distance = cur_graph->distance;
-		while (cur_resid_graph != resid_graph[0])
+		lm_iter_reverse_shortcut(graph, resid_graph, &scut);
+		while (scut.cur_resid_graph != resid_graph[0])
 		{
-			lm_relaxing_bfs(resid_graph, cur_resid_graph);
-			cur_resid_graph = cur_resid_graph->prev;
-			cur_graph = lm_get_sommet(graph, cur_resid_graph->name);
-			cur_resid_graph->distance = cur_graph->distance;
+			if (lm_relaxing_bfs(resid_graph, scut.cur_resid_graph) == -1)
+				return (0);
+			scut.cur_resid_graph = scut.cur_resid_graph->prev;
+			scut.cur_graph = lm_get_sommet(graph, scut.cur_resid_graph->name);
+			scut.cur_resid_graph->distance = scut.cur_graph->distance;
 		}
 		if (resid_graph[1]->prev && lm_is_worth_path_flow(graph, resid_graph,
-					save_last_node, ants))
+					scut.save_last_node, ants))
 		{
-			lm_reverse_valid_path(resid_graph, graph, save_last_node);
+			lm_reverse_valid_path(resid_graph, graph, scut.save_last_node);
 			ret++;
 		}
 		else
-			lm_reverse_wrong_path(resid_graph, graph, save_last_node);
+			lm_reverse_wrong_path(resid_graph, graph, scut.save_last_node);
 		lm_clean_resid_graph(resid_graph);
 	}
 	return (ret);
@@ -76,8 +81,10 @@ static int			lm_find_shortest_distinct_path(t_sommet **graph,
 	int		path;
 
 	path = 0;
-	while (lm_find_one_path_with_bfs(graph, ants, path))
+	while (lm_find_one_path_with_bfs(graph, ants, path) > 0)
 	{
+		if (graph[1]->prev == graph[0])
+			return (1);
 		if (lm_is_worth_path_bfs(graph, ants, path))
 		{
 			lm_bfs_valid_path(graph);
@@ -104,6 +111,10 @@ int					lm_find_best_flow(t_sommet **graph, int ants)
 	t_sommet	**resid_graph;
 
 	path = lm_find_shortest_distinct_path(graph, ants);
+	if (path <= 0)
+		return (path);
+	if (path == 1 && graph[1]->prev == graph[0])
+		return (1);
 	graph[1]->distance = 0;
 	resid_graph = lm_copy_hashtable(graph);
 	lm_fill_distance_flow(graph);

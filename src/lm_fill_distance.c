@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/31 09:18:33 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 16:19:29 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/10 13:51:39 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,18 @@ void			lm_fill_distance_flow(t_sommet **graph)
 	{
 		if (lst->flow == 0)
 		{
-			distance = 1; 
+			distance = 1;
 			cur = lm_get_sommet(graph, lst->name);
-			cur->distance = distance;
-			while (cur != graph[1])
+			cur->distance = 1;
+			while ((cur = lm_get_next_sommet_by_flow(graph, cur)))
 			{
 				distance++;
-				tmp_lst = cur->lst;
-				while (tmp_lst->flow != 0)
-					tmp_lst = tmp_lst->next;
-				cur = lm_get_sommet(graph, tmp_lst->name);
-				cur->distance = distance;
+				if (cur == graph[1])
+					break ;
+				else
+					cur->distance = distance;
 			}
-			lst->flow = distance;//c'est bon ?
 		}
 		lst = lst->next;
 	}
 }
-

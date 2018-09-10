@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:39:26 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 14:43:43 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/10 18:56:05 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,15 @@ static void		lm_swap_lst(t_adj_lst *first, t_adj_lst *second)
 }
 
 /*
- * 		PROCEDURE'S GOAL
- * 		order the lst of the end node by shortest path
- * 		meaning that the head of the lst end node is the shortest path
- * 		the second node is the second shortest path etc...
- */
+** 		PROCEDURE'S GOAL
+** 		order the lst of the end node by shortest path
+** 		meaning that the head of the lst end node is the shortest path
+** 		the second node is the second shortest path etc...
+*/
 
 void			lm_sort_lst_byorder(t_sommet **graph)
 {
 	t_adj_lst	*tmp;
-	t_adj_lst	*secondtmp;
 	t_sommet	*cur;
 	t_sommet	*secondcur;
 
@@ -48,18 +47,15 @@ void			lm_sort_lst_byorder(t_sommet **graph)
 		secondcur = lm_get_sommet(graph, tmp->next->name);
 		if (secondcur->distance == -1)
 			tmp = tmp->next;
-		else if (cur->distance == -1)
+		else if (cur->distance == -1 && secondcur->distance > 0)
 		{
-			if (secondcur->distance > 0)
-			{
-				lm_swap_lst(tmp, tmp->next);
-				tmp = graph[1]->lst;
-			}
+			lm_swap_lst(tmp, tmp->next);
+			tmp = graph[1]->lst;
 		}
 		else if (cur->distance > secondcur->distance)
 		{
-				lm_swap_lst(tmp, tmp->next);
-				tmp = graph[1]->lst;	
+			lm_swap_lst(tmp, tmp->next);
+			tmp = graph[1]->lst;
 		}
 		else
 			tmp = tmp->next;
@@ -67,16 +63,16 @@ void			lm_sort_lst_byorder(t_sommet **graph)
 }
 
 /*
- * 		INPUT
- * 		hashtable with the end node lst sorted by shortest path
- * 		to longest path
- */
+** 		INPUT
+** 		hashtable with the end node lst sorted by shortest path
+** 		to longest path
+*/
 
 int				lm_sort_begin_byorder(t_sommet **graph)
 {
 	t_adj_lst	*lst;
 	t_adj_lst	*new_lst;
-	t_sommet	*cur;	
+	t_sommet	*cur;
 
 	new_lst = NULL;
 	lst = graph[1]->lst;
@@ -89,8 +85,8 @@ int				lm_sort_begin_byorder(t_sommet **graph)
 				cur = cur->prev;
 			if (!(lm_new_lst_node_atend(&new_lst, cur->name, 0)))
 			{
-				// bien free le new_lst
-				return (0);
+				lm_free_adj_lst(new_lst);
+				return (-1);
 			}
 		}
 		lst = lst->next;
@@ -101,8 +97,8 @@ int				lm_sort_begin_byorder(t_sommet **graph)
 }
 
 /*
- * 		OUTPOUT
- * 		the begin's node lst sorted by shortest path to longest path
- * 		CARE OF
- * 		what to do with non used path
- */
+** 		OUTPOUT
+** 		the begin's node lst sorted by shortest path to longest path
+** 		CARE OF
+** 		what to do with non used path
+*/

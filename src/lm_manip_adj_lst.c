@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:40:21 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/07 15:18:18 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/10 18:20:16 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ int				lm_add_tube(t_sommet **graph, char *pattern)
 	if (!(first_sommet = lm_get_sommet(graph, first)) ||
 			!(second_sommet = lm_get_sommet(graph, second)))
 	{
-		printf("salut\n");
 		free(second);
 		free(first);
 		return (-1);
 	}
-	lm_add_neighbor(first_sommet, second_sommet, second, first);
+	if (lm_add_neighbor(first_sommet, second_sommet, second, first) == -1)
+		return (-1);
 	return (1);
 }
 
@@ -97,4 +97,3 @@ int				lm_new_lst_node_atend(t_adj_lst **lst, char *name, int flow)
 	new_lst->next = NULL;
 	return (1);
 }
-
