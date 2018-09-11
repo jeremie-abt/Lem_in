@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/26 12:48:47 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/11 09:06:48 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/11 11:21:52 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void		lm_send_first_ant_in_path(t_sommet **graph, t_sommet **tab,
 
 	i = 0;
 	lst = graph[0]->lst;
-	printf("size : %d\n", size);
 	while (i < size)
 	{
 		cur = lm_get_sommet(graph, lst->name);

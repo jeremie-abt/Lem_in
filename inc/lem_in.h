@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/11 10:58:23 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/11 17:00:12 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ t_sommet			**lm_quit_properly_copy_graph(t_sommet **resid_graph);
 */
 
 int					lm_add_tube(t_sommet **graph, char *pattern);
-int					lm_new_lst_node(t_adj_lst **lst, char *name, int flow);
+int					lm_new_lst_node(t_adj_lst **lst, t_adj_lst *src);
 int					lm_new_lst_node_atend(t_adj_lst **lst, char *name,
 		int flow);
 

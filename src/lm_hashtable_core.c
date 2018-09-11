@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:29:35 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/11 10:52:39 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/11 17:00:53 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static t_sommet			*lm_copy_all_adj_node(t_sommet *node)
 static t_adj_lst		*lm_copy_lst(t_sommet **graph, t_sommet *node)
 {
 	t_adj_lst	*new_lst;
-	t_adj_lst	*tmp_lst;
 	t_adj_lst	*lst;
 	t_sommet	*cur;
 
@@ -54,9 +53,7 @@ static t_adj_lst		*lm_copy_lst(t_sommet **graph, t_sommet *node)
 	new_lst = NULL;
 	while (lst)
 	{
-		cur = lm_get_sommet(graph, lst->name);
-		tmp_lst = lm_get_edge(cur->lst, node->name);
-		if (!(lm_new_lst_node(&new_lst, lst->name, lst->flow)))
+		if (!(lm_new_lst_node(&new_lst, lst)))
 		{
 			lm_free_adj_lst(new_lst);
 			return (NULL);

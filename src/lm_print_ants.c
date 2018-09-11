@@ -6,27 +6,38 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 13:35:16 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/11 09:23:36 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/11 12:15:31 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 static void			lm_print_last_part(t_sommet **graph, t_sommet *cur,
-		t_sommet *prev, t_sommet **cur_tab)
+		int *tab_of_ant, t_sommet **cur_tab)
 {
 	t_sommet	*next;
+	t_sommet	*prev;
 
+	prev = cur->prev;
 	next = lm_get_next_sommet_by_flow(graph, cur);
-	if (cur->ant)
+	if (prev != graph[0])
+	{
+		if (cur->ant)
+		{
+			printf("COLOR%d-%s ", cur->ant, graph[1]->name);
+			cur->ant = prev->ant;
+			if (!cur->ant)
+				*cur_tab = NULL;
+		}
+		else if (next != graph[1])
+			*cur_tab = next;
+	}
+	else 
 	{
 		printf("COLOR%d-%s ", cur->ant, graph[1]->name);
-		cur->ant = prev->ant;
-		if (!cur->ant)
+		if (!*tab_of_ant)
 			*cur_tab = NULL;
 	}
-	else if (next != graph[1])
-		*cur_tab = next;
 }
 
 /*
@@ -39,7 +50,7 @@ static void			lm_print_first_part(t_sommet *cur, int *tab_of_ant)
 	if (*tab_of_ant)
 	{
 		cur->ant++;
-		printf("L%d-%s ", cur->ant, cur->name);
+		printf("Lici%d-%s ", cur->ant, cur->name);
 		(*tab_of_ant)--;
 	}
 	else
@@ -60,7 +71,8 @@ static void			lm_print_and_shift_path(t_sommet **graph,
 	cur = cur_tab[combientieme - 1];
 	next = lm_get_next_sommet_by_flow(graph, cur);
 	prev = cur->prev;
-	lm_print_last_part(graph, cur, prev, &cur_tab[combientieme - 1]);
+	lm_print_last_part(graph, cur,
+			&tab_of_ant[combientieme - 1], &cur_tab[combientieme - 1]);
 	while (prev != graph[0])
 	{
 		if (prev->ant)

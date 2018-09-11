@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:40:21 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/10 18:20:16 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/11 16:58:46 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,16 @@ int				lm_add_tube(t_sommet **graph, char *pattern)
 	return (1);
 }
 
-int				lm_new_lst_node(t_adj_lst **lst, char *name, int flow)
+int				lm_new_lst_node(t_adj_lst **head, t_adj_lst *src)
 {
 	t_adj_lst	*tmp;
 
-	tmp = *lst;
-	if (!(*lst = malloc(sizeof(t_adj_lst))))
+	tmp = *head;
+	if (!(*head = malloc(sizeof(t_adj_lst))))
 		return (0);
-	(*lst)->name = name;
-	(*lst)->flow = flow;
-	(*lst)->next = tmp;
+	(*head)->name = src->name;
+	(*head)->flow = src->flow;
+	(*head)->next = tmp;
 	return (1);
 }
 
