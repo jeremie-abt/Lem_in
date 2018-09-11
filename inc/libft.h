@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 16:14:06 by galemair          #+#    #+#             */
-/*   Updated: 2018/08/31 11:29:00 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/11 10:58:46 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int					ft_char_in_str(const char *str, char c);
 /*
 **	PROJETS 42
 */
-//int					get_next_line(const int fd, char **line);
 
 /*
 **	FONCTIONS MANIPULATION LISTES CHAINEES

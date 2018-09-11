@@ -6,7 +6,7 @@
 /*   By: galemair <galemair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 16:11:37 by galemair          #+#    #+#             */
-/*   Updated: 2018/09/10 18:42:33 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/11 09:17:27 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int					lm_parse_room(t_sommet **graph, char *line)
 	mp_flag = 1;
 	if (*line == '#' && (mp_flag = lm_handle_command(graph, line)) != -1)
 		;
-	else if (lm_is_good_room(line) != -1)
+	else if (lm_is_good_room(line) != -1)// ouai et si t'as un -1 ca crash ...
 		mp_flag = lm_add_sommet(graph, line);
-	else if (lm_verif_tube(line) != -1)
+	else if (lm_verif_tube(line) != -1)// encore le -1
 		mp_flag = lm_add_tube(graph, line);
 	else
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/10 18:46:33 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/11 10:58:23 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,12 @@ void				lm_init_save_cur_ant_tab(t_sommet **tab, t_sommet **graph,
 int					lm_verif_ant_cur_tab(t_sommet **cur_tab, int size);
 
 /*
+**		quit
+*/
+
+t_sommet			**lm_quit_properly_copy_graph(t_sommet **resid_graph);
+
+/*
 ** 		adjencency lst function
 */
 
@@ -115,6 +121,8 @@ void				lm_free_adj_lst(t_adj_lst *adj_lst);
 void				lm_free_hashtable(t_sommet **hashtab);
 void				lm_free_resid_graph(t_sommet **resid_graph);
 void				lm_free_queue(t_control_queue *control);
+void				lm_free_adj_resid_graph_lst(t_adj_lst *adj_lst);
+void				lm_free_resnode(t_sommet *node);
 
 /*
 ** 		queue function

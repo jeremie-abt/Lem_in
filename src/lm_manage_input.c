@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 16:17:06 by galemair          #+#    #+#             */
-/*   Updated: 2018/09/04 16:02:49 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/11 09:17:06 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ int		check_line_validity(char *str)
 	if (*str == '#')
 		;
 	else if (lm_is_good_room(str) != -1)
-		;
-	else if (lm_verif_tube(str) != -1)
-		;
+		; // c'est quoi cette gestion d'erreur la ??
+	else if (lm_verif_tube(str) != -1) // ta gestion des -1 marche pas gros si -1 la procedure
+		;// c'est free tout ce qui a ete alloue dans la fonction actuelle et return -1
 	else
 		return (-1);
 	return (1);

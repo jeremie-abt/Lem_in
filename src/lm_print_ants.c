@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 13:35:16 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/10 19:18:13 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/11 09:23:36 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void			lm_print_and_shift_path(t_sommet **graph,
 		cur = prev;
 		prev = prev->prev;
 	}
-	lm_print_first_part(cur, tab_of_ant);
+	lm_print_first_part(cur, &tab_of_ant[combientieme - 1]);
 }
 
 static int			lm_print_ants(t_sommet **graph, int *tab_of_ants, int size)
@@ -117,12 +117,12 @@ int					lm_core_print_ants(t_sommet **graph, int ants, int path)
 		return (-1);
 	if (!(nb_ants_in_path = ft_memalloc(sizeof(int) * path)))
 		return (-1);
-	printf("path : %d\n", path);
-	printf("la foutu premiere case : %d\n", nb_ants_in_path[0]);
-	exit(42);
 	lm_fill_ants_per_path_tab(graph, path, ants, nb_ants_in_path);
-	free(nb_ants_in_path);
 	if (lm_print_ants(graph, nb_ants_in_path, path) == -1)
+	{
+		free(nb_ants_in_path);
 		return (-1);
+	}
+	free(nb_ants_in_path);
 	return (1);
 }

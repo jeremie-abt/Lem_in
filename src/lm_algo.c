@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:39:02 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/10 18:01:59 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/11 10:40:42 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,26 @@ static void			lm_iter_reverse_shortcut(t_sommet **graph,
 	scut->cur_graph = scut->cur_graph->prev;
 	scut->cur_resid_graph = lm_get_sommet(resid_graph, scut->cur_graph->name);
 	scut->cur_resid_graph->distance = scut->cur_graph->distance;
+}
+
+/*
+** 	PROCEDURE
+** 	update the distance from one point in the resid_graph
+** 	by relaxing the edges like djikstra algorithm
+*/
+
+static int			lm_relaxe_from_one_point(t_sommet **graph,
+		t_sommet **resid_graph, t_shortcut *scut)
+{
+	while (scut->cur_resid_graph != resid_graph[0])
+	{
+		if (lm_relaxing_bfs(resid_graph, scut->cur_resid_graph) == -1)
+			return (-1);
+		scut->cur_resid_graph = scut->cur_resid_graph->prev;
+		scut->cur_graph = lm_get_sommet(graph, scut->cur_resid_graph->name);
+		scut->cur_resid_graph->distance = scut->cur_graph->distance;
+	}
+	return (1);
 }
 
 /*
@@ -38,14 +58,8 @@ static int			lm_optimize_and_reverse_shortcut(t_sommet **graph,
 	while ((scut.save_last_node = lm_get_node_to_reverse_bfs(resid_graph)))
 	{
 		lm_iter_reverse_shortcut(graph, resid_graph, &scut);
-		while (scut.cur_resid_graph != resid_graph[0])
-		{
-			if (lm_relaxing_bfs(resid_graph, scut.cur_resid_graph) == -1)
-				return (0);
-			scut.cur_resid_graph = scut.cur_resid_graph->prev;
-			scut.cur_graph = lm_get_sommet(graph, scut.cur_resid_graph->name);
-			scut.cur_resid_graph->distance = scut.cur_graph->distance;
-		}
+		if (lm_relaxe_from_one_point(graph, resid_graph, &scut) == -1)
+			return (0);
 		if (resid_graph[1]->prev && lm_is_worth_path_flow(graph, resid_graph,
 					scut.save_last_node, ants))
 		{
@@ -116,7 +130,8 @@ int					lm_find_best_flow(t_sommet **graph, int ants)
 	if (path == 1 && graph[1]->prev == graph[0])
 		return (1);
 	graph[1]->distance = 0;
-	resid_graph = lm_copy_hashtable(graph);
+	if (!(resid_graph = lm_copy_hashtable(graph)))
+		return (path);
 	lm_fill_distance_flow(graph);
 	path += lm_optimize_and_reverse_shortcut(graph, resid_graph, ants);
 	lm_free_resid_graph(resid_graph);

@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:29:35 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/10 13:56:27 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/11 10:52:39 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_sommet			*lm_copy_all_adj_node(t_sommet *node)
 	{
 		if (!(ret->next = lm_copy_node(node->next)))
 		{
-			//free et ret null
+			lm_free_resnode(save_ret);
 			return (NULL);
 		}
 		node = node->next;
@@ -58,7 +58,7 @@ static t_adj_lst		*lm_copy_lst(t_sommet **graph, t_sommet *node)
 		tmp_lst = lm_get_edge(cur->lst, node->name);
 		if (!(lm_new_lst_node(&new_lst, lst->name, lst->flow)))
 		{
-			// attention a bin free;
+			lm_free_adj_lst(new_lst);
 			return (NULL);
 		}
 		lst = lst->next;
@@ -106,13 +106,13 @@ t_sommet				**lm_copy_hashtable(t_sommet **graph)
 		if (graph[i])
 		{
 			if (!(resid_graph[i] = lm_copy_node(graph[i])))
-				return (NULL);
+				return (lm_quit_properly_copy_graph(resid_graph));
 			if (!(resid_graph[i]->lst = lm_copy_lst(graph, graph[i])))
-				return (NULL);
+				return (lm_quit_properly_copy_graph(resid_graph));
 			if (graph[i]->next)
 				if (!(resid_graph[i]->next =
 							lm_copy_all_adj_node(graph[i]->next)))
-					return (NULL);
+					return (lm_quit_properly_copy_graph(resid_graph));
 		}
 		i++;
 	}

@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   const.h                                            :+:      :+:    :+:   */
+/*   lm_quit_properly_resid_graph.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/15 17:02:07 by galemair          #+#    #+#             */
-/*   Updated: 2018/06/25 15:09:22 by galemair         ###   ########.fr       */
+/*   Created: 2018/09/11 10:45:57 by jabt              #+#    #+#             */
+/*   Updated: 2018/09/11 10:50:14 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONST_H
-# define CONST_H
+#include "lem_in.h"
 
-#define WINDOW_NAME "Lem_In"
-#define	WIDTH 1280
-#define HEIGHT 960
-#define	TRUE 1
-#define	FALSE 0
+/*
+** 	PROCEDURE
+**	quit properly the function lm_copy_hashtable
+*/
 
-
-#endif
+t_sommet		**lm_quit_properly_copy_graph(t_sommet **resid_graph)
+{
+	lm_free_resid_graph(resid_graph);
+	free(resid_graph);
+	return (NULL);
+}
