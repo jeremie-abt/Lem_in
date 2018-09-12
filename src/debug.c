@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:51:11 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/11 17:11:28 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 10:37:44 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	print_all_hashtable(t_sommet **hashtable)
 			while (cur)
 			{
 				printf("HEAD %d : %s neighbor ->\n", i, cur->name);
-				if (ur)
 				print_adj_lst(cur, cur->lst);
 				cur = cur->next;
 			}

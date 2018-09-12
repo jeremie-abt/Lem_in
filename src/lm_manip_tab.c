@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/26 12:04:01 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/11 10:18:44 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 11:24:31 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void			lm_fill_ants_per_path_tab(t_sommet **graph, int path, int ants,
 	int			i;
 	int			j;
 
-	lst = graph[1]->lst->next;
+	lst = graph[1]->lst;
 	cur = lm_get_sommet(graph, lst->name);
 	sec_cur = lm_get_sommet(graph, lst->name);
 	j = 0;

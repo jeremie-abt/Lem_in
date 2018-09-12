@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/11 17:00:12 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 10:58:34 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int					lm_hash(char *str);
 int					lm_add_sommet(t_sommet **graph, char *str);
 int					lm_add_start_end(t_sommet **graph, int index);
 t_sommet			**lm_copy_hashtable(t_sommet **graph);
-t_sommet			*lm_copy_node(t_sommet *src);
+t_sommet			*lm_copy_node(t_sommet **graph, t_sommet *src);
 void				lm_update_main_graph(t_sommet **graph,
 		t_sommet **resid_graph);
 t_sommet			*lm_get_sommet(t_sommet **graph, char *needle);

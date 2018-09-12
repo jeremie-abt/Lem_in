@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 13:35:16 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/11 12:15:31 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 11:39:19 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void			lm_print_last_part(t_sommet **graph, t_sommet *cur,
 		else if (next != graph[1])
 			*cur_tab = next;
 	}
-	else 
+	else
 	{
 		printf("COLOR%d-%s ", cur->ant, graph[1]->name);
 		if (!*tab_of_ant)

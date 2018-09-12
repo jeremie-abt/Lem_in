@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:39:02 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/11 17:03:14 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 11:36:51 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,13 +131,14 @@ int					lm_find_best_flow(t_sommet **graph, int ants)
 		return (path);
 	graph[1]->distance = 0;
 	if (!(resid_graph = lm_copy_hashtable(graph)))
+	{
+		lm_free_resid_graph(resid_graph);
+		free(resid_graph);
 		return (path);
+	}
 	lm_fill_distance_flow(graph);
 	path += lm_optimize_and_reverse_shortcut(graph, resid_graph, ants);
 	lm_free_resid_graph(resid_graph);
-	print_flow(graph);
-	printf("oojasijdiwiiauiii\n");
-	exit(5);
 	free(resid_graph);
 	ft_bzero(resid_graph, sizeof(t_sommet *) * HASH_SIZE);
 	return (path);
