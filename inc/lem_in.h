@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 14:31:49 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 15:02:01 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include "ft_printf.h"
+# include "assert.h"
 
 # define HASH_SIZE 128
 

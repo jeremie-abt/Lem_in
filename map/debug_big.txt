@@ -1,0 +1,1002 @@
+10
+##start
+room1 2 2
+##end
+room500 2 2
+room2 2 2
+room3 2 2
+room4 2 2
+room5 2 2
+room6 2 2
+room7 2 2
+room8 2 2
+room9 2 2
+room10 2 2
+room11 2 2
+room12 2 2
+room13 2 2
+room14 2 2
+room15 2 2
+room16 2 2
+room17 2 2
+room18 2 2
+room19 2 2
+room20 2 2
+room21 2 2
+room22 2 2
+room23 2 2
+room24 2 2
+room25 2 2
+room26 2 2
+room27 2 2
+room28 2 2
+room29 2 2
+room30 2 2
+room31 2 2
+room32 2 2
+room33 2 2
+room34 2 2
+room35 2 2
+room36 2 2
+room37 2 2
+room38 2 2
+room39 2 2
+room40 2 2
+room41 2 2
+room42 2 2
+room43 2 2
+room44 2 2
+room45 2 2
+room46 2 2
+room47 2 2
+room48 2 2
+room49 2 2
+room50 2 2
+room51 2 2
+room52 2 2
+room53 2 2
+room54 2 2
+room55 2 2
+room56 2 2
+room57 2 2
+room58 2 2
+room59 2 2
+room60 2 2
+room61 2 2
+room62 2 2
+room63 2 2
+room64 2 2
+room65 2 2
+room66 2 2
+room67 2 2
+room68 2 2
+room69 2 2
+room70 2 2
+room71 2 2
+room72 2 2
+room73 2 2
+room74 2 2
+room75 2 2
+room76 2 2
+room77 2 2
+room78 2 2
+room79 2 2
+room80 2 2
+room81 2 2
+room82 2 2
+room83 2 2
+room84 2 2
+room85 2 2
+room86 2 2
+room87 2 2
+room88 2 2
+room89 2 2
+room90 2 2
+room91 2 2
+room92 2 2
+room93 2 2
+room94 2 2
+room95 2 2
+room96 2 2
+room97 2 2
+room98 2 2
+room99 2 2
+room100 2 2
+room101 2 2
+room102 2 2
+room103 2 2
+room104 2 2
+room105 2 2
+room106 2 2
+room107 2 2
+room108 2 2
+room109 2 2
+room110 2 2
+room111 2 2
+room112 2 2
+room113 2 2
+room114 2 2
+room115 2 2
+room116 2 2
+room117 2 2
+room118 2 2
+room119 2 2
+room120 2 2
+room121 2 2
+room122 2 2
+room123 2 2
+room124 2 2
+room125 2 2
+room126 2 2
+room127 2 2
+room128 2 2
+room129 2 2
+room130 2 2
+room131 2 2
+room132 2 2
+room133 2 2
+room134 2 2
+room135 2 2
+room136 2 2
+room137 2 2
+room138 2 2
+room139 2 2
+room140 2 2
+room141 2 2
+room142 2 2
+room143 2 2
+room144 2 2
+room145 2 2
+room146 2 2
+room147 2 2
+room148 2 2
+room149 2 2
+room150 2 2
+room151 2 2
+room152 2 2
+room153 2 2
+room154 2 2
+room155 2 2
+room156 2 2
+room157 2 2
+room158 2 2
+room159 2 2
+room160 2 2
+room161 2 2
+room162 2 2
+room163 2 2
+room164 2 2
+room165 2 2
+room166 2 2
+room167 2 2
+room168 2 2
+room169 2 2
+room170 2 2
+room171 2 2
+room172 2 2
+room173 2 2
+room174 2 2
+room175 2 2
+room176 2 2
+room177 2 2
+room178 2 2
+room179 2 2
+room180 2 2
+room181 2 2
+room182 2 2
+room183 2 2
+room184 2 2
+room185 2 2
+room186 2 2
+room187 2 2
+room188 2 2
+room189 2 2
+room190 2 2
+room191 2 2
+room192 2 2
+room193 2 2
+room194 2 2
+room195 2 2
+room196 2 2
+room197 2 2
+room198 2 2
+room199 2 2
+room200 2 2
+room201 2 2
+room202 2 2
+room203 2 2
+room204 2 2
+room205 2 2
+room206 2 2
+room207 2 2
+room208 2 2
+room209 2 2
+room210 2 2
+room211 2 2
+room212 2 2
+room213 2 2
+room214 2 2
+room215 2 2
+room216 2 2
+room217 2 2
+room218 2 2
+room219 2 2
+room220 2 2
+room221 2 2
+room222 2 2
+room223 2 2
+room224 2 2
+room225 2 2
+room226 2 2
+room227 2 2
+room228 2 2
+room229 2 2
+room230 2 2
+room231 2 2
+room232 2 2
+room233 2 2
+room234 2 2
+room235 2 2
+room236 2 2
+room237 2 2
+room238 2 2
+room239 2 2
+room240 2 2
+room241 2 2
+room242 2 2
+room243 2 2
+room244 2 2
+room245 2 2
+room246 2 2
+room247 2 2
+room248 2 2
+room249 2 2
+room250 2 2
+room251 2 2
+room252 2 2
+room253 2 2
+room254 2 2
+room255 2 2
+room256 2 2
+room257 2 2
+room258 2 2
+room259 2 2
+room260 2 2
+room261 2 2
+room262 2 2
+room263 2 2
+room264 2 2
+room265 2 2
+room266 2 2
+room267 2 2
+room268 2 2
+room269 2 2
+room270 2 2
+room271 2 2
+room272 2 2
+room273 2 2
+room274 2 2
+room275 2 2
+room276 2 2
+room277 2 2
+room278 2 2
+room279 2 2
+room280 2 2
+room281 2 2
+room282 2 2
+room283 2 2
+room284 2 2
+room285 2 2
+room286 2 2
+room287 2 2
+room288 2 2
+room289 2 2
+room290 2 2
+room291 2 2
+room292 2 2
+room293 2 2
+room294 2 2
+room295 2 2
+room296 2 2
+room297 2 2
+room298 2 2
+room299 2 2
+room300 2 2
+room301 2 2
+room302 2 2
+room303 2 2
+room304 2 2
+room305 2 2
+room306 2 2
+room307 2 2
+room308 2 2
+room309 2 2
+room310 2 2
+room311 2 2
+room312 2 2
+room313 2 2
+room314 2 2
+room315 2 2
+room316 2 2
+room317 2 2
+room318 2 2
+room319 2 2
+room320 2 2
+room321 2 2
+room322 2 2
+room323 2 2
+room324 2 2
+room325 2 2
+room326 2 2
+room327 2 2
+room328 2 2
+room329 2 2
+room330 2 2
+room331 2 2
+room332 2 2
+room333 2 2
+room334 2 2
+room335 2 2
+room336 2 2
+room337 2 2
+room338 2 2
+room339 2 2
+room340 2 2
+room341 2 2
+room342 2 2
+room343 2 2
+room344 2 2
+room345 2 2
+room346 2 2
+room347 2 2
+room348 2 2
+room349 2 2
+room350 2 2
+room351 2 2
+room352 2 2
+room353 2 2
+room354 2 2
+room355 2 2
+room356 2 2
+room357 2 2
+room358 2 2
+room359 2 2
+room360 2 2
+room361 2 2
+room362 2 2
+room363 2 2
+room364 2 2
+room365 2 2
+room366 2 2
+room367 2 2
+room368 2 2
+room369 2 2
+room370 2 2
+room371 2 2
+room372 2 2
+room373 2 2
+room374 2 2
+room375 2 2
+room376 2 2
+room377 2 2
+room378 2 2
+room379 2 2
+room380 2 2
+room381 2 2
+room382 2 2
+room383 2 2
+room384 2 2
+room385 2 2
+room386 2 2
+room387 2 2
+room388 2 2
+room389 2 2
+room390 2 2
+room391 2 2
+room392 2 2
+room393 2 2
+room394 2 2
+room395 2 2
+room396 2 2
+room397 2 2
+room398 2 2
+room399 2 2
+room400 2 2
+room401 2 2
+room402 2 2
+room403 2 2
+room404 2 2
+room405 2 2
+room406 2 2
+room407 2 2
+room408 2 2
+room409 2 2
+room410 2 2
+room411 2 2
+room412 2 2
+room413 2 2
+room414 2 2
+room415 2 2
+room416 2 2
+room417 2 2
+room418 2 2
+room419 2 2
+room420 2 2
+room421 2 2
+room422 2 2
+room423 2 2
+room424 2 2
+room425 2 2
+room426 2 2
+room427 2 2
+room428 2 2
+room429 2 2
+room430 2 2
+room431 2 2
+room432 2 2
+room433 2 2
+room434 2 2
+room435 2 2
+room436 2 2
+room437 2 2
+room438 2 2
+room439 2 2
+room440 2 2
+room441 2 2
+room442 2 2
+room443 2 2
+room444 2 2
+room445 2 2
+room446 2 2
+room447 2 2
+room448 2 2
+room449 2 2
+room450 2 2
+room451 2 2
+room452 2 2
+room453 2 2
+room454 2 2
+room455 2 2
+room456 2 2
+room457 2 2
+room458 2 2
+room459 2 2
+room460 2 2
+room461 2 2
+room462 2 2
+room463 2 2
+room464 2 2
+room465 2 2
+room466 2 2
+room467 2 2
+room468 2 2
+room469 2 2
+room470 2 2
+room471 2 2
+room472 2 2
+room473 2 2
+room474 2 2
+room475 2 2
+room476 2 2
+room477 2 2
+room478 2 2
+room479 2 2
+room480 2 2
+room481 2 2
+room482 2 2
+room483 2 2
+room484 2 2
+room485 2 2
+room486 2 2
+room487 2 2
+room488 2 2
+room489 2 2
+room490 2 2
+room491 2 2
+room492 2 2
+room493 2 2
+room494 2 2
+room495 2 2
+room496 2 2
+room497 2 2
+room498 2 2
+room499 2 2
+room1-room2
+room2-room3
+room3-room4
+room4-room5
+room5-room6
+room6-room7
+room7-room8
+room8-room9
+room9-room10
+room10-room11
+room11-room12
+room12-room13
+room13-room14
+room14-room15
+room15-room16
+room16-room17
+room17-room18
+room18-room19
+room19-room20
+room20-room21
+room21-room22
+room22-room23
+room23-room24
+room24-room25
+room25-room26
+room26-room27
+room27-room28
+room28-room29
+room29-room30
+room30-room31
+room31-room32
+room32-room33
+room33-room34
+room34-room35
+room35-room36
+room36-room37
+room37-room38
+room38-room39
+room39-room40
+room40-room41
+room41-room42
+room42-room43
+room43-room44
+room44-room45
+room45-room46
+room46-room47
+room47-room48
+room48-room49
+room49-room50
+room50-room51
+room51-room52
+room52-room53
+room53-room54
+room54-room55
+room55-room56
+room56-room57
+room57-room58
+room58-room59
+room59-room60
+room60-room61
+room61-room62
+room62-room63
+room63-room64
+room64-room65
+room65-room66
+room66-room67
+room67-room68
+room68-room69
+room69-room70
+room70-room71
+room71-room72
+room72-room73
+room73-room74
+room74-room75
+room75-room76
+room76-room77
+room77-room78
+room78-room79
+room79-room80
+room80-room81
+room81-room82
+room82-room83
+room83-room84
+room84-room85
+room85-room86
+room86-room87
+room87-room88
+room88-room89
+room89-room90
+room90-room91
+room91-room92
+room92-room93
+room93-room94
+room94-room95
+room95-room96
+room96-room97
+room97-room98
+room98-room99
+room99-room100
+room100-room101
+room101-room102
+room102-room103
+room103-room104
+room104-room105
+room105-room106
+room106-room107
+room107-room108
+room108-room109
+room109-room110
+room110-room111
+room111-room112
+room112-room113
+room113-room114
+room114-room115
+room115-room116
+room116-room117
+room117-room118
+room118-room119
+room119-room120
+room120-room121
+room121-room122
+room122-room123
+room123-room124
+room124-room125
+room125-room126
+room126-room127
+room127-room128
+room128-room129
+room129-room130
+room130-room131
+room131-room132
+room132-room133
+room133-room134
+room134-room135
+room135-room136
+room136-room137
+room137-room138
+room138-room139
+room139-room140
+room140-room141
+room141-room142
+room142-room143
+room143-room144
+room144-room145
+room145-room146
+room146-room147
+room147-room148
+room148-room149
+room149-room150
+room150-room151
+room151-room152
+room152-room153
+room153-room154
+room154-room155
+room155-room156
+room156-room157
+room157-room158
+room158-room159
+room159-room160
+room160-room161
+room161-room162
+room162-room163
+room163-room164
+room164-room165
+room165-room166
+room166-room167
+room167-room168
+room168-room169
+room169-room170
+room170-room171
+room171-room172
+room172-room173
+room173-room174
+room174-room175
+room175-room176
+room176-room177
+room177-room178
+room178-room179
+room179-room180
+room180-room181
+room181-room182
+room182-room183
+room183-room184
+room184-room185
+room185-room186
+room186-room187
+room187-room188
+room188-room189
+room189-room190
+room190-room191
+room191-room192
+room192-room193
+room193-room194
+room194-room195
+room195-room196
+room196-room197
+room197-room198
+room198-room199
+room199-room200
+room200-room201
+room201-room202
+room202-room203
+room203-room204
+room204-room205
+room205-room206
+room206-room207
+room207-room208
+room208-room209
+room209-room210
+room210-room211
+room211-room212
+room212-room213
+room213-room214
+room214-room215
+room215-room216
+room216-room217
+room217-room218
+room218-room219
+room219-room220
+room220-room221
+room221-room222
+room222-room223
+room223-room224
+room224-room225
+room225-room226
+room226-room227
+room227-room228
+room228-room229
+room229-room230
+room230-room231
+room231-room232
+room232-room233
+room233-room234
+room234-room235
+room235-room236
+room236-room237
+room237-room238
+room238-room239
+room239-room240
+room240-room241
+room241-room242
+room242-room243
+room243-room244
+room244-room245
+room245-room246
+room246-room247
+room247-room248
+room248-room249
+room249-room250
+room250-room251
+room251-room252
+room252-room253
+room253-room254
+room254-room255
+room255-room256
+room256-room257
+room257-room258
+room258-room259
+room259-room260
+room260-room261
+room261-room262
+room262-room263
+room263-room264
+room264-room265
+room265-room266
+room266-room267
+room267-room268
+room268-room269
+room269-room270
+room270-room271
+room271-room272
+room272-room273
+room273-room274
+room274-room275
+room275-room276
+room276-room277
+room277-room278
+room278-room279
+room279-room280
+room280-room281
+room281-room282
+room282-room283
+room283-room284
+room284-room285
+room285-room286
+room286-room287
+room287-room288
+room288-room289
+room289-room290
+room290-room291
+room291-room292
+room292-room293
+room293-room294
+room294-room295
+room295-room296
+room296-room297
+room297-room298
+room298-room299
+room299-room300
+room300-room301
+room301-room302
+room302-room303
+room303-room304
+room304-room305
+room305-room306
+room306-room307
+room307-room308
+room308-room309
+room309-room310
+room310-room311
+room311-room312
+room312-room313
+room313-room314
+room314-room315
+room315-room316
+room316-room317
+room317-room318
+room318-room319
+room319-room320
+room320-room321
+room321-room322
+room322-room323
+room323-room324
+room324-room325
+room325-room326
+room326-room327
+room327-room328
+room328-room329
+room329-room330
+room330-room331
+room331-room332
+room332-room333
+room333-room334
+room334-room335
+room335-room336
+room336-room337
+room337-room338
+room338-room339
+room339-room340
+room340-room341
+room341-room342
+room342-room343
+room343-room344
+room344-room345
+room345-room346
+room346-room347
+room347-room348
+room348-room349
+room349-room350
+room350-room351
+room351-room352
+room352-room353
+room353-room354
+room354-room355
+room355-room356
+room356-room357
+room357-room358
+room358-room359
+room359-room360
+room360-room361
+room361-room362
+room362-room363
+room363-room364
+room364-room365
+room365-room366
+room366-room367
+room367-room368
+room368-room369
+room369-room370
+room370-room371
+room371-room372
+room372-room373
+room373-room374
+room374-room375
+room375-room376
+room376-room377
+room377-room378
+room378-room379
+room379-room380
+room380-room381
+room381-room382
+room382-room383
+room383-room384
+room384-room385
+room385-room386
+room386-room387
+room387-room388
+room388-room389
+room389-room390
+room390-room391
+room391-room392
+room392-room393
+room393-room394
+room394-room395
+room395-room396
+room396-room397
+room397-room398
+room398-room399
+room399-room400
+room400-room401
+room401-room402
+room402-room403
+room403-room404
+room404-room405
+room405-room406
+room406-room407
+room407-room408
+room408-room409
+room409-room410
+room410-room411
+room411-room412
+room412-room413
+room413-room414
+room414-room415
+room415-room416
+room416-room417
+room417-room418
+room418-room419
+room419-room420
+room420-room421
+room421-room422
+room422-room423
+room423-room424
+room424-room425
+room425-room426
+room426-room427
+room427-room428
+room428-room429
+room429-room430
+room430-room431
+room431-room432
+room432-room433
+room433-room434
+room434-room435
+room435-room436
+room436-room437
+room437-room438
+room438-room439
+room439-room440
+room440-room441
+room441-room442
+room442-room443
+room443-room444
+room444-room445
+room445-room446
+room446-room447
+room447-room448
+room448-room449
+room449-room450
+room450-room451
+room451-room452
+room452-room453
+room453-room454
+room454-room455
+room455-room456
+room456-room457
+room457-room458
+room458-room459
+room459-room460
+room460-room461
+room461-room462
+room462-room463
+room463-room464
+room464-room465
+room465-room466
+room466-room467
+room467-room468
+room468-room469
+room469-room470
+room470-room471
+room471-room472
+room472-room473
+room473-room474
+room474-room475
+room475-room476
+room476-room477
+room477-room478
+room478-room479
+room479-room480
+room480-room481
+room481-room482
+room482-room483
+room483-room484
+room484-room485
+room485-room486
+room486-room487
+room487-room488
+room488-room489
+room489-room490
+room490-room491
+room491-room492
+room492-room493
+room493-room494
+room494-room495
+room495-room496
+room496-room497
+room497-room498
+room498-room499
+room499-room500

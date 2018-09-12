@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 11:15:42 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/10 18:37:59 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 14:50:37 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void		lm_print_all_ants(char *end, int ants)
 	i = 0;
 	while (i < ants)
 	{
-		printf("COLOR%d-%s ", i, end);
+		ft_printf("{GREEN}L%d-%s{EOC} ", i, end);
 		i++;
 	}
-	printf("\n");
+	ft_printf("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 13:35:16 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 11:50:13 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 16:53:00 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void			lm_print_last_part(t_sommet **graph, t_sommet *cur,
 	{
 		if (cur->ant)
 		{
-			printf("COLOR%d-%s ", cur->ant, graph[1]->name);
+			ft_printf("{GREEN}L%d-%s{EOC} ", cur->ant, graph[1]->name);
 			cur->ant = prev->ant;
 			if (!cur->ant)
 				*cur_tab = NULL;
@@ -34,7 +34,7 @@ static void			lm_print_last_part(t_sommet **graph, t_sommet *cur,
 	}
 	else
 	{
-		printf("COLOR%d-%s ", cur->ant, graph[1]->name);
+		ft_printf("{GREEN}L%d-%s{EOC} ", cur->ant, graph[1]->name);
 		if (!*tab_of_ant)
 			*cur_tab = NULL;
 	}
@@ -50,7 +50,7 @@ static void			lm_print_first_part(t_sommet *cur, int *tab_of_ant)
 	if (*tab_of_ant)
 	{
 		cur->ant++;
-		printf("Lici%d-%s ", cur->ant, cur->name);
+		ft_printf("L%d-%s ", cur->ant, cur->name);
 		(*tab_of_ant)--;
 	}
 	else
@@ -76,7 +76,7 @@ static void			lm_print_and_shift_path(t_sommet **graph,
 	while (prev != graph[0])
 	{
 		if (prev->ant)
-			printf("L%d-%s ", prev->ant, cur->name);
+			ft_printf("L%d-%s ", prev->ant, cur->name);
 		cur->ant = prev->ant;
 		cur = prev;
 		prev = prev->prev;
@@ -104,7 +104,7 @@ static int			lm_print_ants(t_sommet **graph, int *tab_of_ants, int size)
 				lm_print_and_shift_path(graph, tab, tab_of_ants, i + 1);
 			i++;
 		}
-		printf("\n");
+		ft_printf("\n");
 	}
 	free(tab);
 	return (1);

@@ -3,71 +3,71 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: galemair <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: jabt <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/05/05 14:48:14 by galemair          #+#    #+#              #
-#    Updated: 2018/09/04 16:22:31 by galemair         ###   ########.fr        #
+#    Createdf: 2018/02/15 11:39:11 by jabt              #+#    #+#              #
+#    Updated: 2018/04/06 16:56:43 by jabt             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+CC=gcc
+NAME=libftprintf.a
+LIB=libft/libft.a
+INC=inc/ft_printf.h
+FLAGS=-Wall -Werror -Wextra
 
-RM			=	rm -rf
 
-NAME		=	libftprintf.a
+.PHONY: clean fclean re libft
 
-LIBFT		=	libft/
+SRC= $(wildcard src/*.c) \
+ft_printf.c
 
-SRCS		=	srcs/ft_percentage_parsing.c				\
-				srcs/manage_converter.c						\
-				srcs/ft_printf.c							\
-				srcs/utils.c								\
-				srcs/manage_buffer.c						\
-				srcs/manage_unicode.c				\
-				srcs/manage_flag.c							\
-				srcs/convert_manager/manage_char.c			\
-				srcs/convert_manager/manage_int.c			\
-				srcs/convert_manager/manage_pct.c			\
-				srcs/convert_manager/manage_ptr.c			\
-				srcs/convert_manager/manage_string.c		\
-				srcs/convert_manager/manage_unsignedint.c	\
+PATHLIB=./libft/
 
-LIB_OBJS	=	libft/ft_bzero.o		\
-			libft/ft_char_in_str.o		\
-			libft/ft_memset.o		\
-			libft/ft_isdigit.o		\
-			libft/ft_strlen.o
+SRCLIBFT=ft_itoa.c \
+		 ft_memdel.c \
+		 ft_memmove.c \
+		 ft_memset.c \
+		 ft_strcarac.c \
+		 ft_strcat.c \
+		 ft_strchr.c \
+		 ft_strdel.c \
+		 ft_strlen.c \
+		 ft_strncat.c \
+		 ft_strnchr.c \
+		 ft_strncpy.c \
+		 ft_strnew.c \
+		 ft_strstr.c \
+		 ft_strtrim.c
+OBJLIBFT= $(SRCLIBFT:.c=.o)
 
-OBJS		=	$(SRCS:.c=.o) 
+OBJ= $(addprefix obj/,$(notdir $(SRC:.c=.o)))
 
-INCLUDES	=	includes/
+all: libft $(NAME) 
 
-#COLORS
+libft:
+	@make -C $(PATHLIB)	
 
-ROUGE		= \033[31m
-VERT		= \033[32m
-JAUNE		= \033[33m
-BLEU		= \033[34m
+$(NAME): obj $(OBJ)
+	@ar rc $(NAME) $(OBJ) $(addprefix $(PATHLIB),$(OBJLIBFT));
+	@ranlib $(NAME) ;
+	@echo "\033[1;32m compilation done\033[0m"
 
-$(NAME): $(OBJS)
-	@ar rc 	$(NAME) $(OBJS) ../libft/libft.a
-	@echo "\nFT_PRINTF COMPILED"
+obj/%.o: src/%.c $(INC)
+	$(CC) $(CFLAGS) -o $@ -c $< 
 
-all:		$(NAME)
+obj/ft_printf.o: ft_printf.c $(INC)
+	$(CC) $(FLAGS) -o $@ -c $< 
 
-lib:
-	@make -C libft/
-
-%.o : %.c
-	@printf "🐜 "
-	@gcc -o $@ -c $< -I $(INCLUDES)
+obj:
+	@mkdir obj
 
 clean:
-	@$(RM) $(OBJS)
-	@echo "♻️ "
+	rm -rf $(OBJ);
+	rm -rf $(addprefix $(PATHLIB), $(OBJLIBFT))
 
 fclean: clean
-	@$(RM) $(NAME)
-re:	fclean all
+	rm -rf $(NAME)
+	rm -rf $(PATHLIB)/libft.a
 
-.PHONY: clean fclean re
-
+re: fclean libft $(NAME)

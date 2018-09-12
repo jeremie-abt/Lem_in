@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:51:11 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 10:37:44 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 14:50:37 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,33 @@
 
 void	 print_adj_lst(t_sommet *node, t_adj_lst *adj_lst)
 {
-	printf("voila le node : %s ces voisins et leurs edges :\n\n", node->name);
+	ft_printf("voila le node : %s ces voisins et leurs edges :\n\n", node->name);
 	while (adj_lst)
 	{
-		printf("	lst : %s\n", adj_lst->name);
+		ft_printf("	lst : %s\n", adj_lst->name);
 		adj_lst = adj_lst->next;
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
 void	 print_adj_lst_distance(t_sommet **hashtable, t_sommet *node, t_adj_lst *adj_lst)
 {
 	t_sommet	*cur;
 
-	printf("voila le node : %s ces voisins et leurs edges :\n\n", node->name);
+	ft_printf("voila le node : %s ces voisins et leurs edges :\n\n", node->name);
 	while (adj_lst)
 	{
-		printf("	lst : %s ", adj_lst->name);
+		ft_printf("	lst : %s ", adj_lst->name);
 		cur = lm_get_sommet(hashtable, adj_lst->name);
-		printf("ca distance : %d\n", cur->distance);
+		ft_printf("ca distance : %d\n", cur->distance);
 		adj_lst = adj_lst->next;
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
 void	print_sommet(t_sommet *hashtable)
 {
-	printf("sommet : %s\n", hashtable->name);
+	ft_printf("sommet : %s\n", hashtable->name);
 }
 
 void	print_hashtable(t_sommet **hashtable)
@@ -52,7 +52,7 @@ void	print_hashtable(t_sommet **hashtable)
 	{
 		if (hashtable[i])
 		{
-			printf("HEAD %d : %s\n", i, hashtable[i]->name);
+			ft_printf("HEAD %d : %s\n", i, hashtable[i]->name);
 		}
 		i++;
 	}
@@ -70,7 +70,7 @@ void	print_all_hashtable(t_sommet **hashtable)
 			cur = hashtable[i];
 			while (cur)
 			{
-				printf("HEAD %d : %s neighbor ->\n", i, cur->name);
+				ft_printf("HEAD %d : %s neighbor ->\n", i, cur->name);
 				print_adj_lst(cur, cur->lst);
 				cur = cur->next;
 			}
@@ -88,12 +88,12 @@ void	print_resid_graph(t_sommet **resid_graph)
 	{
 		if (resid_graph[i])
 		{
-			printf("in)%s neighbor ->\n", resid_graph[i]->name);
+			ft_printf("in)%s neighbor ->\n", resid_graph[i]->name);
 			print_adj_lst(resid_graph[i], resid_graph[i]->lst);
-			printf("(out)%s neighbor ->\n", resid_graph[i]->next->name);
+			ft_printf("(out)%s neighbor ->\n", resid_graph[i]->next->name);
 			print_adj_lst(resid_graph[i], resid_graph[i]->next->lst);
 
-//			printf("just first one : %s\n", hashtable[i]->lst->name);
+//			ft_printf("just first one : %s\n", hashtable[i]->lst->name);
 		}
 		i++;
 	}
@@ -108,9 +108,9 @@ void	print_all_hashtable_wdistance(t_sommet **hashtable)
 	{
 		if (hashtable[i])
 		{
-			printf("HEAD %d : %s sa distance : %d  neighbor ->\n", i, hashtable[i]->name, hashtable[i]->distance);
+			ft_printf("HEAD %d : %s sa distance : %d  neighbor ->\n", i, hashtable[i]->name, hashtable[i]->distance);
 			print_adj_lst(hashtable[i], hashtable[i]->lst);
-//			printf("just first one : %s\n", hashtable[i]->lst->name);
+//			ft_printf("just first one : %s\n", hashtable[i]->lst->name);
 		}
 		i++;
 	}
@@ -132,13 +132,13 @@ void	print_hashtable_distance_and_prev(t_sommet **hashtable)
 			while (cur)
 			{
 				if (cur->prev)
-					printf("HEAD %d : %s sa distance : %d  prev -> %s\n", i, cur->name, cur->distance, cur->prev->name);
+					ft_printf("HEAD %d : %s sa distance : %d  prev -> %s\n", i, cur->name, cur->distance, cur->prev->name);
 				else
-					printf("HEAD %d : %s sa distance : %d  prev -> NULL\n", i, cur->name, cur->distance);
+					ft_printf("HEAD %d : %s sa distance : %d  prev -> NULL\n", i, cur->name, cur->distance);
 				cur = cur->next;
 			}
 
-//			printf("just first one : %s\n", hashtable[i]->lst->name);
+//			ft_printf("just first one : %s\n", hashtable[i]->lst->name);
 		}
 		i++;
 	}
@@ -159,12 +159,12 @@ void	print_hashtable_visited_and_prev(t_sommet **hashtable)
 			while (cur)
 			{
 				if (cur->prev)
-					printf("HEAD %d : %s visited : %d  prev -> %s\n", i, cur->name, cur->visited, cur->prev->name);
+					ft_printf("HEAD %d : %s visited : %d  prev -> %s\n", i, cur->name, cur->visited, cur->prev->name);
 				else
-					printf("HEAD %d : %s sa visited : %d  prev -> NULL\n", i, cur->name, cur->visited);
+					ft_printf("HEAD %d : %s sa visited : %d  prev -> NULL\n", i, cur->name, cur->visited);
 				cur = cur->next;
 			}
-//			printf("just first one : %s\n", cur->lst->name);
+//			ft_printf("just first one : %s\n", cur->lst->name);
 		}
 		i++;
 	}
@@ -185,18 +185,18 @@ void	print_flow(t_sommet **hashtable)
 			cur = hashtable[i];
 			while (cur)
 			{
-				printf("HEAD %d : %s flow :\n", i, cur->name);
+				ft_printf("HEAD %d : %s flow :\n", i, cur->name);
 				lst = cur->lst;
 				while (lst)
 				{
 					if (lst->name)
-						printf("flow vers %s : %d\n", lst->name, lst->flow);
+						ft_printf("flow vers %s : %d\n", lst->name, lst->flow);
 					else
-						printf("FLOW MAIS YA PAS DNAME : %d\n",lst->flow);
+						ft_printf("FLOW MAIS YA PAS DNAME : %d\n",lst->flow);
 
 					lst = lst->next;
 				}
-				printf("\n");
+				ft_printf("\n");
 				cur = cur->next;
 			}
 		}
@@ -207,23 +207,23 @@ void	print_flow(t_sommet **hashtable)
 
 void	print_node(t_sommet *node)
 {
-	printf("voici le name : %s\n", node->name);
-	printf("voici la distance : %d\n", node->distance);
-	printf("lst : %p\n", node->lst);
-	printf("next : %p\n", node->next);
-	//printf("queue %p\n", node->queue);
+	ft_printf("voici le name : %s\n", node->name);
+	ft_printf("voici la distance : %d\n", node->distance);
+	ft_printf("lst : %p\n", node->lst);
+	ft_printf("next : %p\n", node->next);
+	//ft_printf("queue %p\n", node->queue);
 }
 
 
 /*void	print_path(t_sommet **hashtable, t_sommet *node)
 {
-	printf("%s->", hashtable[1]->name);
+	ft_printf("%s->", hashtable[1]->name);
 	while (node)
 	{
-		printf("%s->", node->name);
+		ft_printf("%s->", node->name);
 		node = node->queue;
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 */
 void	print_queue(t_control_queue *control)
@@ -233,7 +233,7 @@ void	print_queue(t_control_queue *control)
 	tail = control->tail;
 	while (tail)
 	{
-		printf("current : %s\n", tail->sommet->name);
+		ft_printf("current : %s\n", tail->sommet->name);
 		tail = tail->next;
 	}
 }
@@ -243,7 +243,7 @@ void	print_stack(t_stack *stack)
 {
 	while (stack)
 	{
-		printf("stack : %s addr : %p\n", stack->sommet->name, stack);
+		ft_printf("stack : %s addr : %p\n", stack->sommet->name, stack);
 		stack = stack->next;
 	}
 }
@@ -253,12 +253,12 @@ void	print_ant_path(t_sommet **graph)
 	t_adj_lst	*lst;
 	t_sommet	*cur;
 
-	printf("voici le nombre de fourmis sur chacun de tes paths :\n\n");
+	ft_printf("voici le nombre de fourmis sur chacun de tes paths :\n\n");
 	lst = graph[1]->lst;
 	while (lst)
 	{
 		cur = lm_get_sommet(graph, lst->name);
-		printf("voici le nombre de fourmis ici : %s -> %d\n", cur->name, cur->ant);
+		ft_printf("voici le nombre de fourmis ici : %s -> %d\n", cur->name, cur->ant);
 		lst = lst->next;
 	}
 }
@@ -286,10 +286,10 @@ void	print_tab_ant(t_sommet **tab, int size)
 	{
 		if (tab[i])
 		{
-			printf("tab[%d] : %s\n", i, tab[i]->name);
+			ft_printf("tab[%d] : %s\n", i, tab[i]->name);
 		}
 		else
-			printf("tab[%d] : NULL\n", i);
+			ft_printf("tab[%d] : NULL\n", i);
 		i++;
 	}
 }

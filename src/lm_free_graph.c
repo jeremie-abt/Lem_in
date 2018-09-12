@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 09:43:57 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 13:53:38 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 16:49:39 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@ void			lm_free_hashtable(t_sommet **hashtab)
 			tmp = hashtab[i];
 			while (tmp)
 			{
-				free(tmp->name);
+//				free(tmp->name);// comprendre ca quest ce quon a foutu !!!
 				if (tmp->lst)
-				{
 					lm_free_adj_lst(tmp->lst);
-				}
 				tmp = tmp->next;
 				free(hashtab[i]);
 				hashtab[i] = tmp;

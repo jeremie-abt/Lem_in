@@ -1,0 +1,11 @@
+5
+##start
+start 5 5
+##end
+end 5 5
+room150 5 5
+room015 5 5
+room510 5 5
+start-room150
+room150-room015
+room015-room510

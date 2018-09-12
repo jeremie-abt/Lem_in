@@ -3,62 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/03 16:19:57 by galemair          #+#    #+#             */
-/*   Updated: 2018/04/04 14:03:01 by galemair         ###   ########.fr       */
+/*   Created: 2017/11/11 17:11:51 by jabt              #+#    #+#             */
+/*   Updated: 2017/11/21 10:49:22 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-static size_t		get_size(char const *s)
+static char	*ft_strfill(char *dst, const char *src, int index, int max)
 {
-	size_t len;
-	size_t i;
-	size_t j;
+	int	i;
 
 	i = 0;
-	len = 0;
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
-		i++;
-	while (s[i])
+	if (!(dst = (char *)malloc((max - index) + 2)))
+		return (NULL);
+	while (index <= max)
 	{
-		j = 0;
-		while (s[i + j] == ' ' || s[i + j] == '\n'
-				|| s[i + j] == '\t' || s[i + j] == '\0')
-		{
-			if (s[i + j] == '\0')
-				return (len);
-			j++;
-		}
-		len++;
+		dst[i] = (char)src[index];
+		index++;
 		i++;
 	}
-	return (len);
+	dst[i] = '\0';
+	return (dst);
 }
 
-char				*ft_strtrim(char const *s)
+char		*ft_strtrim(char const *s)
 {
-	char	*str;
-	size_t	size;
-	size_t	i;
-	size_t	j;
+	int		k;
+	int		i;
+	int		j;
+	char	*newstr;
 
-	i = 0;
-	j = 0;
 	if (!s)
 		return (NULL);
-	size = get_size(s);
-	if ((str = ft_strnew(size)) == NULL)
-		return (NULL);
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
-		i++;
-	while (j < size)
+	newstr = NULL;
+	j = ft_strlen(s);
+	i = -1;
+	k = 0;
+	while (s[++i])
 	{
-		str[j] = s[i];
-		j++;
-		i++;
+		if (s[i] != ' ' && s[i] != '\t' && s[i] != '\n')
+		{
+			k = 1;
+			j--;
+			while (s[j] == ' ' || s[j] == '\t' || s[j] == '\n')
+				j--;
+			return (ft_strfill(newstr, s, i, j));
+		}
 	}
-	return (str);
+	if (k != 1)
+		return (ft_strfill(newstr, s, 0, -1));
+	return (ft_strfill(newstr, s, 0, j - 1));
 }

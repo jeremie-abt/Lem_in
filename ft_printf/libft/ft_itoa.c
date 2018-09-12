@@ -3,85 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/03 16:14:27 by galemair          #+#    #+#             */
-/*   Updated: 2018/04/04 12:48:51 by galemair         ###   ########.fr       */
+/*   Created: 2017/11/13 17:29:10 by jabt              #+#    #+#             */
+/*   Updated: 2018/02/26 12:15:24 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-static char	*ft_intmin(void)
+static int		ft_numlen(int n)
 {
-	char *str;
-
-	if ((str = malloc(sizeof(char) * 12)) == NULL)
-		return (NULL);
-	str[0] = '-';
-	str[1] = '2';
-	str[2] = '1';
-	str[3] = '4';
-	str[4] = '7';
-	str[5] = '4';
-	str[6] = '8';
-	str[7] = '3';
-	str[8] = '6';
-	str[9] = '4';
-	str[10] = '8';
-	str[11] = '\0';
-	return (str);
-}
-
-static int	ft_get_size(int n, int neg)
-{
-	int len;
-
-	len = 0;
-	if (neg == -1)
-		len++;
+	if (n < 0)
+	{
+		if (n == -2147483648)
+		{
+			return (2 + (ft_numlen((n / 10) * -1)));
+		}
+		return (1 + (ft_numlen(n * -1)));
+	}
+	if (n > 9)
+		return (1 + ft_numlen(n / 10));
+	if (n > 0 && n < 10)
+		return (1);
 	if (n == 0)
 		return (1);
-	while (n > 0)
-	{
-		len++;
-		n /= 10;
-	}
-	return (len);
+	return (0);
 }
 
-static char	*ft_fill(int n, char *str, int len, int neg)
+static char		*ft_fillstr(char *str, int n, int len)
 {
-	str[len] = '\0';
-	if (n == 0)
-		str[--len] = '0';
-	while (n > 0)
+	int	i;
+
+	i = 0;
+	if (n < 0)
 	{
-		len--;
-		str[len] = (n % 10) + '0';
-		n /= 10;
+		n *= -1;
+		while (0 < len)
+		{
+			str[len--] = (n % 10) + 48;
+			n = n / 10;
+		}
 	}
-	if (neg == -1)
-		str[0] = '-';
+	else
+	{
+		while (0 <= len--)
+		{
+			str[len] = (n % 10) + 48;
+			n = n / 10;
+		}
+	}
 	return (str);
 }
 
-char		*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	int		len;
 	char	*str;
-	int		neg;
+	int		i;
 
-	neg = 1;
-	if (n == -2147483648)
-		return (ft_intmin());
+	i = 0;
+	len = ft_numlen(n);
+	if (!(str = malloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	str[len] = '\0';
 	if (n < 0)
 	{
-		neg = -1;
-		n *= -1;
+		if (n == -2147483648)
+		{
+			str[10] = '8';
+			n = n / 10;
+			len--;
+		}
+		len--;
+		str[0] = '-';
 	}
-	len = ft_get_size(n, neg);
-	if ((str = malloc(sizeof(char) * (len + 1))) == NULL)
-		return (NULL);
-	return (ft_fill(n, str, len, neg));
+	str = ft_fillstr(str, n, len);
+	return (str);
 }
