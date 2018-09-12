@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:32:23 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/10 18:11:08 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 11:46:06 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 **		la valeur visited des nodes debut et fin est egale a 0
 */
 
-int				lm_find_one_path_with_bfs(t_sommet **graph, int ants,
-		int cur_nb_path)
+int				lm_find_one_path_with_bfs(t_sommet **graph)
 {
 	t_control_queue		control;
 	t_sommet			*cur;

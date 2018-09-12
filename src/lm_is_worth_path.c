@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:19:40 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/10 14:13:02 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 11:49:01 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int				lm_is_worth_path_bfs(t_sommet **graph, int ants,
 {
 	static int		ret;
 	static int		worthiness;
-	int				tmp;
 
 	lm_count_length_path(graph[1]->prev);
 	if (ret == 0)

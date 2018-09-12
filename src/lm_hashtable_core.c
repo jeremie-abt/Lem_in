@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:29:35 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 11:35:53 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 11:48:24 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@
 **	null si pb
 */
 
-static t_adj_lst		*lm_copy_lst(t_sommet **graph, t_sommet *node)
+static t_adj_lst		*lm_copy_lst(t_sommet *node)
 {
 	t_adj_lst	*new_lst;
 	t_adj_lst	*lst;
-	t_sommet	*cur;
 
 	lst = node->lst;
 	new_lst = NULL;
@@ -100,7 +99,7 @@ t_sommet				*lm_copy_node(t_sommet **graph, t_sommet *src)
 			return (NULL);
 		else
 			ft_memcpy((void *)resid_node, (void *)src, sizeof(t_sommet));
-		if (!(resid_node->lst = lm_copy_lst(graph, src)))
+		if (!(resid_node->lst = lm_copy_lst(src)))
 			return (NULL);
 		if (src->next)
 		{

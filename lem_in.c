@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:11:00 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 11:38:56 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 11:43:21 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		lm_quit_properly(t_sommet **graph)
 	exit(42);
 }
 
-int				main(int argc, char **argv)
+int				main(void)
 {
 	int			ants;
 	int			path;

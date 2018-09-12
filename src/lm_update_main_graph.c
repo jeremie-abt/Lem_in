@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 16:23:41 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/10 16:33:18 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 11:55:36 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ static void		lm_update_node(t_sommet **graph, t_sommet *node,
 void			lm_update_main_graph(t_sommet **graph, t_sommet **resid_graph)
 {
 	int			i;
-	t_sommet	*cur;
 	t_sommet	*resid_cur;
-	t_sommet	*tmp;
 
 	i = 0;
 	while (i < HASH_SIZE)

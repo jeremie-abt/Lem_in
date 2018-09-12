@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:39:02 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 11:36:51 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 11:53:34 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int			lm_optimize_and_reverse_shortcut(t_sommet **graph,
 			ret++;
 		}
 		else
-			lm_reverse_wrong_path(resid_graph, graph, scut.save_last_node);
+			lm_reverse_wrong_path(resid_graph, scut.save_last_node);
 		lm_clean_resid_graph(resid_graph);
 	}
 	return (ret);
@@ -91,11 +91,10 @@ static int			lm_optimize_and_reverse_shortcut(t_sommet **graph,
 static int			lm_find_shortest_distinct_path(t_sommet **graph,
 		int ants)
 {
-	int		ret;
 	int		path;
 
 	path = 0;
-	while (lm_find_one_path_with_bfs(graph, ants, path) > 0)
+	while (lm_find_one_path_with_bfs(graph) > 0)
 	{
 		if (graph[1]->prev == graph[0])
 			return (1);

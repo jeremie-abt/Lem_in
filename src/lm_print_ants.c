@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 13:35:16 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 11:39:19 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 11:50:13 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ static int			lm_print_ants(t_sommet **graph, int *tab_of_ants, int size)
 int					lm_core_print_ants(t_sommet **graph, int ants, int path)
 {
 	int			*nb_ants_in_path;
-	t_adj_lst	*lst;
 
 	lm_sort_lst_byorder(graph);
 	if (lm_sort_begin_byorder(graph) == -1)

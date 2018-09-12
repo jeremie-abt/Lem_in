@@ -6,26 +6,11 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:20:54 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/10 16:15:26 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 11:54:27 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-static void			lm_reverse_first_part(t_sommet **resid_graph,
-		t_sommet *node)
-{
-	t_sommet	*tmp;
-
-	node = node->prev;
-	while (node != resid_graph[0])
-	{
-		node->visited = 0;
-		tmp = node->prev;
-		node->prev = NULL;
-		node = tmp;
-	}
-}
 
 /*
 **	INPUT
@@ -35,7 +20,7 @@ static void			lm_reverse_first_part(t_sommet **resid_graph,
 */
 
 void				lm_reverse_wrong_path(t_sommet **resid_graph,
-		t_sommet **graph, t_sommet *node)
+		t_sommet *node)
 {
 	t_sommet	*resid_node;
 	t_adj_lst	*edge;

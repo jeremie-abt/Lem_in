@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 15:33:59 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/10 16:14:27 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 11:50:13 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static void			lm_reverse_shortcut_valid(t_sommet **resid_graph,
 static t_sommet		*lm_reverse_one_part(t_sommet **resid_graph,
 		t_sommet *first_node, t_sommet *second_node)
 {
-	t_sommet	*tmp;
 	t_adj_lst	*edge;
 
 	while (second_node->visited != 2 && second_node != resid_graph[0])

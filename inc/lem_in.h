@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 10:58:34 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 11:52:15 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,14 +149,13 @@ void				lm_clean_visited(t_sommet **graph);
 void				lm_clean_resid_graph(t_sommet **resid_graph);
 t_adj_lst			*lm_get_edge(t_adj_lst *lst, char *str);
 int					lm_find_best_flow(t_sommet **graph, int ants);
-int					lm_find_one_path_with_bfs(t_sommet **graph, int ants,
-		int cur_nb_path);
+int					lm_find_one_path_with_bfs(t_sommet **graph);
 t_sommet			*lm_get_node_to_reverse_bfs(t_sommet **resid_graph);
 int					lm_relaxing_bfs(t_sommet **resid_graph, t_sommet *node);
 void				lm_reverse_valid_path(t_sommet **resid_graph,
 		t_sommet **graph, t_sommet *node);
 void				lm_reverse_wrong_path(t_sommet **resid_graph,
-		t_sommet **graph, t_sommet *node);
+		t_sommet *node);
 
 /*
 ** 		display

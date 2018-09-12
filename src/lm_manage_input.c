@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 16:17:06 by galemair          #+#    #+#             */
-/*   Updated: 2018/09/11 09:17:06 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 11:49:22 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int		get_line(char **line, t_input *input, int start)
 
 int		check_line_validity(char *str)
 {
-	int	mp_flag;
-
 	if (*str == '#')
 		;
 	else if (lm_is_good_room(str) != -1)
