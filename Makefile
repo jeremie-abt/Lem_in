@@ -6,13 +6,13 @@
 #    By: galemair <galemair@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/04 13:49:33 by galemair          #+#    #+#              #
-#    Updated: 2018/09/04 16:25:50 by galemair         ###   ########.fr        #
+#    Updated: 2018/09/12 14:39:32 by jabt             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 RM			=	rm -rf
 
-NAME		=	lem_in
+NAME		=	lem-in
 
 INCLUDES	=	inc/
 

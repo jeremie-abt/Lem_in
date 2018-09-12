@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:16:32 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/10 18:45:31 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 14:29:43 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,12 @@ void				lm_clean_resid_graph(t_sommet **resid_graph)
 int					lm_add_sommet(t_sommet **sommet, char *str)
 {
 	int		key;
+	char	*tmp;
 
-	key = lm_hash(lm_get_room_name(str));
-	if (!(sommet[key] = lm_init_sommet(sommet[key],
-		ft_strsub(str, 0, lm_get_name_length(str)))))
+	if (!(tmp = ft_strsub(str, 0, lm_get_name_length(str))))
+		return (-1);
+	key = lm_hash(tmp);
+	if (!(sommet[key] = lm_init_sommet(sommet[key], tmp)))
 		return (-1);
 	return (1);
 }

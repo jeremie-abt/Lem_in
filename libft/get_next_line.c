@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 12:29:21 by galemair          #+#    #+#             */
-/*   Updated: 2018/05/08 17:40:51 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/12 14:39:56 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int		ft_read(const int fd, t_perso *tab)
 {
-	char	buff[BUFF_SIZE];
+	char	buff[GNL_BUFF_SIZE];
 	int		ret;
 
-	if ((ret = read(fd, buff, BUFF_SIZE)) == ERROR)
+	if ((ret = read(fd, buff, GNL_BUFF_SIZE)) == ERROR)
 		return (ERROR);
 	if (tab->len == 0 && ret != 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 16:17:06 by galemair          #+#    #+#             */
-/*   Updated: 2018/09/12 11:49:22 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/12 13:06:00 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	freeanddisplay_input(t_input *input)
 		printf("%s\n", input->line);
 		tmp = input;
 		input = input->next;
+		free(tmp->line);
 		free(tmp);
 	}
 }
