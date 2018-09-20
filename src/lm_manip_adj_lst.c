@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:40:21 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 17:04:38 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/20 16:19:31 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static int		lm_add_neighbor(t_sommet *first_sommet,
 
 	tmp = first_sommet->lst;
 	if (!(first_sommet->lst = malloc(sizeof(t_adj_lst))))
-		return (-1);
+		return (-2);
 	first_sommet->lst->next = tmp;
 	first_sommet->lst->name = first_neighbor;
 	tmp = second_sommet->lst;
 	if (!(second_sommet->lst = malloc(sizeof(t_adj_lst))))
 	{
 		lm_free_adj_lst(first_sommet->lst);
-		return (-1);
+		return (-2);
 	}
 	second_sommet->lst->next = tmp;
 	second_sommet->lst->name = second_neighbor;
@@ -37,29 +37,31 @@ static int		lm_add_neighbor(t_sommet *first_sommet,
 
 int				lm_add_tube(t_sommet **graph, char *pattern)
 {
-	char		*second;
-	char		*first;
 	t_sommet	*first_sommet;
 	t_sommet	*second_sommet;
+	char		*first;
 
-	second = ft_strchr(pattern, '-') + 1;
-	if (!graph[0] || !graph[1] || !(first = ft_strsub(pattern, 0,
-		(second - pattern) - 1)))
+	first = NULL;
+	if (!(graph[1]) || !(graph[0]))
 		return (-1);
-	if (!(second = ft_strdup(second)))
+	if (!(first = ft_strsub(pattern, 0,
+		(ft_strchr(pattern, '-') - pattern))))
 	{
 		free(first);
-		return (-1);
+		return (-2);
 	}
 	if (!(first_sommet = lm_get_sommet(graph, first)) ||
-			!(second_sommet = lm_get_sommet(graph, second)))
+			!(second_sommet = lm_get_sommet(graph, (ft_strchr(pattern, '-') + 1))))
 	{
-		free(second);
 		free(first);
 		return (-1);
 	}
-	if (lm_add_neighbor(first_sommet, second_sommet, second, first) == -1)
-		return (-1);
+	if (lm_add_neighbor(first_sommet, second_sommet, second_sommet->name, first_sommet->name) == -2)
+	{
+		free(first);
+		return (-2);
+	}
+	free(first);
 	return (1);
 }
 

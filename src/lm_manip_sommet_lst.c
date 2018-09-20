@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:16:32 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 17:01:50 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/20 15:12:34 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,10 @@ int					lm_add_sommet(t_sommet **sommet, char *str)
 	char	*tmp;
 
 	if (!(tmp = ft_strsub(str, 0, lm_get_name_length(str))))
-		return (-1);
+		return (-2);
 	key = lm_hash(tmp);
 	if (!(sommet[key] = lm_init_sommet(sommet[key], tmp)))
-		return (-1);
+		return (-2);
 	return (1);
 }
 
@@ -108,9 +108,10 @@ int					lm_add_start_end(t_sommet **graph, int index)
 	if (lm_is_good_room(line) == 1)
 	{
 		if (!(graph[index] = malloc(sizeof(t_sommet))))
-			return (-1);
+			return (-2);
 		ft_bzero(graph[index], sizeof(t_sommet));
-		graph[index]->name = ft_strsub(line, 0, lm_get_name_length(line));
+		if (!(graph[index]->name = ft_strsub(line, 0, lm_get_name_length(line))))
+			return (-2);
 	}
 	else
 		return (-1);

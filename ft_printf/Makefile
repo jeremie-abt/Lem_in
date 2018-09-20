@@ -6,7 +6,7 @@
 #    By: jabt <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Createdf: 2018/02/15 11:39:11 by jabt              #+#    #+#              #
-#    Updated: 2018/04/06 16:56:43 by jabt             ###   ########.fr        #
+#    Updated: 2018/09/19 13:07:14 by galemair         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,21 +43,20 @@ OBJLIBFT= $(SRCLIBFT:.c=.o)
 
 OBJ= $(addprefix obj/,$(notdir $(SRC:.c=.o)))
 
-all: libft $(NAME) 
-
-libft:
-	@make -C $(PATHLIB)	
+all: libft $(NAME)
 
 $(NAME): obj $(OBJ)
-	@ar rc $(NAME) $(OBJ) $(addprefix $(PATHLIB),$(OBJLIBFT));
+	@ar rc $(NAME) $(OBJ) ../libft/libft.a
 	@ranlib $(NAME) ;
-	@echo "\033[1;32m compilation done\033[0m"
+	@echo "\n\033[1;32m FT_PRINTF COMPILED MAMENE\033[0m"
 
 obj/%.o: src/%.c $(INC)
-	$(CC) $(CFLAGS) -o $@ -c $< 
+	@printf "🐜 "
+	@$(CC) $(CFLAGS) -o $@ -c $< 
 
 obj/ft_printf.o: ft_printf.c $(INC)
-	$(CC) $(FLAGS) -o $@ -c $< 
+	@printf "🐜 "
+	@$(CC) $(FLAGS) -o $@ -c $< 
 
 obj:
 	@mkdir obj

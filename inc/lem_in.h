@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 15:02:01 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/20 16:28:53 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,5 +229,7 @@ void				print_stack(t_stack *stack);
 void				print_ant_path(t_sommet **graph);
 int					is_node_in_graph(t_sommet **graph, t_sommet *node);
 void				print_tab_ant(t_sommet **tab, int size);
+void				free_input(t_input *input);
+int					lm_find_shortest_distinct_path(t_sommet **graph, int ants);
 
 #endif

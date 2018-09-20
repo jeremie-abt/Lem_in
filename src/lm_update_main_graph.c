@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 16:23:41 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 11:55:36 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/19 16:12:08 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,6 @@ static void		lm_update_lst(t_adj_lst *lst, t_adj_lst *resid_lst)
 		edge->flow = resid_lst->flow;
 		resid_lst = resid_lst->next;
 	}
-}
-
-static void		lm_update_parent_main_graph(t_sommet **graph, t_sommet *node,
-		t_sommet *resid_node)
-{
-	t_sommet	*tmp;
-
-	tmp = lm_get_sommet(graph, resid_node->prev->name);
-	node->prev = tmp;
 }
 
 static void		lm_update_node(t_sommet **graph, t_sommet *node,
@@ -58,7 +49,6 @@ static void		lm_update_node(t_sommet **graph, t_sommet *node,
 void			lm_update_main_graph(t_sommet **graph, t_sommet **resid_graph)
 {
 	int			i;
-	t_sommet	*resid_cur;
 
 	i = 0;
 	while (i < HASH_SIZE)

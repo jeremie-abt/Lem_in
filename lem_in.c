@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:11:00 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 16:41:35 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/20 16:20:42 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,14 @@ static void		lm_error_quit_properly(t_sommet **graph)
 {
 	write(1, "ERROR\n", 6);
 	lm_free_hashtable(graph);
-	while (1)
-		;
+	//while (1);
 	exit(42);
 }
 
 static void		lm_quit_properly(t_sommet **graph)
 {
 	lm_free_hashtable(graph);
-	while (1)
-		;//write(1, "dsdasd", 1);
+	while (1);
 	exit(42);
 }
 
@@ -36,7 +34,7 @@ int				main(void)
 	t_sommet	*graph[HASH_SIZE];
 
 	ft_bzero(graph, HASH_SIZE * sizeof(t_sommet *));
-	if ((ants = lm_parseur(graph)) == -1)
+	if ((ants = lm_parseur(graph)) < 0)
 		lm_error_quit_properly(graph);
 	ft_printf("\n");
 	path = lm_find_best_flow(graph, ants);

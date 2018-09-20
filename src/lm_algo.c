@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:39:02 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 16:43:48 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/20 15:08:34 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ static int			lm_optimize_and_reverse_shortcut(t_sommet **graph,
 ** 		via un bfs donc sans faire attention aux shortcut
 */
 
-static int			lm_find_shortest_distinct_path(t_sommet **graph,
-		int ants)
+int			lm_find_shortest_distinct_path(t_sommet **graph, int ants)
 {
 	int		path;
 
@@ -133,14 +132,11 @@ int					lm_find_best_flow(t_sommet **graph, int ants)
 	{
 		lm_free_resid_graph(resid_graph);
 		free(resid_graph);
+		resid_graph = NULL;
 		return (path);
 	}
 	lm_fill_distance_flow(graph);
 	path += lm_optimize_and_reverse_shortcut(graph, resid_graph, ants);
-	
-	
-	
-	
 	lm_free_resid_graph(resid_graph);
 	free(resid_graph);
 	ft_bzero(resid_graph, sizeof(t_sommet *) * HASH_SIZE);

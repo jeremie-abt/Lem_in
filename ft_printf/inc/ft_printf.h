@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 12:30:52 by jabt              #+#    #+#             */
-/*   Updated: 2018/05/28 17:34:56 by jabt             ###   ########.fr       */
+/*   Updated: 2018/02/26 14:58:26 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ enum				e_color
 	EOC
 };
 
-# define BUFF_SIZE 5000
+# define BUFF_SIZE 2048
 
 /*
 **			struct pour stocker le resultat de mon parsing de %
