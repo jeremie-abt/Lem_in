@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 17:57:25 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/25 15:41:19 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/25 18:04:03 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@
 int			lm_add_neighboor(t_sommet **graph, t_sommet *node,
 		t_control_queue *control)
 {
+	static int stop;
 	t_adj_lst	*lst;
 	t_sommet	*cur;
 
+	stop++;
 	lst = node->lst;
 	while (lst)
 	{

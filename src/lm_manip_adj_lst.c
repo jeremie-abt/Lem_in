@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:40:21 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/24 13:53:18 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/25 16:36:32 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int				lm_add_tube(t_sommet **graph, char *pattern)
 	}
 	if (lm_add_neighbor(first_sommet, second_sommet) == -2)
 	{
+
 		free(first);
 		return (-2);
 	}

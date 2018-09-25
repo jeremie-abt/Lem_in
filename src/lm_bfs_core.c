@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:32:23 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/25 16:01:31 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/25 18:19:09 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int				lm_find_one_path_with_bfs(t_sommet **graph)
 {
 	t_control_queue		control;
 	t_sommet			*cur;
+	static int			stop;
 
 	graph[0]->visited = 1;
 	graph[1]->visited = 0;
@@ -39,6 +40,7 @@ int				lm_find_one_path_with_bfs(t_sommet **graph)
 		}
 		else
 		{
+			stop++;
 			if (!lm_add_neighboor(graph, cur, &control))
 			{
 				lm_free_queue(&control);
@@ -46,6 +48,7 @@ int				lm_find_one_path_with_bfs(t_sommet **graph)
 			}
 		}
 	}
+//	printf("return \n\n");
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 12:33:49 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/25 16:02:05 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/25 18:18:51 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,33 @@ t_sommet		*lm_pop_queue(t_control_queue *control)
 {
 	t_sommet		*ret;
 	t_queue			*save;
+	static int		stop;
 
-	save = control->tail;
+	stop++;
 	ret = control->tail->sommet;
-	if (control->tail->next)
-		control->tail = control->tail->next;
+	save = control->head;
+	if (save->next)
+	{
+		while (save->next->next)
+			save = save->next;
+		free(save->next);
+		save->next = NULL;
+		control->tail = save;
+	}
 	else
-		ft_bzero(control, sizeof(t_control_queue));
-	free(save);
+	{
+		if (control->head)
+			free(control->head);
+		control->head = NULL;
+		control->tail = NULL;
+	}
 	return (ret);
 }
 
 int				lm_add_elem_queue(t_control_queue *control, t_sommet *new_elem)
 {
 	t_queue					*new_head;
+	static int stop;
 
 	if (!(new_head = malloc(sizeof(t_queue))))
 		return (-1);
@@ -73,5 +86,11 @@ int				lm_add_elem_queue(t_control_queue *control, t_sommet *new_elem)
 		new_head->next = control->head;
 		control->head = new_head;
 	}
+	stop++;
+/*	if (stop == 13)
+	{
+		printf("issou\n");
+		while (1);
+	}*/
 	return (1);
 }

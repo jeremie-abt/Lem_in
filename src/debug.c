@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 17:51:11 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 14:50:37 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/25 16:36:32 by jabt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,13 +228,13 @@ void	print_node(t_sommet *node)
 */
 void	print_queue(t_control_queue *control)
 {
-	t_queue	*tail;
+	t_queue	*head;
 
-	tail = control->tail;
-	while (tail)
+	head = control->head;
+	while (head)
 	{
-		ft_printf("current : %s\n", tail->sommet->name);
-		tail = tail->next;
+		ft_printf("current : %s\n", head->sommet->name);
+		head = head->next;
 	}
 }
 
