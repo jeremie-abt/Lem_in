@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:32:23 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/12 11:46:06 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/25 15:41:51 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int				lm_find_one_path_with_bfs(t_sommet **graph)
 }
 
 /*
-** 		OUTPOUT
+** 		OUTPUT
 **		return = 1 if one worth path is found
-**		return 0 if 0 path are found or if the founded path aren't worth
+**		return 0 if 0 path are found or if the found path aren't worth
 **		return -1 to indicate a problem to the calling procedure,
 **		meaning quitting correctly the program
 */
@@ -70,26 +70,29 @@ t_sommet		*lm_get_node_to_reverse_bfs(t_sommet **resid_graph)
 	resid_graph[1]->visited = 0;
 	ft_bzero(&control, sizeof(t_control_queue));
 	if (!lm_add_elem_queue(&control, resid_graph[0]))
+	{
+		lm_free_queue(&control);
 		return (NULL);
+	}
 	while (control.head || control.tail)
 	{
 		cur = lm_pop_queue(&control);
 		if (cur != resid_graph[1] && cur->visited == 2)
-			return (cur);
+		{
+				lm_free_queue(&control);
+				return (cur);
+		}
 		else
 		{
 			if (!lm_add_neighboor_visited2(resid_graph, cur, &control))
-			{
-				lm_free_queue(&control);
 				return (NULL);
-			}
 		}
 	}
 	return (NULL);
 }
 
 /*
-** 	OUTPOUT
+** 	OUTPUT
 ** 	return the first node reach by a bfs which has its visited value to
 ** 	2 and isn't the end node
 ** 	NULL if there is no such node, meaning no path in the resid_graph

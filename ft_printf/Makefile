@@ -6,7 +6,7 @@
 #    By: jabt <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Createdf: 2018/02/15 11:39:11 by jabt              #+#    #+#              #
-#    Updated: 2018/09/19 13:07:14 by galemair         ###   ########.fr        #
+#    Updated: 2018/09/24 10:20:52 by galemair         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,11 +62,11 @@ obj:
 	@mkdir obj
 
 clean:
-	rm -rf $(OBJ);
-	rm -rf $(addprefix $(PATHLIB), $(OBJLIBFT))
+	@rm -rf $(OBJ);
+	@rm -rf $(addprefix $(PATHLIB), $(OBJLIBFT))
 
 fclean: clean
-	rm -rf $(NAME)
-	rm -rf $(PATHLIB)/libft.a
+	@rm -rf $(NAME)
+	@rm -rf $(PATHLIB)/libft.a
 
 re: fclean libft $(NAME)

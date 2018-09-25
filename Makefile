@@ -6,7 +6,7 @@
 #    By: galemair <galemair@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/04 13:49:33 by galemair          #+#    #+#              #
-#    Updated: 2018/09/20 14:50:43 by galemair         ###   ########.fr        #
+#    Updated: 2018/09/24 11:24:41 by galemair         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ OBJS		=	$(SRCS:.c=.o)
 			
 
 $(NAME): lib printf $(OBJS) 
-	@gcc -o $@ $(OBJS) libft/libft.a ft_printf/libftprintf.a
+	@gcc -g -o $@ $(OBJS) libft/libft.a ft_printf/libftprintf.a
 	@echo "\n\033[1;32m LEM-IN COMPILED\033[0m"
 
 all:	$(NAME)

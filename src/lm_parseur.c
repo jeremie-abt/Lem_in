@@ -6,7 +6,7 @@
 /*   By: galemair <galemair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 16:11:37 by galemair          #+#    #+#             */
-/*   Updated: 2018/09/20 16:23:31 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/24 15:32:47 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int					lm_parseur(t_sommet **graph)
 				freeanddisplay_input(input);
 				return (ants);
 			}
-			free_input(input);
+			freeanddisplay_input(input);
 			return (-1);
 		}
 		if (return_value == -1)

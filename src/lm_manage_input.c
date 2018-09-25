@@ -6,7 +6,7 @@
 /*   By: galemair <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 16:17:06 by galemair          #+#    #+#             */
-/*   Updated: 2018/09/19 16:00:52 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/24 16:33:18 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,19 @@ int		stock_input(t_input **input)
 {
 	t_input	*tmp;
 	char	*line;
+	int		ret;
 
+	ret = 1;
 	if ((*input = malloc(sizeof(t_input))) == NULL)
 		return (-2);
-	get_next_line(0, &((*input)->line));
+	if (get_next_line(0, &((*input)->line)) == -1)
+		return (-2);
 	tmp = *input;
-	while (get_next_line(0, &line))
+	while ((ret = get_next_line(0, &line)) == 1)
 	{
 		if ((tmp->next = malloc(sizeof(t_input))) == NULL)
+			return (-2);
+		if (ret == -1)
 			return (-2);
 		tmp = tmp->next;
 		tmp->line = line;
@@ -87,5 +92,6 @@ int		stock_input(t_input **input)
 		if (check_line_validity(line) == -1)
 			return (-1);
 	}
+
 	return (1);
 }

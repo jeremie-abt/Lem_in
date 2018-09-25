@@ -6,14 +6,14 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:40:21 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/20 16:19:31 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/24 13:53:18 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 static int		lm_add_neighbor(t_sommet *first_sommet,
-	t_sommet *second_sommet, char *first_neighbor, char *second_neighbor)
+	t_sommet *second_sommet)
 {
 	t_adj_lst		*tmp;
 
@@ -21,7 +21,7 @@ static int		lm_add_neighbor(t_sommet *first_sommet,
 	if (!(first_sommet->lst = malloc(sizeof(t_adj_lst))))
 		return (-2);
 	first_sommet->lst->next = tmp;
-	first_sommet->lst->name = first_neighbor;
+	first_sommet->lst->name = second_sommet->name;
 	tmp = second_sommet->lst;
 	if (!(second_sommet->lst = malloc(sizeof(t_adj_lst))))
 	{
@@ -29,12 +29,56 @@ static int		lm_add_neighbor(t_sommet *first_sommet,
 		return (-2);
 	}
 	second_sommet->lst->next = tmp;
-	second_sommet->lst->name = second_neighbor;
+	second_sommet->lst->name = first_sommet->name;
 	first_sommet->lst->flow = 1;
 	second_sommet->lst->flow = 1;
 	return (1);
 }
 
+//static void		init_adj_lst(t_adj_lst *lst, char *name)
+//{
+//	lst->next = NULL;
+//	lst->name = name;
+//	lst->flow = 1;
+//}
+//
+//static int		lm_add_neighbor(t_sommet *first_sommet,
+//	t_sommet *second_sommet)
+//{
+//	t_adj_lst		*tmp;
+//
+//	if (!(first_sommet->lst))
+//	{
+//		if (!(first_sommet->lst = malloc(sizeof(t_adj_lst))))
+//			return (-2);
+//		init_adj_lst(first_sommet->lst, second_sommet->name);
+//	}
+//	else
+//	{
+//		tmp = first_sommet->lst;
+//		while (tmp->next)
+//			tmp = tmp->next;
+//		if (!(tmp->next = malloc(sizeof(t_adj_lst))))
+//			return (-2);
+//		init_adj_lst(tmp->next, second_sommet->name);
+//	}
+//	if (!(second_sommet->lst))
+//	{
+//		if (!(second_sommet->lst = malloc(sizeof(t_adj_lst))))
+//			return (-2);
+//		init_adj_lst(second_sommet->lst, first_sommet->name);
+//	}
+//	else
+//	{
+//		tmp = second_sommet->lst;
+//		while (tmp->next)
+//			tmp = tmp->next;
+//		if (!(tmp->next = malloc(sizeof(t_adj_lst))))
+//			return (-2);
+//		init_adj_lst(tmp->next, first_sommet->name);
+//	}
+//	return (1);
+//}
 int				lm_add_tube(t_sommet **graph, char *pattern)
 {
 	t_sommet	*first_sommet;
@@ -56,7 +100,7 @@ int				lm_add_tube(t_sommet **graph, char *pattern)
 		free(first);
 		return (-1);
 	}
-	if (lm_add_neighbor(first_sommet, second_sommet, second_sommet->name, first_sommet->name) == -2)
+	if (lm_add_neighbor(first_sommet, second_sommet) == -2)
 	{
 		free(first);
 		return (-2);

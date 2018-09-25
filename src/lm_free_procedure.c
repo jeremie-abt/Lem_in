@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 16:54:06 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/20 15:10:28 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/24 11:19:35 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void			lm_free_adj_lst(t_adj_lst *adj_lst)
 	{
 		save = adj_lst;
 		adj_lst = adj_lst->next;
-//		free(save->name);
 		free(save);
 	}
 }

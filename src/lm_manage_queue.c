@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 12:33:49 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/20 11:54:16 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/25 15:41:30 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void			lm_free_queue(t_control_queue *control)
 }
 
 /*
-** 	for use this queue, you need :
-** 	declare a t_control_queue control
-** 	make a ft_bzero to 0ed the structure and after you can use it by those
+** 	To use this queue, you need :
+** 	to declare a t_control_queue control
+** 	to make a ft_bzero to 0ed the structure and after you can use it by those
 ** 	two functions
 */
 
