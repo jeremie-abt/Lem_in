@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:32:23 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/25 15:41:51 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/25 16:01:31 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ int				lm_find_one_path_with_bfs(t_sommet **graph)
 	{
 		cur = lm_pop_queue(&control);
 		if (cur == graph[1])
+		{
+			lm_free_queue(&control);
 			return (1);
+		}
 		else
 		{
 			if (!lm_add_neighboor(graph, cur, &control))

@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 12:33:49 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/25 15:41:30 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/25 16:02:05 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int				lm_add_elem_queue(t_control_queue *control, t_sommet *new_elem)
 	}
 	else
 	{
-		control->head->next = new_head;
+		new_head->next = control->head;
 		control->head = new_head;
 	}
 	return (1);

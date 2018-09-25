@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:11:00 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/24 15:24:27 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/25 15:52:27 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void		lm_error_quit_properly(t_sommet **graph)
 {
 	write(1, "ERROR\n", 6);
 	lm_free_hashtable(graph);
-	//while (1);
+	while (1);
 	exit(42);
 }
 
