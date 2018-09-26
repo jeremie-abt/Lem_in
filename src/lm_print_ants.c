@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 13:35:16 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/20 16:26:39 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/26 15:25:05 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void			lm_print_last_part(t_sommet **graph, t_sommet *cur,
 	{
 		if (cur->ant)
 		{
-			//ft_printf("{GREEN}L%d-%s{EOC} ", cur->ant, graph[1]->name);
 			ft_printf("%d-%s ", cur->ant, graph[1]->name);
 			cur->ant = prev->ant;
 			if (!cur->ant)
@@ -35,7 +34,6 @@ static void			lm_print_last_part(t_sommet **graph, t_sommet *cur,
 	}
 	else
 	{
-		//ft_printf("{GREEN}L%d-%s{EOC} ", cur->ant, graph[1]->name);
 		ft_printf("%d-%s ", cur->ant, graph[1]->name);
 		if (!*tab_of_ant)
 			*cur_tab = NULL;
@@ -137,5 +135,6 @@ int					lm_core_print_ants(t_sommet **graph, int ants, int path)
 		return (-1);
 	}
 	free(nb_ants_in_path);
+
 	return (1);
 }

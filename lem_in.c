@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:11:00 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/25 17:56:56 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/26 15:53:52 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ int				main(void)
 	ft_bzero(graph, HASH_SIZE * sizeof(t_sommet *));
 	if ((ants = lm_parseur(graph)) < 0)
 		lm_error_quit_properly(graph);
-	//lm_free_hashtable(graph);
-	//while (1);
-	//exit(0);
 	ft_printf("\n");
 	path = lm_find_best_flow(graph, ants);
 	if (path <= 0)

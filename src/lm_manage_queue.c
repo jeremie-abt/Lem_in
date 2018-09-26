@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 12:33:49 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/25 18:18:51 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/26 15:48:50 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,5 @@ int				lm_add_elem_queue(t_control_queue *control, t_sommet *new_elem)
 		control->head = new_head;
 	}
 	stop++;
-/*	if (stop == 13)
-	{
-		printf("issou\n");
-		while (1);
-	}*/
 	return (1);
 }

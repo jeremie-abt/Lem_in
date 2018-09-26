@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:39:26 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/10 18:56:05 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/26 15:24:49 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int				lm_sort_begin_byorder(t_sommet **graph)
 		lst = lst->next;
 	}
 	lst = graph[0]->lst;
+	lm_free_adj_lst(lst);
 	graph[0]->lst = new_lst;
 	return (1);
 }

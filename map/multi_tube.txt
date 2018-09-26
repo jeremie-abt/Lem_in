@@ -1,0 +1,11 @@
+12
+##start
+start 12 12
+##end
+end 13 12
+salut 12 43
+oui 15 12
+salut-oui
+oui-salut
+start-salut
+oui-end
