@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:32:23 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/25 18:19:09 by jabt             ###   ########.fr       */
+/*   Updated: 2018/09/27 17:26:14 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,18 @@
 **		la valeur visited des nodes debut et fin est egale a 0
 */
 
+void			lm_init_graph(t_sommet **graph)
+{
+	graph[0]->visited = 1;
+	graph[1]->visited = 0;
+}
+
 int				lm_find_one_path_with_bfs(t_sommet **graph)
 {
 	t_control_queue		control;
 	t_sommet			*cur;
-	static int			stop;
 
-	graph[0]->visited = 1;
-	graph[1]->visited = 0;
+	lm_init_graph(graph);
 	ft_bzero(&control, sizeof(t_control_queue));
 	if (!lm_add_elem_queue(&control, graph[0]))
 		return (-1);
@@ -40,7 +44,6 @@ int				lm_find_one_path_with_bfs(t_sommet **graph)
 		}
 		else
 		{
-			stop++;
 			if (!lm_add_neighboor(graph, cur, &control))
 			{
 				lm_free_queue(&control);
@@ -48,7 +51,6 @@ int				lm_find_one_path_with_bfs(t_sommet **graph)
 			}
 		}
 	}
-//	printf("return \n\n");
 	return (0);
 }
 
@@ -72,8 +74,7 @@ t_sommet		*lm_get_node_to_reverse_bfs(t_sommet **resid_graph)
 	int					distance;
 
 	distance = 1;
-	resid_graph[0]->visited = 1;
-	resid_graph[1]->visited = 0;
+	lm_init_graph(resid_graph);
 	ft_bzero(&control, sizeof(t_control_queue));
 	if (!lm_add_elem_queue(&control, resid_graph[0]))
 	{
@@ -85,14 +86,11 @@ t_sommet		*lm_get_node_to_reverse_bfs(t_sommet **resid_graph)
 		cur = lm_pop_queue(&control);
 		if (cur != resid_graph[1] && cur->visited == 2)
 		{
-				lm_free_queue(&control);
-				return (cur);
+			lm_free_queue(&control);
+			return (cur);
 		}
-		else
-		{
-			if (!lm_add_neighboor_visited2(resid_graph, cur, &control))
-				return (NULL);
-		}
+		else if (!lm_add_neighboor_visited2(resid_graph, cur, &control))
+			return (NULL);
 	}
 	return (NULL);
 }
@@ -121,8 +119,7 @@ int				lm_relaxing_bfs(t_sommet **resid_graph, t_sommet *node)
 	int					state;
 
 	state = 0;
-	resid_graph[0]->visited = 1;
-	resid_graph[1]->visited = 0;
+	lm_init_graph(resid_graph);
 	ft_bzero(&control, sizeof(t_control_queue));
 	if (!lm_add_elem_queue(&control, node))
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: galemair <galemair@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 16:11:37 by galemair          #+#    #+#             */
-/*   Updated: 2018/09/24 15:32:47 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/27 18:42:22 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static int			lm_handle_command(t_sommet **graph, char *line)
 {
 	int	return_value;
-
 
 	if (line[1] == '#')
 	{
@@ -35,66 +34,56 @@ static int			lm_handle_command(t_sommet **graph, char *line)
 
 int					lm_parse_room(t_sommet **graph, char *line)
 {
-	int	mp_flag;
+	int			mp_flag;
+	static int	room = 0;
 
 	mp_flag = 1;
 	if (*line == '#' && (mp_flag = lm_handle_command(graph, line)) > -1)
 		;
-	else if (lm_is_good_room(line) != -1)
+	else if (room == 0 && lm_is_good_room(line) != -1)
 		mp_flag = lm_add_sommet(graph, line);
 	else if (lm_verif_tube(line) != -1)
+	{
+		room = 1;
 		mp_flag = lm_add_tube(graph, line);
+	}
 	else
 		return (-1);
 	return (mp_flag);
 }
 
-int					lm_parseur(t_sommet **graph)
+static int			lm_get_input(t_input **input)
 {
-	int		ants;
+	int ret;
+
+	ret = stock_input(input);
+	if (ret < 0)
+		freeanddisplay_input(*input, DISPLAY_MAP);
+	return (ret);
+}
+
+int					lm_parseur(t_sommet **graph, t_parsing *datas)
+{
 	char	*line;
 	t_input	*input;
 	int		return_value;
 
-	if (stock_input(&input) == -2)
-	{
-		free_input(input);
+	if (lm_get_input(&input) < 0)
 		return (-2);
-	}
 	get_line(&line, input, 1);
 	while (line[0] == '#')
 		get_line(&line, input, 0);
-	if ((ants = lm_parse_ant(line)) == -1)
+	if ((datas->ants = lm_get_ants(line, input)) == -1)
+		return (-1);
+	if ((return_value = lm_parser_main_loop(graph, input, datas)) < 0)
+		return (return_value);
+	if (return_value == -3)
+		return (1);
+	if (!graph[0] || !graph[1] || ((datas->path = lm_find_best_flow(graph, datas->ants)) <= 0))
 	{
-		freeanddisplay_input(input);
+		freeanddisplay_input(input, DISPLAY_MAP);
 		return (-1);
 	}
-	while (get_line(&line, input, 0))
-	{
-		if ((return_value = lm_parse_room(graph, line)) == -1 &&
-			graph[0] && graph[1])
-		{
-			if (lm_find_shortest_distinct_path(graph, ants) > 0)
-			{
-				freeanddisplay_input(input);
-				return (ants);
-			}
-			freeanddisplay_input(input);
-			return (-1);
-		}
-		if (return_value == -1)
-		{
-			freeanddisplay_input(input);
-			return (-1);
-		}
-		else if (return_value == -2)
-		{
-			free_input(input);
-			return (-2);
-		}
-	}
-	freeanddisplay_input(input);
-	if (!graph[0] || !graph[1])
-		return (-1);
-	return (ants);
+	freeanddisplay_input(input, 1);
+	return (1);
 }

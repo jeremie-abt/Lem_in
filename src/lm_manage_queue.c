@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 12:33:49 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/26 15:48:50 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/27 14:37:02 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ t_sommet		*lm_pop_queue(t_control_queue *control)
 int				lm_add_elem_queue(t_control_queue *control, t_sommet *new_elem)
 {
 	t_queue					*new_head;
-	static int stop;
 
 	if (!(new_head = malloc(sizeof(t_queue))))
 		return (-1);
@@ -86,6 +85,5 @@ int				lm_add_elem_queue(t_control_queue *control, t_sommet *new_elem)
 		new_head->next = control->head;
 		control->head = new_head;
 	}
-	stop++;
 	return (1);
 }

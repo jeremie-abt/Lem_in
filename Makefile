@@ -6,7 +6,7 @@
 #    By: galemair <galemair@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/04 13:49:33 by galemair          #+#    #+#              #
-#    Updated: 2018/09/24 11:24:41 by galemair         ###   ########.fr        #
+#    Updated: 2018/09/27 15:39:17 by galemair         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ FLAGS		=	-Wall -Wextra -Werror
 INCLUDES	=	inc/
 
 SRCS		=	lem_in.c									\
-				src/debug.c									\
 				src/lm_algo.c								\
 				src/lm_bfs_core.c							\
 				src/lm_fill_distance.c						\
@@ -51,6 +50,7 @@ SRCS		=	lem_in.c									\
 				src/lm_update_main_graph.c                  \
 				src/lm_utils.c                              \
 				src/lm_verif_format.c                       \
+				src/lm_parseur_helper.c						\
 
 OBJS		=	$(SRCS:.c=.o)
 			

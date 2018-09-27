@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 09:43:57 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/24 11:20:23 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/27 14:17:43 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			lm_free_hashtable(t_sommet **hashtab)
 	t_sommet	*tmp;
 
 	i = 0;
-	while (i < HASH_SIZE)
+	while (++i < HASH_SIZE)
 	{
 		if (hashtab[i])
 		{
@@ -38,7 +38,6 @@ void			lm_free_hashtable(t_sommet **hashtab)
 			}
 			hashtab[i] = NULL;
 		}
-		i++;
 	}
 }
 

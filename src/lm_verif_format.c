@@ -6,17 +6,30 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 17:42:46 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/19 16:12:27 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/27 17:04:42 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+int		check_dash(char *str)
+{
+	while (*str)
+	{
+		if (*str == '-')
+			return (0);
+		str++;
+	}
+	return (1);
+}
 
 int		lm_is_good_room(char *room)
 {
 	int		i;
 
 	i = 0;
+	if (check_dash(room) == 0)
+		return (-1);
 	if (*room == 'L')
 		return (-1);
 	while (*room && *room != ' ')

@@ -6,13 +6,13 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 10:28:42 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/18 18:30:22 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/27 14:07:13 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-#include <stdlib.h>
+# include <stdlib.h>
 # include <string.h>
 
 typedef struct	s_list

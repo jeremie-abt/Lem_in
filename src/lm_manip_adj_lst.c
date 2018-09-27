@@ -6,22 +6,23 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:40:21 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/26 15:47:33 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/27 16:46:58 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-//static int		lm_check_adj_lst(t_adj_lst *lst, char *name)
-//{
-//	while (lst)
-//	{
-//		if (strcmp(lst->name, name) == 0) // To add libft function
-//			return (0);
-//		lst = lst->next;
-//	}
-//	return (1);
-//}
+static int		lm_check_adj_lst(t_adj_lst *lst, char *name)
+{
+	while (lst)
+	{
+		if (ft_strcmp(lst->name, name) == 0)
+			return (0);
+		lst = lst->next;
+	}
+	return (1);
+}
+
 static int		lm_add_neighbor(t_sommet *first_sommet,
 	t_sommet *second_sommet)
 {
@@ -45,50 +46,6 @@ static int		lm_add_neighbor(t_sommet *first_sommet,
 	return (1);
 }
 
-//static void		init_adj_lst(t_adj_lst *lst, char *name)
-//{
-//	lst->next = NULL;
-//	lst->name = name;
-//	lst->flow = 1;
-//}
-//
-//static int		lm_add_neighbor(t_sommet *first_sommet,
-//	t_sommet *second_sommet)
-//{
-//	t_adj_lst		*tmp;
-//
-//	if (!(first_sommet->lst))
-//	{
-//		if (!(first_sommet->lst = malloc(sizeof(t_adj_lst))))
-//			return (-2);
-//		init_adj_lst(first_sommet->lst, second_sommet->name);
-//	}
-//	else
-//	{
-//		tmp = first_sommet->lst;
-//		while (tmp->next)
-//			tmp = tmp->next;
-//		if (!(tmp->next = malloc(sizeof(t_adj_lst))))
-//			return (-2);
-//		init_adj_lst(tmp->next, second_sommet->name);
-//	}
-//	if (!(second_sommet->lst))
-//	{
-//		if (!(second_sommet->lst = malloc(sizeof(t_adj_lst))))
-//			return (-2);
-//		init_adj_lst(second_sommet->lst, first_sommet->name);
-//	}
-//	else
-//	{
-//		tmp = second_sommet->lst;
-//		while (tmp->next)
-//			tmp = tmp->next;
-//		if (!(tmp->next = malloc(sizeof(t_adj_lst))))
-//			return (-2);
-//		init_adj_lst(tmp->next, first_sommet->name);
-//	}
-//	return (1);
-//}
 int				lm_add_tube(t_sommet **graph, char *pattern)
 {
 	t_sommet	*first_sommet;
@@ -102,21 +59,18 @@ int				lm_add_tube(t_sommet **graph, char *pattern)
 		(ft_strchr(pattern, '-') - pattern))))
 		return (-2);
 	if (!(first_sommet = lm_get_sommet(graph, first)) ||
-			!(second_sommet = lm_get_sommet(graph, (ft_strchr(pattern, '-') + 1))))
+		!(second_sommet = lm_get_sommet(graph, (ft_strchr(pattern, '-') + 1))))
 	{
 		free(first);
 		return (-1);
 	}
-//	if (lm_check_adj_lst(first_sommet->lst, (ft_strchr(pattern, '-') + 1)) == 0 || lm_check_adj_lst(second_sommet->lst, first) == 0)
-//	{
-//		printf("OK C EST CA");
-//		exit (0);
-//	}
-	if (lm_add_neighbor(first_sommet, second_sommet) == -2)
-	{
-		free(first);
-		return (-2);
-	}
+	if (lm_check_adj_lst(first_sommet->lst, (ft_strchr(pattern, '-') + 1)) != 0
+		&& lm_check_adj_lst(second_sommet->lst, first) != 0)
+		if (lm_add_neighbor(first_sommet, second_sommet) == -2)
+		{
+			free(first);
+			return (-2);
+		}
 	free(first);
 	return (1);
 }

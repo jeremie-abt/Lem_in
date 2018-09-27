@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 11:15:42 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/26 13:48:42 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/27 17:10:27 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void		lm_print_all_ants(char *end, int ants)
 	i = 0;
 	while (i < ants)
 	{
-		ft_printf("%d-%s ", i, end);
+		ft_printf("L%d-%s ", i, end);
 		i++;
 	}
 	ft_printf("\n");

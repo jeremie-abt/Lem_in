@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 11:37:05 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/20 16:28:53 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/27 18:30:21 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,19 @@
 # include "assert.h"
 
 # define HASH_SIZE 128
+# define DISPLAY_MAP 1
 
 typedef struct		s_input
 {
 	char			*line;
 	struct s_input	*next;
 }					t_input;
-
+typedef	struct		s_parsing
+{
+	int	ants;
+	int path;
+	int error;
+}					t_parsing;
 typedef struct		s_sommet
 {
 	char				*name;
@@ -184,12 +190,16 @@ int					lm_is_worth_path_flow(t_sommet **graph,
 */
 
 int					lm_parse_ant(char *ligne);
-int					lm_parseur(t_sommet **graph);
+int					lm_parseur(t_sommet **graph, t_parsing *datas);
 int					lm_is_good_room(char *room);
 int					lm_parse_room_and_stock_room(t_sommet **sommet);
 int					lm_is_good_name_room(t_sommet **sommet, char *room);
 char				*lm_get_room_name(char *str);
 int					lm_get_name_length(char *str);
+int					lm_parser_main_loop(t_sommet **graph,
+					t_input *input, t_parsing *datas);
+int					lm_get_ants(char *line, t_input *input);
+int					lm_parse_room(t_sommet **graph, char *line);
 
 /*
 **		chepa
@@ -197,7 +207,7 @@ int					lm_get_name_length(char *str);
 
 int					stock_input(t_input **input);
 int					get_line(char **line, t_input *input, int start);
-void				freeanddisplay_input(t_input *input);
+void				freeanddisplay_input(t_input *input, int display);
 
 /*
 ** 	un peu d'utils
@@ -212,7 +222,7 @@ int					lm_add_end(t_sommet **hashtable, char *str);
 void				print_sommet(t_sommet *hashtable);
 void				print_hashtable(t_sommet **hashtable);
 void				print_all_hashtable(t_sommet **hashtable);
-void				print_resid_graph(t_sommet **);
+void				print_resid_graph(t_sommet **graph);
 void				print_all_hashtable_wdistance(t_sommet **hashtable);
 void				print_hashtable_distance_and_prev(t_sommet **hashtable);
 void				print_hashtable_visited_and_prev(t_sommet **hashtable);
@@ -220,10 +230,10 @@ void				debug_queue(t_sommet **hashtable);
 void				print_path(t_sommet **hashtable, t_sommet *node);
 void				print_queue(t_control_queue *control);
 void				print_flow(t_sommet **hashtable);
-void				print_node(t_sommet *);
-void				print_adj_lst(t_sommet *, t_adj_lst *);
-void				print_adj_lst_distance(t_sommet **, t_sommet *,
-t_adj_lst *);
+void				print_node(t_sommet *node);
+void				print_adj_lst(t_sommet *graph, t_adj_lst *lst);
+void				print_adj_lst_distance(t_sommet **graph, t_sommet *lst,
+					t_adj_lst *lsst);
 void				print_hashtable_flow(t_sommet **hashtable);
 void				print_stack(t_stack *stack);
 void				print_ant_path(t_sommet **graph);

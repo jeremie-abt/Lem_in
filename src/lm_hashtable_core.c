@@ -6,7 +6,7 @@
 /*   By: jabt <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 11:29:35 by jabt              #+#    #+#             */
-/*   Updated: 2018/09/20 14:54:03 by galemair         ###   ########.fr       */
+/*   Updated: 2018/09/27 16:32:30 by galemair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_adj_lst		*lm_copy_lst(t_sommet *node)
 		if (!(lm_new_lst_node(&new_lst, lst)))
 		{
 			lm_free_adj_lst(new_lst);
-			exit (0);
+			exit(0);
 		}
 		lst = lst->next;
 	}
@@ -104,7 +104,7 @@ t_sommet				*lm_copy_node(t_sommet **graph, t_sommet *src)
 		{
 			resid_node->next = lm_copy_node(graph, src->next);
 			return (resid_node);
-		}	
+		}
 	}
 	else
 		return (NULL);
