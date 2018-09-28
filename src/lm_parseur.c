@@ -77,7 +77,7 @@ int					lm_parseur(t_sommet **graph, t_parsing *datas)
 		return (-1);
 	if ((return_value = lm_parser_main_loop(graph, input, datas)) < 0)
 		return (return_value);
-	if (return_value == -3)
+	if (return_value == 2)
 		return (1);
 	if (!graph[0] || !graph[1] || ((datas->path = lm_find_best_flow(graph, datas->ants)) <= 0))
 	{

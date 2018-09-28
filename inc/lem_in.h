@@ -24,7 +24,7 @@
 # include "assert.h"
 
 # define HASH_SIZE 128
-# define DISPLAY_MAP 1
+# define DISPLAY_MAP 0
 
 typedef struct		s_input
 {

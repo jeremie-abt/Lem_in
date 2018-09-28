@@ -102,10 +102,11 @@ int					lm_add_start_end(t_sommet **graph, int index)
 {
 	char	*line;
 
+	line = NULL;
 	if (graph[index])
 		return (-1);
 	get_line(&line, NULL, 0);
-	if (lm_is_good_room(line) == 1)
+	if (line && lm_is_good_room(line) == 1)
 	{
 		if (!(graph[index] = malloc(sizeof(t_sommet))))
 			return (-2);

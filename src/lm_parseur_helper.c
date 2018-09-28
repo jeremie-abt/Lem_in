@@ -29,18 +29,14 @@ int		lm_parser_main_loop(t_sommet **graph, t_input *input, t_parsing *datas)
 
 	while (get_line(&line, input, 0))
 	{
-		write(1, "ou\n", 3);
 		if ((return_value = lm_parse_room(graph, line)) == -1 &&
 			graph[0] && graph[1])
 		{
-			write(1, "no\n", 3);
-			printf("%d\n", datas->ants);
 			if ((datas->path = lm_find_best_flow(graph, datas->ants)) > 0)
 			{
 				freeanddisplay_input(input, 1);
-				return (-3);
+				return (2);
 			}
-			//freeanddisplay_input(input, DISPLAY_MAP);
 		}
 		if (return_value < 0)
 		{
